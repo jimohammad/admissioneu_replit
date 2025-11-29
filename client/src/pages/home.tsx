@@ -15,6 +15,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCountry, setSelectedCountry] = useState<string>('all');
   const [selectedRegion, setSelectedRegion] = useState<string>('all');
   const [selectedType, setSelectedType] = useState<string>('all');
   const [selectedDomain, setSelectedDomain] = useState<string>('all');
@@ -26,9 +27,24 @@ export default function Home() {
     queryFn: fetchUniversities,
   });
 
-  const regions = useMemo(() => {
-    return Array.from(new Set(universities.map(u => u.region))).sort();
+  const countries = useMemo(() => {
+    return Array.from(new Set(universities.map(u => u.country))).sort();
   }, [universities]);
+
+  const countryCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    universities.forEach(u => {
+      counts[u.country] = (counts[u.country] || 0) + 1;
+    });
+    return counts;
+  }, [universities]);
+
+  const regions = useMemo(() => {
+    const filteredByCountry = selectedCountry === 'all' 
+      ? universities 
+      : universities.filter(u => u.country === selectedCountry);
+    return Array.from(new Set(filteredByCountry.map(u => u.region))).sort();
+  }, [universities, selectedCountry]);
 
   const domains = useMemo(() => {
     return Array.from(new Set(universities.flatMap(u => u.domains))).sort();
@@ -38,18 +54,21 @@ export default function Home() {
     return universities.filter((u) => {
       const matchesSearch = u.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
                            u.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                           u.region.toLowerCase().includes(searchQuery.toLowerCase());
+                           u.region.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                           u.country.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesCountry = selectedCountry === 'all' || u.country === selectedCountry;
       const matchesRegion = selectedRegion === 'all' || u.region === selectedRegion;
       const matchesType = selectedType === 'all' || u.type === selectedType;
       const matchesDomain = selectedDomain === 'all' || u.domains.includes(selectedDomain);
       const matchesEnglish = !showEnglishOnly || u.englishPrograms;
 
-      return matchesSearch && matchesRegion && matchesType && matchesDomain && matchesEnglish;
+      return matchesSearch && matchesCountry && matchesRegion && matchesType && matchesDomain && matchesEnglish;
     });
-  }, [universities, searchQuery, selectedRegion, selectedType, selectedDomain, showEnglishOnly]);
+  }, [universities, searchQuery, selectedCountry, selectedRegion, selectedType, selectedDomain, showEnglishOnly]);
 
   const clearFilters = () => {
     setSearchQuery('');
+    setSelectedCountry('all');
     setSelectedRegion('all');
     setSelectedType('all');
     setSelectedDomain('all');
@@ -58,7 +77,14 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 font-sans">
-      <Hero searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <Hero 
+        searchQuery={searchQuery} 
+        setSearchQuery={setSearchQuery}
+        selectedCountry={selectedCountry}
+        setSelectedCountry={setSelectedCountry}
+        countries={countries}
+        countryCounts={countryCounts}
+      />
 
       <main className="container mx-auto px-4 py-12 -mt-20 relative z-20">
         {/* Filters Panel */}
@@ -188,15 +214,15 @@ export default function Home() {
       <footer className="bg-slate-900 text-slate-400 py-12 mt-20 border-t border-slate-800">
         <div className="container mx-auto px-4 text-center space-y-4">
           <p className="text-sm">
-            Data sourced from official government registries: Ministry of Science, Innovation and Universities, CRUE, and verified partner networks.
+            Data sourced from official government registries across Europe, including Spain's Ministry of Universities, Germany's HRK, and verified partner networks.
           </p>
           <div className="flex justify-center gap-6 text-xs">
-             <a href="https://www.ciencia.gob.es/en/Universidades.html" className="hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">Ministry of Universities</a>
-             <a href="https://www.crue.org/universidades/" className="hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">CRUE</a>
+             <a href="https://www.ciencia.gob.es/en/Universidades.html" className="hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">Spain: Ministry of Universities</a>
+             <a href="https://www.hrk.de/member-universities/" className="hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">Germany: HRK</a>
              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
           </div>
           <p className="text-xs pt-4 border-t border-slate-800 w-full max-w-md mx-auto">
-            © 2025 UniSpain Directory. All rights reserved.
+            © 2025 EuroUni - European University Directory. All rights reserved.
           </p>
         </div>
       </footer>

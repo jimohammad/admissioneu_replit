@@ -8,6 +8,39 @@ export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
+  // Get all countries
+  app.get("/api/countries", async (req, res) => {
+    try {
+      const countries = await storage.getCountries();
+      res.json(countries);
+    } catch (error) {
+      console.error("Error fetching countries:", error);
+      res.status(500).json({ error: "Failed to fetch countries" });
+    }
+  });
+
+  // Get regions by country
+  app.get("/api/countries/:country/regions", async (req, res) => {
+    try {
+      const regions = await storage.getRegionsByCountry(req.params.country);
+      res.json(regions);
+    } catch (error) {
+      console.error("Error fetching regions:", error);
+      res.status(500).json({ error: "Failed to fetch regions" });
+    }
+  });
+
+  // Get universities by country
+  app.get("/api/countries/:country/universities", async (req, res) => {
+    try {
+      const universities = await storage.getUniversitiesByCountry(req.params.country);
+      res.json(universities);
+    } catch (error) {
+      console.error("Error fetching universities:", error);
+      res.status(500).json({ error: "Failed to fetch universities" });
+    }
+  });
+
   // Get all universities
   app.get("/api/universities", async (req, res) => {
     try {

@@ -1,10 +1,12 @@
 import { db } from "./db";
 import { universities } from "@shared/schema";
+import { germanUniversities } from "./germanUniversities";
 
-const seedUniversities = [
+const spanishUniversities = [
   // PUBLIC UNIVERSITIES - ANDALUSIA
   {
     name: 'Universidad de Almería',
+    country: 'Spain',
     region: 'Andalusia',
     city: 'Almería',
     type: 'Public',
@@ -17,6 +19,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad de Cádiz',
+    country: 'Spain',
     region: 'Andalusia',
     city: 'Cádiz',
     type: 'Public',
@@ -29,6 +32,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad de Córdoba',
+    country: 'Spain',
     region: 'Andalusia',
     city: 'Córdoba',
     type: 'Public',
@@ -41,6 +45,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad de Granada',
+    country: 'Spain',
     region: 'Andalusia',
     city: 'Granada',
     type: 'Public',
@@ -53,6 +58,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad de Huelva',
+    country: 'Spain',
     region: 'Andalusia',
     city: 'Huelva',
     type: 'Public',
@@ -65,6 +71,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad de Jaén',
+    country: 'Spain',
     region: 'Andalusia',
     city: 'Jaén',
     type: 'Public',
@@ -77,6 +84,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad de Málaga',
+    country: 'Spain',
     region: 'Andalusia',
     city: 'Málaga',
     type: 'Public',
@@ -89,6 +97,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad Pablo de Olavide',
+    country: 'Spain',
     region: 'Andalusia',
     city: 'Seville',
     type: 'Public',
@@ -101,6 +110,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad de Sevilla',
+    country: 'Spain',
     region: 'Andalusia',
     city: 'Seville',
     type: 'Public',
@@ -113,6 +123,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad Internacional de Andalucía',
+    country: 'Spain',
     region: 'Andalusia',
     city: 'Seville',
     type: 'Public',
@@ -126,6 +137,7 @@ const seedUniversities = [
   // ARAGON
   {
     name: 'Universidad de Zaragoza',
+    country: 'Spain',
     region: 'Aragon',
     city: 'Zaragoza',
     type: 'Public',
@@ -138,6 +150,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad San Jorge',
+    country: 'Spain',
     region: 'Aragon',
     city: 'Zaragoza',
     type: 'Private',
@@ -151,6 +164,7 @@ const seedUniversities = [
   // ASTURIAS
   {
     name: 'Universidad de Oviedo',
+    country: 'Spain',
     region: 'Asturias',
     city: 'Oviedo',
     type: 'Public',
@@ -164,6 +178,7 @@ const seedUniversities = [
   // BALEARIC ISLANDS
   {
     name: 'Universitat de les Illes Balears',
+    country: 'Spain',
     region: 'Balearic Islands',
     city: 'Palma de Mallorca',
     type: 'Public',
@@ -177,6 +192,7 @@ const seedUniversities = [
   // BASQUE COUNTRY
   {
     name: 'Universidad del País Vasco / Euskal Herriko Unibertsitatea',
+    country: 'Spain',
     region: 'Basque Country',
     city: 'Bilbao',
     type: 'Public',
@@ -189,6 +205,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad de Deusto',
+    country: 'Spain',
     region: 'Basque Country',
     city: 'Bilbao',
     type: 'Private',
@@ -201,6 +218,7 @@ const seedUniversities = [
   },
   {
     name: 'Mondragon Unibertsitatea',
+    country: 'Spain',
     region: 'Basque Country',
     city: 'Mondragón',
     type: 'Private',
@@ -214,6 +232,7 @@ const seedUniversities = [
   // CANARY ISLANDS
   {
     name: 'Universidad de La Laguna',
+    country: 'Spain',
     region: 'Canary Islands',
     city: 'San Cristóbal de La Laguna',
     type: 'Public',
@@ -226,6 +245,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad de Las Palmas de Gran Canaria',
+    country: 'Spain',
     region: 'Canary Islands',
     city: 'Las Palmas de Gran Canaria',
     type: 'Public',
@@ -239,6 +259,7 @@ const seedUniversities = [
   // CANTABRIA
   {
     name: 'Universidad de Cantabria',
+    country: 'Spain',
     region: 'Cantabria',
     city: 'Santander',
     type: 'Public',
@@ -251,6 +272,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad Europea del Atlántico',
+    country: 'Spain',
     region: 'Cantabria',
     city: 'Santander',
     type: 'Private',
@@ -264,6 +286,7 @@ const seedUniversities = [
   // CASTILE AND LEÓN
   {
     name: 'Universidad de Burgos',
+    country: 'Spain',
     region: 'Castile and León',
     city: 'Burgos',
     type: 'Public',
@@ -276,6 +299,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad de León',
+    country: 'Spain',
     region: 'Castile and León',
     city: 'León',
     type: 'Public',
@@ -288,6 +312,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad de Salamanca',
+    country: 'Spain',
     region: 'Castile and León',
     city: 'Salamanca',
     type: 'Public',
@@ -300,6 +325,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad de Valladolid',
+    country: 'Spain',
     region: 'Castile and León',
     city: 'Valladolid',
     type: 'Public',
@@ -312,6 +338,7 @@ const seedUniversities = [
   },
   {
     name: 'IE University',
+    country: 'Spain',
     region: 'Castile and León',
     city: 'Segovia',
     type: 'Private',
@@ -324,6 +351,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad Pontificia de Salamanca',
+    country: 'Spain',
     region: 'Castile and León',
     city: 'Salamanca',
     type: 'Private',
@@ -336,6 +364,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad Católica de Ávila',
+    country: 'Spain',
     region: 'Castile and León',
     city: 'Ávila',
     type: 'Private',
@@ -348,6 +377,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad Europea Miguel de Cervantes',
+    country: 'Spain',
     region: 'Castile and León',
     city: 'Valladolid',
     type: 'Private',
@@ -360,6 +390,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad Isabel I',
+    country: 'Spain',
     region: 'Castile and León',
     city: 'Burgos',
     type: 'Private',
@@ -373,6 +404,7 @@ const seedUniversities = [
   // CASTILLA-LA MANCHA
   {
     name: 'Universidad de Castilla-La Mancha',
+    country: 'Spain',
     region: 'Castilla-La Mancha',
     city: 'Ciudad Real',
     type: 'Public',
@@ -386,6 +418,7 @@ const seedUniversities = [
   // CATALONIA
   {
     name: 'Universitat de Barcelona',
+    country: 'Spain',
     region: 'Catalonia',
     city: 'Barcelona',
     type: 'Public',
@@ -398,6 +431,7 @@ const seedUniversities = [
   },
   {
     name: 'Universitat Autònoma de Barcelona',
+    country: 'Spain',
     region: 'Catalonia',
     city: 'Bellaterra',
     type: 'Public',
@@ -410,6 +444,7 @@ const seedUniversities = [
   },
   {
     name: 'Universitat Politècnica de Catalunya',
+    country: 'Spain',
     region: 'Catalonia',
     city: 'Barcelona',
     type: 'Public',
@@ -422,6 +457,7 @@ const seedUniversities = [
   },
   {
     name: 'Universitat Pompeu Fabra',
+    country: 'Spain',
     region: 'Catalonia',
     city: 'Barcelona',
     type: 'Public',
@@ -434,6 +470,7 @@ const seedUniversities = [
   },
   {
     name: 'Universitat de Girona',
+    country: 'Spain',
     region: 'Catalonia',
     city: 'Girona',
     type: 'Public',
@@ -446,6 +483,7 @@ const seedUniversities = [
   },
   {
     name: 'Universitat de Lleida',
+    country: 'Spain',
     region: 'Catalonia',
     city: 'Lleida',
     type: 'Public',
@@ -458,6 +496,7 @@ const seedUniversities = [
   },
   {
     name: 'Universitat Rovira i Virgili',
+    country: 'Spain',
     region: 'Catalonia',
     city: 'Tarragona',
     type: 'Public',
@@ -470,6 +509,7 @@ const seedUniversities = [
   },
   {
     name: 'Universitat Oberta de Catalunya',
+    country: 'Spain',
     region: 'Catalonia',
     city: 'Barcelona',
     type: 'Public',
@@ -482,6 +522,7 @@ const seedUniversities = [
   },
   {
     name: 'Universitat Ramon Llull',
+    country: 'Spain',
     region: 'Catalonia',
     city: 'Barcelona',
     type: 'Private',
@@ -494,6 +535,7 @@ const seedUniversities = [
   },
   {
     name: 'Universitat de Vic - Universitat Central de Catalunya',
+    country: 'Spain',
     region: 'Catalonia',
     city: 'Vic',
     type: 'Private',
@@ -506,6 +548,7 @@ const seedUniversities = [
   },
   {
     name: 'Universitat Internacional de Catalunya',
+    country: 'Spain',
     region: 'Catalonia',
     city: 'Barcelona',
     type: 'Private',
@@ -518,6 +561,7 @@ const seedUniversities = [
   },
   {
     name: 'Universitat Abat Oliba CEU',
+    country: 'Spain',
     region: 'Catalonia',
     city: 'Barcelona',
     type: 'Private',
@@ -531,6 +575,7 @@ const seedUniversities = [
   // EXTREMADURA
   {
     name: 'Universidad de Extremadura',
+    country: 'Spain',
     region: 'Extremadura',
     city: 'Badajoz',
     type: 'Public',
@@ -544,6 +589,7 @@ const seedUniversities = [
   // GALICIA
   {
     name: 'Universidade da Coruña',
+    country: 'Spain',
     region: 'Galicia',
     city: 'A Coruña',
     type: 'Public',
@@ -556,6 +602,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidade de Santiago de Compostela',
+    country: 'Spain',
     region: 'Galicia',
     city: 'Santiago de Compostela',
     type: 'Public',
@@ -568,6 +615,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidade de Vigo',
+    country: 'Spain',
     region: 'Galicia',
     city: 'Vigo',
     type: 'Public',
@@ -581,6 +629,7 @@ const seedUniversities = [
   // LA RIOJA
   {
     name: 'Universidad de La Rioja',
+    country: 'Spain',
     region: 'La Rioja',
     city: 'Logroño',
     type: 'Public',
@@ -593,6 +642,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad Internacional de La Rioja',
+    country: 'Spain',
     region: 'La Rioja',
     city: 'Logroño',
     type: 'Private',
@@ -606,6 +656,7 @@ const seedUniversities = [
   // MADRID
   {
     name: 'Universidad Complutense de Madrid',
+    country: 'Spain',
     region: 'Madrid',
     city: 'Madrid',
     type: 'Public',
@@ -618,6 +669,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad Autónoma de Madrid',
+    country: 'Spain',
     region: 'Madrid',
     city: 'Madrid',
     type: 'Public',
@@ -630,6 +682,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad Politécnica de Madrid',
+    country: 'Spain',
     region: 'Madrid',
     city: 'Madrid',
     type: 'Public',
@@ -642,6 +695,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad Carlos III de Madrid',
+    country: 'Spain',
     region: 'Madrid',
     city: 'Getafe',
     type: 'Public',
@@ -654,6 +708,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad de Alcalá',
+    country: 'Spain',
     region: 'Madrid',
     city: 'Alcalá de Henares',
     type: 'Public',
@@ -666,6 +721,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad Rey Juan Carlos',
+    country: 'Spain',
     region: 'Madrid',
     city: 'Móstoles',
     type: 'Public',
@@ -678,6 +734,7 @@ const seedUniversities = [
   },
   {
     name: 'UNED - Universidad Nacional de Educación a Distancia',
+    country: 'Spain',
     region: 'Madrid',
     city: 'Madrid',
     type: 'Public',
@@ -690,6 +747,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad Pontificia Comillas',
+    country: 'Spain',
     region: 'Madrid',
     city: 'Madrid',
     type: 'Private',
@@ -702,6 +760,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad CEU San Pablo',
+    country: 'Spain',
     region: 'Madrid',
     city: 'Madrid',
     type: 'Private',
@@ -714,6 +773,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad Francisco de Vitoria',
+    country: 'Spain',
     region: 'Madrid',
     city: 'Pozuelo de Alarcón',
     type: 'Private',
@@ -726,6 +786,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad Europea de Madrid',
+    country: 'Spain',
     region: 'Madrid',
     city: 'Villaviciosa de Odón',
     type: 'Private',
@@ -738,6 +799,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad Nebrija',
+    country: 'Spain',
     region: 'Madrid',
     city: 'Madrid',
     type: 'Private',
@@ -750,6 +812,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad Alfonso X el Sabio',
+    country: 'Spain',
     region: 'Madrid',
     city: 'Villanueva de la Cañada',
     type: 'Private',
@@ -762,6 +825,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad Camilo José Cela',
+    country: 'Spain',
     region: 'Madrid',
     city: 'Villanueva de la Cañada',
     type: 'Private',
@@ -774,6 +838,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad Antonio de Nebrija',
+    country: 'Spain',
     region: 'Madrid',
     city: 'Madrid',
     type: 'Private',
@@ -787,6 +852,7 @@ const seedUniversities = [
   // MURCIA
   {
     name: 'Universidad de Murcia',
+    country: 'Spain',
     region: 'Murcia',
     city: 'Murcia',
     type: 'Public',
@@ -799,6 +865,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad Politécnica de Cartagena',
+    country: 'Spain',
     region: 'Murcia',
     city: 'Cartagena',
     type: 'Public',
@@ -811,6 +878,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad Católica San Antonio',
+    country: 'Spain',
     region: 'Murcia',
     city: 'Murcia',
     type: 'Private',
@@ -824,6 +892,7 @@ const seedUniversities = [
   // NAVARRE
   {
     name: 'Universidad Pública de Navarra',
+    country: 'Spain',
     region: 'Navarre',
     city: 'Pamplona',
     type: 'Public',
@@ -836,6 +905,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad de Navarra',
+    country: 'Spain',
     region: 'Navarre',
     city: 'Pamplona',
     type: 'Private',
@@ -849,6 +919,7 @@ const seedUniversities = [
   // VALENCIA
   {
     name: 'Universitat de València',
+    country: 'Spain',
     region: 'Valencia',
     city: 'Valencia',
     type: 'Public',
@@ -861,6 +932,7 @@ const seedUniversities = [
   },
   {
     name: 'Universitat Politècnica de València',
+    country: 'Spain',
     region: 'Valencia',
     city: 'Valencia',
     type: 'Public',
@@ -873,6 +945,7 @@ const seedUniversities = [
   },
   {
     name: 'Universitat Jaume I',
+    country: 'Spain',
     region: 'Valencia',
     city: 'Castellón de la Plana',
     type: 'Public',
@@ -885,6 +958,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad Miguel Hernández de Elche',
+    country: 'Spain',
     region: 'Valencia',
     city: 'Elche',
     type: 'Public',
@@ -897,6 +971,7 @@ const seedUniversities = [
   },
   {
     name: 'Universitat d\'Alacant',
+    country: 'Spain',
     region: 'Valencia',
     city: 'Alicante',
     type: 'Public',
@@ -909,6 +984,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad Cardenal Herrera-CEU',
+    country: 'Spain',
     region: 'Valencia',
     city: 'Valencia',
     type: 'Private',
@@ -921,6 +997,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad Católica de Valencia San Vicente Mártir',
+    country: 'Spain',
     region: 'Valencia',
     city: 'Valencia',
     type: 'Private',
@@ -933,6 +1010,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad Europea de Valencia',
+    country: 'Spain',
     region: 'Valencia',
     city: 'Valencia',
     type: 'Private',
@@ -946,6 +1024,7 @@ const seedUniversities = [
   // ADDITIONAL UNIVERSITIES
   {
     name: 'VIU - Universidad Internacional de Valencia',
+    country: 'Spain',
     region: 'Valencia',
     city: 'Valencia',
     type: 'Private',
@@ -958,6 +1037,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad a Distancia de Madrid',
+    country: 'Spain',
     region: 'Madrid',
     city: 'Madrid',
     type: 'Private',
@@ -971,6 +1051,7 @@ const seedUniversities = [
   // Additional universities to complete the list
   {
     name: 'Universidad Loyola Andalucía',
+    country: 'Spain',
     region: 'Andalusia',
     city: 'Seville',
     type: 'Private',
@@ -983,6 +1064,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad Fernando Pessoa-Canarias',
+    country: 'Spain',
     region: 'Canary Islands',
     city: 'Las Palmas de Gran Canaria',
     type: 'Private',
@@ -995,6 +1077,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad Europea de Canarias',
+    country: 'Spain',
     region: 'Canary Islands',
     city: 'La Orotava',
     type: 'Private',
@@ -1007,6 +1090,7 @@ const seedUniversities = [
   },
   {
     name: 'Universitat Internacional Valenciana',
+    country: 'Spain',
     region: 'Valencia',
     city: 'Valencia',
     type: 'Private',
@@ -1019,6 +1103,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad Villanueva',
+    country: 'Spain',
     region: 'Madrid',
     city: 'Madrid',
     type: 'Private',
@@ -1031,6 +1116,7 @@ const seedUniversities = [
   },
   {
     name: 'Universidad Tecnología y Empresa',
+    country: 'Spain',
     region: 'Madrid',
     city: 'Madrid',
     type: 'Private',
@@ -1043,6 +1129,7 @@ const seedUniversities = [
   },
   {
     name: 'Centro Universitario de la Defensa',
+    country: 'Spain',
     region: 'Galicia',
     city: 'Marín',
     type: 'Public',
@@ -1055,6 +1142,7 @@ const seedUniversities = [
   },
   {
     name: 'Centro Universitario de la Defensa - Zaragoza',
+    country: 'Spain',
     region: 'Aragon',
     city: 'Zaragoza',
     type: 'Public',
@@ -1067,6 +1155,7 @@ const seedUniversities = [
   },
   {
     name: 'Centro Universitario de la Defensa - San Javier',
+    country: 'Spain',
     region: 'Murcia',
     city: 'San Javier',
     type: 'Public',
@@ -1079,6 +1168,7 @@ const seedUniversities = [
   },
   {
     name: 'Escuela de Organización Industrial',
+    country: 'Spain',
     region: 'Madrid',
     city: 'Madrid',
     type: 'Public',
@@ -1091,17 +1181,21 @@ const seedUniversities = [
   },
 ];
 
+const allUniversities = [...spanishUniversities, ...germanUniversities];
+
 async function seed() {
   try {
-    console.log("Seeding database with complete Spanish university data...");
+    console.log("Seeding database with European university data...");
     
     // Clear existing data
     await db.delete(universities);
     
     // Insert seed data
-    await db.insert(universities).values(seedUniversities);
+    await db.insert(universities).values(allUniversities);
     
-    console.log(`✅ Database seeded successfully with ${seedUniversities.length} universities!`);
+    console.log(`✅ Database seeded successfully with ${allUniversities.length} universities!`);
+    console.log(`   - Spain: ${spanishUniversities.length} universities`);
+    console.log(`   - Germany: ${germanUniversities.length} universities`);
     process.exit(0);
   } catch (error) {
     console.error("❌ Error seeding database:", error);

@@ -6,6 +6,7 @@ import { z } from "zod";
 export const universities = pgTable("universities", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
+  country: text("country").notNull().default('Spain'), // Country code/name
   region: text("region").notNull(),
   city: text("city").notNull(),
   type: text("type").notNull(), // 'Public' or 'Private'

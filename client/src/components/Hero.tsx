@@ -1,16 +1,30 @@
 import { motion } from 'framer-motion';
-import { Search } from 'lucide-react';
+import { Search, Globe2 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 import heroBg from '@assets/generated_images/modern_abstract_university_architecture_background.png';
 
 interface HeroProps {
   searchQuery: string;
   setSearchQuery: (query: string) => void;
+  selectedCountry: string;
+  setSelectedCountry: (country: string) => void;
+  countries: string[];
+  countryCounts: Record<string, number>;
 }
 
-export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
+const countryFlags: Record<string, string> = {
+  'Spain': '🇪🇸',
+  'Germany': '🇩🇪',
+  'France': '🇫🇷',
+  'Italy': '🇮🇹',
+  'Netherlands': '🇳🇱',
+  'All': '🌍',
+};
+
+export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelectedCountry, countries, countryCounts }: HeroProps) {
   return (
-    <div className="relative w-full h-[500px] flex items-center justify-center overflow-hidden bg-slate-900">
+    <div className="relative w-full h-[560px] flex items-center justify-center overflow-hidden bg-slate-900">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img 
@@ -22,7 +36,7 @@ export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-4xl w-full px-6 text-center space-y-8">
+      <div className="relative z-10 max-w-4xl w-full px-6 text-center space-y-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -33,11 +47,53 @@ export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
             Live Database: 2025 Academic Year
           </div>
           <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight mb-6 font-heading">
-            Find Your Future in <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Spain</span>
+            Find Your Future in <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Europe</span>
           </h1>
           <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            The official directory of accredited Spanish universities. Explore programs, compare campuses, and start your journey.
+            The comprehensive directory of accredited European universities. Explore programs across countries, compare campuses, and start your journey.
           </p>
+        </motion.div>
+
+        {/* Country Selection Pills */}
+        <motion.div
+          className="flex flex-wrap justify-center gap-2 pt-2"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+        >
+          <Button
+            variant={selectedCountry === 'all' ? 'default' : 'ghost'}
+            size="sm"
+            onClick={() => setSelectedCountry('all')}
+            className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
+              selectedCountry === 'all'
+                ? 'bg-white text-slate-900 shadow-lg'
+                : 'bg-white/10 text-white hover:bg-white/20 border border-white/20'
+            }`}
+            data-testid="button-country-all"
+          >
+            <Globe2 className="w-4 h-4 mr-1.5" />
+            All Countries
+            <span className="ml-1.5 text-xs opacity-70">({countryCounts ? Object.values(countryCounts).reduce((a, b) => a + b, 0) : 0})</span>
+          </Button>
+          {countries.map(country => (
+            <Button
+              key={country}
+              variant={selectedCountry === country ? 'default' : 'ghost'}
+              size="sm"
+              onClick={() => setSelectedCountry(country)}
+              className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
+                selectedCountry === country
+                  ? 'bg-white text-slate-900 shadow-lg'
+                  : 'bg-white/10 text-white hover:bg-white/20 border border-white/20'
+              }`}
+              data-testid={`button-country-${country.toLowerCase()}`}
+            >
+              <span className="mr-1.5">{countryFlags[country] || '🏛️'}</span>
+              {country}
+              <span className="ml-1.5 text-xs opacity-70">({countryCounts[country] || 0})</span>
+            </Button>
+          ))}
         </motion.div>
 
         <motion.div 

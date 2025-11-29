@@ -10,6 +10,14 @@ interface UniversityCardProps {
   onSelect: (university: University) => void;
 }
 
+const countryFlags: Record<string, string> = {
+  'Spain': '🇪🇸',
+  'Germany': '🇩🇪',
+  'France': '🇫🇷',
+  'Italy': '🇮🇹',
+  'Netherlands': '🇳🇱',
+};
+
 export function UniversityCard({ university, onSelect }: UniversityCardProps) {
   return (
     <motion.div
@@ -40,6 +48,7 @@ export function UniversityCard({ university, onSelect }: UniversityCardProps) {
         </CardHeader>
         <CardContent className="flex-grow space-y-4">
           <div className="flex items-center gap-2 text-sm text-muted-foreground" data-testid={`text-location-${university.id}`}>
+            <span className="text-base">{countryFlags[university.country] || '🏛️'}</span>
             <MapPin className="w-4 h-4 text-primary/70" />
             <span>{university.city}, {university.region}</span>
           </div>

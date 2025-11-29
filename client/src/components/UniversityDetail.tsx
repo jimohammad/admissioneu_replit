@@ -6,6 +6,14 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 import { MapPin, Calendar, BookOpen, ShieldCheck, ExternalLink, CheckCircle2 } from 'lucide-react';
 
+const countryFlags: Record<string, string> = {
+  'Spain': '🇪🇸',
+  'Germany': '🇩🇪',
+  'France': '🇫🇷',
+  'Italy': '🇮🇹',
+  'Netherlands': '🇳🇱',
+};
+
 interface UniversityDetailProps {
   university: University | null;
   isOpen: boolean;
@@ -24,8 +32,9 @@ export function UniversityDetail({ university, isOpen, onClose }: UniversityDeta
           <div className="relative z-10 text-center p-6 w-full">
             <h2 className="text-3xl font-bold text-white font-heading tracking-tight" data-testid="text-detail-name">{university.name}</h2>
             <div className="flex justify-center items-center gap-2 mt-2 text-slate-300">
+              <span className="text-lg">{countryFlags[university.country] || '🏛️'}</span>
               <MapPin className="w-4 h-4" />
-              <span className="text-sm font-medium" data-testid="text-detail-location">{university.city}, {university.region}</span>
+              <span className="text-sm font-medium" data-testid="text-detail-location">{university.city}, {university.region}, {university.country}</span>
             </div>
           </div>
         </div>
@@ -41,11 +50,9 @@ export function UniversityDetail({ university, isOpen, onClose }: UniversityDeta
                   <CheckCircle2 className="w-3 h-3 mr-1" /> English Programs Available
                 </Badge>
               )}
-              {university.ranking && (
-                <Badge variant="outline" className="px-3 py-1 text-sm border-slate-300 dark:border-slate-700" data-testid="badge-detail-ranking">
-                  Rank #{university.ranking} in Spain
-                </Badge>
-              )}
+              <Badge variant="outline" className="px-3 py-1 text-sm border-slate-300 dark:border-slate-700" data-testid="badge-detail-country">
+                {countryFlags[university.country] || '🏛️'} {university.country}
+              </Badge>
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">
