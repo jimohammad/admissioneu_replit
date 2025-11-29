@@ -123,8 +123,12 @@ export function Header() {
                     }`}
                     data-testid={`nav-visa-${name.toLowerCase()}`}
                   >
-                    <img src={`https://flagcdn.com/w24/${code.toLowerCase()}.png`} alt={name} className="w-6 h-4 object-cover rounded-sm" />
-                    {name}
+                    <img 
+                      src={`https://flagcdn.com/w40/${code.toLowerCase()}.png`} 
+                      alt="" 
+                      className="w-5 h-3.5 object-cover rounded-sm flex-shrink-0" 
+                    />
+                    <span>{name}</span>
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
