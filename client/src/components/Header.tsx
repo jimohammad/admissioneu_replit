@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { useLocation } from 'wouter';
+import { useLocation, useSearch } from 'wouter';
 import { GraduationCap, Globe, ChevronDown, Briefcase } from 'lucide-react';
 
 const countries = [
@@ -13,6 +13,8 @@ const countries = [
 
 export function Header() {
   const [location, setLocation] = useLocation();
+  const searchParams = useSearch();
+  const urlCountry = new URLSearchParams(searchParams).get('country');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   
@@ -31,6 +33,8 @@ export function Header() {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+  
+  const isHome = location === '/' && !urlCountry;
   
   return (
     <header className="bg-slate-900 border-b border-slate-800 sticky top-0 z-50">
@@ -52,24 +56,41 @@ export function Header() {
           </div>
         </div>
         
-        {/* Main navigation bar */}
+        {/* Country navigation bar */}
         <nav className="border-t border-slate-800">
           <div className="flex items-center overflow-x-auto scrollbar-hide">
             <a 
               href="/"
               onClick={(e) => handleNavClick(e, '/')}
               className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium whitespace-nowrap transition-colors no-underline border-b-2 ${
-                location === '/' 
+                isHome 
                   ? 'text-white border-blue-400 bg-slate-800/50' 
                   : 'text-slate-400 border-transparent hover:text-white hover:bg-slate-800/30'
               }`}
               data-testid="nav-home"
             >
-              🌍 Universities
+              🌍 All
             </a>
             
+            {countries.map(({ name, flag }) => (
+              <a 
+                key={name} 
+                href={`/?country=${name}`}
+                onClick={(e) => handleNavClick(e, `/?country=${name}`)}
+                className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium whitespace-nowrap transition-colors no-underline border-b-2 ${
+                  urlCountry === name 
+                    ? 'text-white border-blue-400 bg-slate-800/50' 
+                    : 'text-slate-400 border-transparent hover:text-white hover:bg-slate-800/30'
+                }`}
+                data-testid={`nav-${name.toLowerCase()}`}
+              >
+                <span>{flag}</span>
+                <span>{name}</span>
+              </a>
+            ))}
+            
             {/* Visa & Jobs Dropdown */}
-            <div className="relative" ref={dropdownRef}>
+            <div className="relative ml-auto" ref={dropdownRef}>
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium whitespace-nowrap transition-colors border-b-2 ${
@@ -85,7 +106,7 @@ export function Header() {
               </button>
               
               {isDropdownOpen && (
-                <div className="absolute top-full left-0 mt-1 bg-slate-800 border border-slate-700 rounded-lg shadow-xl min-w-[180px] py-1 z-50">
+                <div className="absolute top-full right-0 mt-1 bg-slate-800 border border-slate-700 rounded-lg shadow-xl min-w-[180px] py-1 z-50">
                   {countries.map(({ name, flag }) => (
                     <a 
                       key={name} 
@@ -105,45 +126,6 @@ export function Header() {
                 </div>
               )}
             </div>
-            
-            <a 
-              href="/budget-finder"
-              onClick={(e) => handleNavClick(e, '/budget-finder')}
-              className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium whitespace-nowrap transition-colors no-underline border-b-2 ${
-                location === '/budget-finder' 
-                  ? 'text-white border-blue-400 bg-slate-800/50' 
-                  : 'text-slate-400 border-transparent hover:text-white hover:bg-slate-800/30'
-              }`}
-              data-testid="nav-budget"
-            >
-              💰 Budget Finder
-            </a>
-            
-            <a 
-              href="/calculator"
-              onClick={(e) => handleNavClick(e, '/calculator')}
-              className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium whitespace-nowrap transition-colors no-underline border-b-2 ${
-                location === '/calculator' 
-                  ? 'text-white border-blue-400 bg-slate-800/50' 
-                  : 'text-slate-400 border-transparent hover:text-white hover:bg-slate-800/30'
-              }`}
-              data-testid="nav-calculator"
-            >
-              🧮 Calculator
-            </a>
-            
-            <a 
-              href="/resources"
-              onClick={(e) => handleNavClick(e, '/resources')}
-              className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium whitespace-nowrap transition-colors no-underline border-b-2 ${
-                location === '/resources' 
-                  ? 'text-white border-blue-400 bg-slate-800/50' 
-                  : 'text-slate-400 border-transparent hover:text-white hover:bg-slate-800/30'
-              }`}
-              data-testid="nav-resources"
-            >
-              📚 Resources
-            </a>
           </div>
         </nav>
       </div>

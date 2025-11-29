@@ -1,5 +1,6 @@
-import { useState, useMemo, useCallback, useDeferredValue } from 'react';
+import { useState, useMemo, useCallback, useDeferredValue, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { useSearch, useLocation } from 'wouter';
 import { Hero } from '@/components/Hero';
 import { UniversityCard } from '@/components/UniversityCard';
 import { UniversityDetail } from '@/components/UniversityDetail';
@@ -13,8 +14,16 @@ import { Label } from '@/components/ui/label';
 import { RotateCcw, SlidersHorizontal, Loader2 } from 'lucide-react';
 
 export default function Home() {
+  const searchParams = useSearch();
+  const [, setLocation] = useLocation();
+  const urlCountry = new URLSearchParams(searchParams).get('country') || 'all';
+  
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCountry, setSelectedCountry] = useState<string>('all');
+  const [selectedCountry, setSelectedCountry] = useState<string>(urlCountry);
+  
+  useEffect(() => {
+    setSelectedCountry(urlCountry);
+  }, [urlCountry]);
   const [selectedRegion, setSelectedRegion] = useState<string>('all');
   const [selectedType, setSelectedType] = useState<string>('all');
   const [selectedDomain, setSelectedDomain] = useState<string>('all');
