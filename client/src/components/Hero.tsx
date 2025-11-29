@@ -48,11 +48,11 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
           transition={{ duration: 0.4, ease: "easeOut" }}
         >
           <div className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm text-white text-sm font-medium tracking-wide">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 mr-2 animate-pulse"></span>
+            <span className="w-2 h-2 rounded-full bg-amber-400 mr-2 animate-pulse"></span>
             {totalCount} Universities • 2026 Academic Year
           </div>
           <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-4 font-heading">
-            Find Your Future in <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Europe</span>
+            Find Your Future in <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-300">Europe</span>
           </h1>
           <p className="text-base md:text-lg text-slate-300 max-w-xl mx-auto leading-relaxed">
             Explore accredited universities across 6 European countries
@@ -67,7 +67,7 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
           transition={{ delay: 0.1, duration: 0.3 }}
         >
           <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-emerald-500 rounded-xl blur opacity-25 group-hover:opacity-40 transition duration-500"></div>
+            <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-blue-400 rounded-xl blur opacity-25 group-hover:opacity-40 transition duration-500"></div>
             <div className="relative flex items-center">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
               <Input 
@@ -86,30 +86,30 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
             <Link href="/budget">
               <Button 
                 size="lg"
-                className="w-full sm:w-auto bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white shadow-lg shadow-emerald-500/25 py-5 px-6 rounded-xl font-semibold"
+                className="w-full sm:w-auto bg-white/95 hover:bg-white text-slate-900 shadow-lg hover:shadow-xl py-5 px-6 rounded-xl font-semibold border border-white/20 backdrop-blur-sm transition-all duration-200"
                 data-testid="button-budget-finder"
               >
-                <Wallet className="w-5 h-5 mr-2" />
+                <Wallet className="w-5 h-5 mr-2 text-blue-600" />
                 Find by Budget
               </Button>
             </Link>
             <Link href="/calculator">
               <Button 
                 size="lg"
-                className="w-full sm:w-auto bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-lg shadow-amber-500/25 py-5 px-6 rounded-xl font-semibold"
+                className="w-full sm:w-auto bg-white/95 hover:bg-white text-slate-900 shadow-lg hover:shadow-xl py-5 px-6 rounded-xl font-semibold border border-white/20 backdrop-blur-sm transition-all duration-200"
                 data-testid="button-calculator-cta"
               >
-                <Calculator className="w-5 h-5 mr-2" />
+                <Calculator className="w-5 h-5 mr-2 text-blue-600" />
                 Cost Calculator
               </Button>
             </Link>
             <Link href="/resources">
               <Button 
                 size="lg"
-                className="w-full sm:w-auto bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white shadow-lg shadow-purple-500/25 py-5 px-6 rounded-xl font-semibold"
+                className="w-full sm:w-auto bg-white/95 hover:bg-white text-slate-900 shadow-lg hover:shadow-xl py-5 px-6 rounded-xl font-semibold border border-white/20 backdrop-blur-sm transition-all duration-200"
                 data-testid="button-resources"
               >
-                <FileText className="w-5 h-5 mr-2" />
+                <FileText className="w-5 h-5 mr-2 text-blue-600" />
                 Application Resources
               </Button>
             </Link>
