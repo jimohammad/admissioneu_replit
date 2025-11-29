@@ -225,6 +225,69 @@ Contact Information:
 [Email Address]
 [Website]`;
 
+const sampleSponsorshipCertificate = `SPONSORSHIP CERTIFICATE / AFFIDAVIT OF SUPPORT
+
+Date: [Current Date]
+
+TO WHOM IT MAY CONCERN
+
+I, [Sponsor's Full Name], holder of [Passport/National ID] Number [ID Number], residing at [Full Address], hereby declare and affirm the following:
+
+SPONSOR DETAILS:
+Full Name: [Sponsor's Full Name]
+Relationship to Student: [Father/Mother/Legal Guardian/Uncle/Other]
+Occupation: [Job Title/Profession]
+Employer: [Company/Organization Name]
+Monthly Income: [Currency] [Amount]
+Contact Number: [Phone Number]
+Email: [Email Address]
+
+STUDENT DETAILS:
+Full Name: [Student's Full Name]
+Date of Birth: [DD/MM/YYYY]
+Passport Number: [Passport Number]
+Relationship: [Son/Daughter/Ward/Nephew/Niece]
+
+DECLARATION OF SPONSORSHIP:
+
+I hereby declare that I will fully sponsor [Student's Full Name] for their higher education studies at [University Name] in [Country] for the academic year [Year].
+
+I commit to bear all expenses related to:
+1. Tuition Fees: Approximately [Currency] [Amount] per year
+2. Living Expenses: Approximately [Currency] [Amount] per month
+3. Accommodation: Approximately [Currency] [Amount] per month
+4. Health Insurance: As required by the university/country
+5. Travel Expenses: Round-trip airfare and local transportation
+6. Books and Study Materials: As required
+7. Other Miscellaneous Expenses: As needed
+
+FINANCIAL CAPACITY:
+I confirm that I have sufficient financial resources to support the above-mentioned student throughout the duration of their studies. My bank statements for the last [3-6] months are attached as evidence of my financial capacity.
+
+Total Estimated Cost of Studies: [Currency] [Total Amount]
+Duration of Studies: [Number] years
+
+I understand that this sponsorship is a binding commitment and I will ensure uninterrupted financial support until the completion of [Student's Full Name]'s studies.
+
+DECLARATION:
+I solemnly declare that all information provided above is true and correct to the best of my knowledge. I understand that any false statement may result in the rejection of the visa application or cancellation of the student's enrollment.
+
+_______________________________
+[Sponsor's Signature]
+[Sponsor's Full Name]
+Date: [Current Date]
+
+WITNESS (if required):
+Name: [Witness Full Name]
+Signature: _______________________________
+Date: [Current Date]
+
+NOTARIZATION (if required):
+[Notary Stamp/Seal]
+Notary Public: [Notary Name]
+Date: [Current Date]
+Registration No: [Notary Registration Number]`;
+
 export default function ApplicationResources() {
   const { toast } = useToast();
 
@@ -443,6 +506,37 @@ export default function ApplicationResources() {
                   <div className="bg-slate-50 dark:bg-slate-800/50 rounded-lg p-6 max-h-[600px] overflow-y-auto">
                     <pre className="whitespace-pre-wrap font-mono text-sm text-slate-800 dark:text-slate-200 leading-relaxed">
                       {sampleSalaryCertificate}
+                    </pre>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <FileText className="w-5 h-5 text-emerald-600" />
+                    Sample Sponsorship Certificate / Affidavit of Support
+                  </CardTitle>
+                  <CardDescription>
+                    Template for sponsors (parents/guardians) to declare financial support for the student
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex gap-2 mb-4">
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      onClick={() => copyToClipboard(sampleSponsorshipCertificate, 'Sponsorship certificate')}
+                      className="gap-2"
+                      data-testid="button-copy-sponsorship"
+                    >
+                      <Copy className="w-4 h-4" />
+                      Copy Template
+                    </Button>
+                  </div>
+                  <div className="bg-slate-50 dark:bg-slate-800/50 rounded-lg p-6 max-h-[600px] overflow-y-auto">
+                    <pre className="whitespace-pre-wrap font-mono text-sm text-slate-800 dark:text-slate-200 leading-relaxed">
+                      {sampleSponsorshipCertificate}
                     </pre>
                   </div>
                 </CardContent>
