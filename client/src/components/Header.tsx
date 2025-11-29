@@ -10,12 +10,12 @@ import {
 } from '@/components/ui/dropdown-menu';
 
 const countries = [
-  { name: 'Germany', flag: '🇩🇪' },
-  { name: 'Hungary', flag: '🇭🇺' },
-  { name: 'Italy', flag: '🇮🇹' },
-  { name: 'Netherlands', flag: '🇳🇱' },
-  { name: 'Poland', flag: '🇵🇱' },
-  { name: 'Spain', flag: '🇪🇸' },
+  { name: 'Germany', flag: '🇩🇪', code: 'DE' },
+  { name: 'Hungary', flag: '🇭🇺', code: 'HU' },
+  { name: 'Italy', flag: '🇮🇹', code: 'IT' },
+  { name: 'Netherlands', flag: '🇳🇱', code: 'NL' },
+  { name: 'Poland', flag: '🇵🇱', code: 'PL' },
+  { name: 'Spain', flag: '🇪🇸', code: 'ES' },
 ];
 
 export function Header() {
@@ -63,11 +63,11 @@ export function Header() {
               }`}
               data-testid="nav-home"
             >
-              <span className="text-base" style={{ fontFamily: 'Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, sans-serif' }}>🌍</span>
+              <img src="https://flagcdn.com/w20/eu.png" alt="EU" className="w-5 h-4 object-cover rounded-sm" />
               <span>All</span>
             </a>
             
-            {countries.map(({ name, flag }) => (
+            {countries.map(({ name, code }) => (
               <a 
                 key={name} 
                 href={`/?country=${name}`}
@@ -79,7 +79,7 @@ export function Header() {
                 }`}
                 data-testid={`nav-${name.toLowerCase()}`}
               >
-                <span className="text-base" style={{ fontFamily: 'Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, sans-serif' }}>{flag}</span>
+                <img src={`https://flagcdn.com/w20/${code.toLowerCase()}.png`} alt={name} className="w-5 h-4 object-cover rounded-sm" />
                 <span>{name}</span>
               </a>
             ))}
@@ -103,7 +103,7 @@ export function Header() {
               <DropdownMenuContent align="end" className="w-56 bg-slate-800 border-slate-700">
                 <DropdownMenuLabel className="text-slate-400">Select Country</DropdownMenuLabel>
                 <DropdownMenuSeparator className="bg-slate-700" />
-                {countries.map(({ name, flag }) => (
+                {countries.map(({ name, code }) => (
                   <DropdownMenuItem 
                     key={name}
                     onClick={() => setLocation(`/insights/${name}`)}
@@ -114,7 +114,7 @@ export function Header() {
                     }`}
                     data-testid={`nav-visa-${name.toLowerCase()}`}
                   >
-                    <span className="text-xl" style={{ fontFamily: 'Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, sans-serif' }}>{flag}</span>
+                    <img src={`https://flagcdn.com/w24/${code.toLowerCase()}.png`} alt={name} className="w-6 h-4 object-cover rounded-sm" />
                     <span className="font-medium">{name}</span>
                   </DropdownMenuItem>
                 ))}
