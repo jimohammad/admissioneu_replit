@@ -222,8 +222,8 @@ export default function Home() {
                     {(() => {
                       const sortedUniversities = [...filteredUniversities].sort((a, b) => a.country.localeCompare(b.country));
                       const countryFlags: Record<string, string> = {
-                        'Spain': '🇪🇸', 'Germany': '🇩🇪', 'Hungary': '🇭🇺', 
-                        'Italy': '🇮🇹', 'Netherlands': '🇳🇱', 'Poland': '🇵🇱'
+                        'France': '🇫🇷', 'Germany': '🇩🇪', 'Hungary': '🇭🇺', 
+                        'Italy': '🇮🇹', 'Netherlands': '🇳🇱', 'Poland': '🇵🇱', 'Spain': '🇪🇸'
                       };
                       let lastCountry = '';
                       let rowNumber = 0;

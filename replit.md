@@ -2,7 +2,7 @@
 
 ## Overview
 
-EuroUni is a comprehensive web application that serves as a directory of accredited universities across Europe. The platform allows users to explore, search, and filter universities in Spain, Germany, and Hungary, with information about programs, languages, admission periods, and institutional details. The application provides a modern, responsive interface for discovering educational opportunities across European institutions.
+EuroUni is a comprehensive web application that serves as a directory of accredited universities across Europe. The platform allows users to explore, search, and filter universities in Spain, Germany, Hungary, Italy, Poland, Netherlands, and France, with information about programs, languages, admission periods, and institutional details. The application provides a modern, responsive interface for discovering educational opportunities across European institutions.
 
 ## User Preferences
 
@@ -118,9 +118,10 @@ Preferred communication style: Simple, everyday language.
 - Italian universities data (50 universities including Politecnico di Milano, Bologna, La Sapienza and elite schools)
 - Polish universities data (42 universities including University of Warsaw, Jagiellonian, and top medical schools)
 - Dutch universities data (47 universities including TU Delft, University of Amsterdam, Wageningen, and leading applied sciences universities)
+- French universities data (54 universities including Sorbonne, Sciences Po, HEC Paris, INSEAD, and top grandes écoles)
 - Seed scripts for initial database population
-- Total: 591 accredited European universities across 6 countries
-- 81 cities across 6 countries for cost of living calculator
+- Total: 645 accredited European universities across 7 countries
+- 93 cities across 7 countries for cost of living calculator
 - 10 simplified study fields: Agriculture & Environment, Arts & Design, Business & Economics, Engineering & Technology, Law & Politics, Media & Communication, Medicine & Health, Sciences, Social Sciences & Humanities, Sports & Tourism
 
 **Performance Optimizations:**
