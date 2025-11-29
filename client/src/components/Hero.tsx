@@ -49,13 +49,13 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
         >
           <div className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm text-white text-sm font-medium tracking-wide">
             <span className="w-2 h-2 rounded-full bg-emerald-400 mr-2 animate-pulse"></span>
-            {totalCount} Universities • 2025 Academic Year
+            {totalCount} Universities • 2026 Academic Year
           </div>
           <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-4 font-heading">
             Find Your Future in <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Europe</span>
           </h1>
           <p className="text-base md:text-lg text-slate-300 max-w-xl mx-auto leading-relaxed">
-            Explore accredited universities across Spain, Germany, and Hungary
+            Explore accredited universities across 6 European countries
           </p>
         </motion.div>
 

@@ -35,6 +35,7 @@ const countryFlags: Record<string, string> = {
   'Hungary': '🇭🇺',
   'Italy': '🇮🇹',
   'Poland': '🇵🇱',
+  'Netherlands': '🇳🇱',
 };
 
 const countryColors: Record<string, string> = {
@@ -43,6 +44,7 @@ const countryColors: Record<string, string> = {
   'Hungary': 'from-red-600 to-green-600',
   'Italy': 'from-green-600 to-red-500',
   'Poland': 'from-red-500 to-white',
+  'Netherlands': 'from-red-600 via-white to-blue-600',
 };
 
 export default function CountryInsights() {
