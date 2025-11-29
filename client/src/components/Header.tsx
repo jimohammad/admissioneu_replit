@@ -63,7 +63,8 @@ export function Header() {
               }`}
               data-testid="nav-home"
             >
-              🌍 All
+              <span className="text-base" style={{ fontFamily: 'Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, sans-serif' }}>🌍</span>
+              <span>All</span>
             </a>
             
             {countries.map(({ name, flag }) => (
@@ -78,7 +79,7 @@ export function Header() {
                 }`}
                 data-testid={`nav-${name.toLowerCase()}`}
               >
-                <span>{flag}</span>
+                <span className="text-base" style={{ fontFamily: 'Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, sans-serif' }}>{flag}</span>
                 <span>{name}</span>
               </a>
             ))}
@@ -113,7 +114,7 @@ export function Header() {
                     }`}
                     data-testid={`nav-visa-${name.toLowerCase()}`}
                   >
-                    <span className="text-xl">{flag}</span>
+                    <span className="text-xl" style={{ fontFamily: 'Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, sans-serif' }}>{flag}</span>
                     <span className="font-medium">{name}</span>
                   </DropdownMenuItem>
                 ))}
