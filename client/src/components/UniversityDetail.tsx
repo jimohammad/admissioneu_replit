@@ -1,10 +1,12 @@
-import { University } from '@shared/schema';
+import { University, CostOfLiving } from '@shared/schema';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
-import { MapPin, Calendar, BookOpen, ShieldCheck, ExternalLink, CheckCircle2, Euro } from 'lucide-react';
+import { MapPin, Calendar, BookOpen, ShieldCheck, ExternalLink, CheckCircle2, Euro, Calculator, Home } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
+import { Link } from 'wouter';
 
 const countryFlags: Record<string, string> = {
   'Spain': '🇪🇸',
@@ -22,7 +24,21 @@ interface UniversityDetailProps {
 }
 
 export function UniversityDetail({ university, isOpen, onClose }: UniversityDetailProps) {
+  const { data: costData } = useQuery<CostOfLiving>({
+    queryKey: ['/api/cost-of-living', university?.country, university?.city],
+    queryFn: async () => {
+      const res = await fetch(`/api/cost-of-living/${university?.country}/${university?.city}`);
+      if (!res.ok) return null;
+      return res.json();
+    },
+    enabled: !!university,
+  });
+
   if (!university) return null;
+
+  const monthlyEstimate = costData 
+    ? costData.rentShared + costData.utilities + costData.groceries + costData.dining + costData.transport + costData.healthcare + costData.entertainment
+    : null;
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -122,6 +138,29 @@ export function UniversityDetail({ university, isOpen, onClose }: UniversityDeta
                               <span className="font-medium text-amber-600 dark:text-amber-400">{university.tuitionFeeNonEU}</span>
                             </div>
                           )}
+                        </div>
+                      </div>
+                    </>
+                  )}
+
+                  {monthlyEstimate && (
+                    <>
+                      <Separator />
+                      <div>
+                        <div className="text-xs font-semibold text-muted-foreground uppercase mb-2 flex items-center gap-1">
+                          <Home className="w-3 h-3" /> Cost of Living
+                        </div>
+                        <div className="space-y-2">
+                          <div className="flex justify-between items-center text-sm" data-testid="text-detail-cost-living">
+                            <span className="text-muted-foreground">Est. Monthly (shared)</span>
+                            <span className="font-medium text-blue-600 dark:text-blue-400">~€{monthlyEstimate.toLocaleString()}</span>
+                          </div>
+                          <Link href="/calculator" onClick={onClose}>
+                            <Button variant="outline" size="sm" className="w-full mt-2 gap-1.5" data-testid="button-detail-calculator">
+                              <Calculator className="w-3 h-3" />
+                              Full Cost Calculator
+                            </Button>
+                          </Link>
                         </div>
                       </div>
                     </>

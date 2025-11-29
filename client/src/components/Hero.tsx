@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
-import { Search, Globe2 } from 'lucide-react';
+import { Search, Globe2, Calculator } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { Link } from 'wouter';
 import heroBg from '@assets/generated_images/modern_abstract_university_architecture_background.png';
 
 interface HeroProps {
@@ -117,6 +118,24 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
               />
             </div>
           </div>
+        </motion.div>
+
+        {/* Calculator CTA */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
+        >
+          <Link href="/calculator">
+            <Button 
+              variant="outline" 
+              className="bg-white/10 text-white border-white/20 hover:bg-white/20 backdrop-blur-sm gap-2"
+              data-testid="button-calculator-cta"
+            >
+              <Calculator className="w-4 h-4" />
+              Cost of Living Calculator
+            </Button>
+          </Link>
         </motion.div>
       </div>
     </div>
