@@ -22,9 +22,13 @@ import {
 import type { University, CostOfLiving } from '@shared/schema';
 
 const countryFlags: Record<string, string> = {
-  'Spain': '🇪🇸',
+  'France': '🇫🇷',
   'Germany': '🇩🇪',
   'Hungary': '🇭🇺',
+  'Italy': '🇮🇹',
+  'Netherlands': '🇳🇱',
+  'Poland': '🇵🇱',
+  'Spain': '🇪🇸',
 };
 
 function parseTuitionRange(tuitionStr: string | null): { min: number; max: number } | null {
@@ -42,6 +46,7 @@ function parseTuitionRange(tuitionStr: string | null): { min: number; max: numbe
 
 export default function BudgetFinder() {
   const [monthlyBudget, setMonthlyBudget] = useState<number>(1500);
+  const [budgetInput, setBudgetInput] = useState<string>('1500');
   const [isEU, setIsEU] = useState<boolean>(true);
   const [housingType, setHousingType] = useState<'shared' | 'solo'>('shared');
 
@@ -169,18 +174,30 @@ export default function BudgetFinder() {
                 <div className="flex items-center gap-3">
                   <Euro className="w-5 h-5 text-muted-foreground" />
                   <Input
-                    type="number"
-                    value={monthlyBudget}
-                    onChange={(e) => setMonthlyBudget(Math.max(0, parseInt(e.target.value) || 0))}
+                    type="text"
+                    inputMode="numeric"
+                    value={budgetInput}
+                    onChange={(e) => {
+                      const val = e.target.value.replace(/[^0-9]/g, '');
+                      setBudgetInput(val);
+                      const num = parseInt(val);
+                      if (!isNaN(num)) {
+                        setMonthlyBudget(num);
+                      } else {
+                        setMonthlyBudget(0);
+                      }
+                    }}
                     className="text-2xl font-bold h-14"
-                    min={0}
-                    step={100}
+                    placeholder="Enter budget"
                     data-testid="input-budget"
                   />
                 </div>
                 <Slider
                   value={[monthlyBudget]}
-                  onValueChange={(val) => setMonthlyBudget(val[0])}
+                  onValueChange={(val) => {
+                    setMonthlyBudget(val[0]);
+                    setBudgetInput(val[0].toString());
+                  }}
                   min={500}
                   max={4000}
                   step={50}
