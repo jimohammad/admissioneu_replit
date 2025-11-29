@@ -117,5 +117,7 @@ Preferred communication style: Simple, everyday language.
 - Hungarian universities data (50 universities including major research universities, medical schools, and specialized institutions)
 - Italian universities data (50 universities including Politecnico di Milano, Bologna, La Sapienza and elite schools)
 - Polish universities data (42 universities including University of Warsaw, Jagiellonian, and top medical schools)
+- Dutch universities data (47 universities including TU Delft, University of Amsterdam, Wageningen, and leading applied sciences universities)
 - Seed scripts for initial database population
-- Total: 544 accredited European universities across 5 countries
+- Total: 591 accredited European universities across 6 countries
+- 81 cities across 6 countries for cost of living calculator

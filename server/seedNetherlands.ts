@@ -3,31 +3,29 @@ import { universities, costOfLiving, countryProfiles } from "@shared/schema";
 import { dutchUniversities } from "./dutchUniversities";
 import { costOfLivingData } from "./costOfLivingData";
 import { countryProfilesData } from "./countryProfilesData";
-import { eq } from "drizzle-orm";
+import { eq, and } from "drizzle-orm";
 
 async function seedNetherlands() {
   try {
     console.log("Seeding Netherlands data...");
+    
+    // Clear existing Dutch universities first for idempotency
+    console.log("Clearing existing Dutch universities...");
+    await db.delete(universities).where(eq(universities.country, 'Netherlands'));
     
     // Insert Dutch universities
     console.log("Adding Dutch universities...");
     await db.insert(universities).values(dutchUniversities);
     console.log(`✅ Added ${dutchUniversities.length} Dutch universities`);
     
-    // Insert Dutch cost of living data
-    console.log("Adding Dutch cost of living data...");
-    const dutchCities = costOfLivingData.filter(c => c.country === 'Netherlands');
+    // Clear and re-insert Dutch cost of living data for idempotency
+    console.log("Updating Dutch cost of living data...");
+    await db.delete(costOfLiving).where(eq(costOfLiving.country, 'Netherlands'));
     
-    // Check if cities already exist and only add new ones
+    const dutchCities = costOfLivingData.filter(c => c.country === 'Netherlands');
     for (const city of dutchCities) {
-      const existing = await db.select().from(costOfLiving)
-        .where(eq(costOfLiving.city, city.city))
-        .limit(1);
-      
-      if (existing.length === 0) {
-        await db.insert(costOfLiving).values(city);
-        console.log(`  Added: ${city.city}`);
-      }
+      await db.insert(costOfLiving).values(city);
+      console.log(`  Added: ${city.city}`);
     }
     console.log(`✅ Added ${dutchCities.length} Dutch cities cost of living data`);
     
