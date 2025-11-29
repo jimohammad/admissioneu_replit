@@ -18,6 +18,9 @@ export const universities = pgTable("universities", {
   description: text("description").notNull(),
   ranking: serial("ranking"),
   englishPrograms: boolean("english_programs").notNull().default(false),
+  tuitionFeeEU: text("tuition_fee_eu"),
+  tuitionFeeNonEU: text("tuition_fee_non_eu"),
+  tuitionPeriod: text("tuition_period"),
 });
 
 export const insertUniversitySchema = createInsertSchema(universities).omit({
