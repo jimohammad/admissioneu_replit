@@ -218,52 +218,75 @@ export default function Home() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
-                    {filteredUniversities.map((university) => (
-                      <tr 
-                        key={university.id} 
-                        className="hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors"
-                        onClick={() => handleSelectUniversity(university)}
-                        data-testid={`row-university-${university.id}`}
-                      >
-                        <td className="px-4 py-3">
-                          <div className="flex items-center gap-3">
-                            <span className="text-lg">{university.country === 'Spain' ? '🇪🇸' : university.country === 'Germany' ? '🇩🇪' : university.country === 'Hungary' ? '🇭🇺' : university.country === 'Italy' ? '🇮🇹' : university.country === 'Netherlands' ? '🇳🇱' : university.country === 'Poland' ? '🇵🇱' : '🏛️'}</span>
-                            <div>
-                              <div className="font-medium text-slate-900 dark:text-white text-sm" data-testid={`text-name-${university.id}`}>{university.name}</div>
-                              <div className="text-xs text-slate-500 dark:text-slate-400 sm:hidden">{university.city}, {university.country}</div>
-                            </div>
-                          </div>
-                        </td>
-                        <td className="px-4 py-3 hidden md:table-cell">
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${university.type === 'Public' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300' : 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300'}`} data-testid={`badge-type-${university.id}`}>
-                            {university.type}
-                          </span>
-                        </td>
-                        <td className="px-4 py-3 hidden sm:table-cell">
-                          <div className="text-sm text-slate-700 dark:text-slate-300" data-testid={`text-location-${university.id}`}>{university.city}</div>
-                          <div className="text-xs text-slate-500 dark:text-slate-400">{university.region}</div>
-                        </td>
-                        <td className="px-4 py-3 hidden lg:table-cell">
-                          <div className="flex flex-wrap gap-1">
-                            {university.domains.slice(0, 2).map((domain) => (
-                              <span key={domain} className="px-2 py-0.5 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded text-xs">
-                                {domain}
-                              </span>
-                            ))}
-                            {university.domains.length > 2 && (
-                              <span className="px-2 py-0.5 text-slate-500 dark:text-slate-400 text-xs">+{university.domains.length - 2}</span>
+                    {(() => {
+                      const sortedUniversities = [...filteredUniversities].sort((a, b) => a.country.localeCompare(b.country));
+                      const countryFlags: Record<string, string> = {
+                        'Spain': '🇪🇸', 'Germany': '🇩🇪', 'Hungary': '🇭🇺', 
+                        'Italy': '🇮🇹', 'Netherlands': '🇳🇱', 'Poland': '🇵🇱'
+                      };
+                      let lastCountry = '';
+                      return sortedUniversities.map((university) => {
+                        const showCountryHeader = university.country !== lastCountry;
+                        lastCountry = university.country;
+                        const countryCount = sortedUniversities.filter(u => u.country === university.country).length;
+                        return (
+                          <>
+                            {showCountryHeader && (
+                              <tr key={`country-${university.country}`} className="bg-slate-200 dark:bg-slate-700">
+                                <td colSpan={5} className="px-4 py-2">
+                                  <div className="flex items-center gap-2">
+                                    <span className="text-lg">{countryFlags[university.country] || '🏛️'}</span>
+                                    <span className="font-semibold text-slate-800 dark:text-white">{university.country}</span>
+                                    <span className="text-xs text-slate-500 dark:text-slate-400">({countryCount} universities)</span>
+                                  </div>
+                                </td>
+                              </tr>
                             )}
-                          </div>
-                        </td>
-                        <td className="px-4 py-3 text-center hidden md:table-cell">
-                          {university.englishPrograms ? (
-                            <span className="inline-flex items-center justify-center w-6 h-6 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-full text-xs" data-testid={`badge-english-${university.id}`}>✓</span>
-                          ) : (
-                            <span className="text-slate-300 dark:text-slate-600">—</span>
-                          )}
-                        </td>
-                      </tr>
-                    ))}
+                            <tr 
+                              key={university.id} 
+                              className="hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors"
+                              onClick={() => handleSelectUniversity(university)}
+                              data-testid={`row-university-${university.id}`}
+                            >
+                              <td className="px-4 py-3 pl-8">
+                                <div>
+                                  <div className="font-medium text-slate-900 dark:text-white text-sm" data-testid={`text-name-${university.id}`}>{university.name}</div>
+                                  <div className="text-xs text-slate-500 dark:text-slate-400 sm:hidden">{university.city}</div>
+                                </div>
+                              </td>
+                              <td className="px-4 py-3 hidden md:table-cell">
+                                <span className={`px-2 py-1 rounded-full text-xs font-medium ${university.type === 'Public' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300' : 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300'}`} data-testid={`badge-type-${university.id}`}>
+                                  {university.type}
+                                </span>
+                              </td>
+                              <td className="px-4 py-3 hidden sm:table-cell">
+                                <div className="text-sm text-slate-700 dark:text-slate-300" data-testid={`text-location-${university.id}`}>{university.city}</div>
+                                <div className="text-xs text-slate-500 dark:text-slate-400">{university.region}</div>
+                              </td>
+                              <td className="px-4 py-3 hidden lg:table-cell">
+                                <div className="flex flex-wrap gap-1">
+                                  {university.domains.slice(0, 2).map((domain) => (
+                                    <span key={domain} className="px-2 py-0.5 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded text-xs">
+                                      {domain}
+                                    </span>
+                                  ))}
+                                  {university.domains.length > 2 && (
+                                    <span className="px-2 py-0.5 text-slate-500 dark:text-slate-400 text-xs">+{university.domains.length - 2}</span>
+                                  )}
+                                </div>
+                              </td>
+                              <td className="px-4 py-3 text-center hidden md:table-cell">
+                                {university.englishPrograms ? (
+                                  <span className="inline-flex items-center justify-center w-6 h-6 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-full text-xs" data-testid={`badge-english-${university.id}`}>✓</span>
+                                ) : (
+                                  <span className="text-slate-300 dark:text-slate-600">—</span>
+                                )}
+                              </td>
+                            </tr>
+                          </>
+                        );
+                      });
+                    })()}
                   </tbody>
                 </table>
               </div>
