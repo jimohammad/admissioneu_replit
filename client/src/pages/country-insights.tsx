@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { useParams, Link } from 'wouter';
+import { useParams, useLocation } from 'wouter';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -30,26 +30,33 @@ import {
 import type { CountryProfile } from '@shared/schema';
 
 const countryFlags: Record<string, string> = {
-  'Spain': '🇪🇸',
+  'France': '🇫🇷',
   'Germany': '🇩🇪',
   'Hungary': '🇭🇺',
   'Italy': '🇮🇹',
-  'Poland': '🇵🇱',
   'Netherlands': '🇳🇱',
+  'Poland': '🇵🇱',
+  'Spain': '🇪🇸',
 };
 
 const countryColors: Record<string, string> = {
-  'Spain': 'from-red-500 to-yellow-500',
+  'France': 'from-blue-600 via-white to-red-500',
   'Germany': 'from-gray-900 to-red-600',
   'Hungary': 'from-red-600 to-green-600',
   'Italy': 'from-green-600 to-red-500',
-  'Poland': 'from-red-500 to-white',
   'Netherlands': 'from-red-600 via-white to-blue-600',
+  'Poland': 'from-red-500 to-white',
+  'Spain': 'from-red-500 to-yellow-500',
 };
 
 export default function CountryInsights() {
   const params = useParams();
   const country = params.country;
+  const [, setLocation] = useLocation();
+  
+  const handleBackClick = () => {
+    setLocation('/');
+  };
 
   const { data: profile, isLoading, error } = useQuery<CountryProfile>({
     queryKey: ['/api/country-insights', country],
@@ -78,9 +85,7 @@ export default function CountryInsights() {
         <Card className="max-w-md">
           <CardContent className="pt-6 text-center">
             <p className="text-lg text-muted-foreground mb-4">Country profile not found</p>
-            <Link href="/">
-              <Button>Back to Home</Button>
-            </Link>
+            <Button onClick={handleBackClick}>Back to Home</Button>
           </CardContent>
         </Card>
       </div>
@@ -91,12 +96,10 @@ export default function CountryInsights() {
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-slate-950 dark:to-slate-900">
       <header className="sticky top-0 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-lg border-b border-slate-200 dark:border-slate-800">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/">
-            <Button variant="ghost" className="gap-2" data-testid="button-back-home">
-              <ArrowLeft className="w-4 h-4" />
-              Back to Universities
-            </Button>
-          </Link>
+          <Button variant="ghost" className="gap-2" onClick={handleBackClick} data-testid="button-back-home">
+            <ArrowLeft className="w-4 h-4" />
+            Back to Universities
+          </Button>
           <div className="flex items-center gap-2">
             <span className="text-2xl">{countryFlags[profile.country]}</span>
             <span className="font-heading font-semibold">{profile.country} Insights</span>
@@ -511,11 +514,9 @@ export default function CountryInsights() {
               <h3 className="font-semibold text-lg">Ready to explore universities in {profile.country}?</h3>
               <p className="text-muted-foreground">Browse all {profile.country} universities with our search tools</p>
             </div>
-            <Link href={`/?country=${profile.country}`}>
-              <Button size="lg" data-testid="button-browse-universities">
-                Browse Universities
-              </Button>
-            </Link>
+            <Button size="lg" onClick={() => setLocation(`/?country=${profile.country}`)} data-testid="button-browse-universities">
+              Browse Universities
+            </Button>
           </CardContent>
         </Card>
       </main>
