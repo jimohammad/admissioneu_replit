@@ -2,7 +2,7 @@
 
 ## Overview
 
-EuroUni is a comprehensive web application that serves as a directory of accredited universities across Europe. The platform allows users to explore, search, and filter universities in Spain and Germany, with information about programs, languages, admission periods, and institutional details. The application provides a modern, responsive interface for discovering educational opportunities across European institutions.
+EuroUni is a comprehensive web application that serves as a directory of accredited universities across Europe. The platform allows users to explore, search, and filter universities in Spain, Germany, and Hungary, with information about programs, languages, admission periods, and institutional details. The application provides a modern, responsive interface for discovering educational opportunities across European institutions.
 
 ## User Preferences
 
@@ -73,7 +73,7 @@ Preferred communication style: Simple, everyday language.
 - Array fields for languages and domains
 - Boolean flags for filtering (e.g., `englishPrograms`)
 - Auto-incrementing ranking field
-- Support for multiple countries (currently Spain and Germany)
+- Support for multiple countries (Spain, Germany, and Hungary)
 
 **Data Fields:**
 - Institution metadata (name, country, region, city, type)
@@ -112,6 +112,8 @@ Preferred communication style: Simple, everyday language.
 - Integration with shadcn/ui form components
 
 **Data Seeding:**
-- Pre-populated data for Spanish universities (comprehensive list across regions)
-- German universities data (major technical and research institutions)
+- Pre-populated data for Spanish universities (89 universities across all regions)
+- German universities data (313 universities including research universities, Fachhochschulen, and specialized institutions)
+- Hungarian universities data (50 universities including major research universities, medical schools, and specialized institutions)
 - Seed scripts for initial database population
+- Total: 452 accredited European universities
