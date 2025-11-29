@@ -127,7 +127,7 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
             <div className="text-xs opacity-70">{totalCount} universities</div>
           </button>
           {countries.map(country => (
-            <div key={country} className="relative">
+            <div key={country} className="flex flex-col gap-2">
               <button
                 onClick={() => setSelectedCountry(country)}
                 className={`w-full p-4 rounded-xl transition-all duration-200 ${
@@ -143,12 +143,11 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
               </button>
               <Link href={`/insights/${country}`}>
                 <button
-                  className="absolute top-2 right-2 w-6 h-6 rounded-full bg-white/20 hover:bg-white/40 flex items-center justify-center transition-colors"
-                  title={`${country} immigration & job info`}
+                  className="w-full py-2 px-3 rounded-lg bg-white/20 hover:bg-white/30 text-white text-xs font-medium flex items-center justify-center gap-1.5 transition-colors border border-white/10"
                   data-testid={`button-insights-${country.toLowerCase()}`}
-                  onClick={(e) => e.stopPropagation()}
                 >
-                  <Info className="w-3.5 h-3.5 text-white" />
+                  <Info className="w-3.5 h-3.5" />
+                  Visa & Jobs Info
                 </button>
               </Link>
             </div>
