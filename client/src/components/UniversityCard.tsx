@@ -13,6 +13,7 @@ interface UniversityCardProps {
 const countryFlags: Record<string, string> = {
   'Spain': '🇪🇸',
   'Germany': '🇩🇪',
+  'Hungary': '🇭🇺',
   'France': '🇫🇷',
   'Italy': '🇮🇹',
   'Netherlands': '🇳🇱',

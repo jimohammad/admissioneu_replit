@@ -9,6 +9,7 @@ import { MapPin, Calendar, BookOpen, ShieldCheck, ExternalLink, CheckCircle2 } f
 const countryFlags: Record<string, string> = {
   'Spain': '🇪🇸',
   'Germany': '🇩🇪',
+  'Hungary': '🇭🇺',
   'France': '🇫🇷',
   'Italy': '🇮🇹',
   'Netherlands': '🇳🇱',
