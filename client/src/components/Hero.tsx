@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Search, Calculator, Wallet, Info } from 'lucide-react';
+import { Search, Calculator, Wallet, FileText, Info } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Link } from 'wouter';
@@ -82,7 +82,7 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
           </div>
           
           {/* Tool Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 mt-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 mt-4 justify-center flex-wrap">
             <Link href="/budget">
               <Button 
                 size="lg"
@@ -101,6 +101,16 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
               >
                 <Calculator className="w-5 h-5 mr-2" />
                 Cost Calculator
+              </Button>
+            </Link>
+            <Link href="/resources">
+              <Button 
+                size="lg"
+                className="w-full sm:w-auto bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white shadow-lg shadow-purple-500/25 py-5 px-6 rounded-xl font-semibold"
+                data-testid="button-resources"
+              >
+                <FileText className="w-5 h-5 mr-2" />
+                Application Resources
               </Button>
             </Link>
           </div>
