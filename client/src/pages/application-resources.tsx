@@ -102,14 +102,19 @@ const admissionDocuments = [
 
 const visaDocuments = [
   { name: 'Valid Passport', required: true, description: 'Valid 6-12 months beyond intended stay' },
+  { name: 'National ID Card', required: true, description: 'Government-issued national identity card' },
   { name: 'University Admission Letter', required: true, description: 'Official acceptance with course details' },
   { name: 'Proof of Financial Means', required: true, description: 'Bank statements, sponsor letter, scholarship proof' },
   { name: 'Health Insurance', required: true, description: 'Travel insurance + health coverage for study period' },
   { name: 'Proof of Accommodation', required: true, description: 'Housing confirmation or address' },
   { name: 'Tuition Fee Payment Proof', required: false, description: 'Receipt or confirmation of payment' },
   { name: 'Sponsor\'s Salary Certificate', required: false, description: 'If financially sponsored by parent/guardian' },
+  { name: 'Sponsorship Certificate', required: true, description: 'Affidavit/certificate by parents or legal guardian confirming financial support' },
+  { name: 'Family Registration Certificate (FRC)', required: true, description: 'Official document showing family members and relationships' },
+  { name: 'Residence Card', required: false, description: 'Required if currently living abroad in a different country' },
   { name: 'Cover Letter', required: true, description: 'Explaining purpose and duration of stay' },
   { name: 'Visa Application Form', required: true, description: 'Embassy-specific forms' },
+  { name: 'VFS Appointment Letter', required: true, description: 'Confirmation of visa appointment booking at VFS Global or embassy' },
   { name: 'Previous Visa Copies', required: false, description: 'If you have traveled before' },
 ];
 
