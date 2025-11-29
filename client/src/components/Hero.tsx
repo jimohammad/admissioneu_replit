@@ -104,19 +104,22 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
         </div>
 
         {/* Country Cards */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto">
-          <div
-            onClick={() => setSelectedCountry('all')}
-            className={`relative p-4 rounded-xl transition-all duration-200 cursor-pointer text-white hover:bg-white/10 ${
-              selectedCountry === 'all'
-                ? 'border-2 border-blue-400'
-                : 'border border-white/20'
-            }`}
-            data-testid="button-country-all"
-          >
-            <div className="text-2xl mb-1">🌍</div>
-            <div className={`text-sm ${selectedCountry === 'all' ? 'font-bold' : 'font-medium'}`}>All Countries</div>
-            <div className="text-xs opacity-80">{totalCount} universities</div>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto pb-4">
+          <div className="flex flex-col gap-2">
+            <div
+              onClick={() => setSelectedCountry('all')}
+              className={`relative p-4 rounded-xl transition-all duration-200 cursor-pointer text-white hover:bg-white/10 ${
+                selectedCountry === 'all'
+                  ? 'border-2 border-blue-400'
+                  : 'border border-white/20'
+              }`}
+              data-testid="button-country-all"
+            >
+              <div className="text-2xl mb-1">🌍</div>
+              <div className={`text-sm ${selectedCountry === 'all' ? 'font-bold' : 'font-medium'}`}>All Countries</div>
+              <div className="text-xs opacity-80">{totalCount} universities</div>
+            </div>
+            <div className="h-[34px]"></div>
           </div>
           {countries.map(country => (
             <div key={country} className="flex flex-col gap-2">
