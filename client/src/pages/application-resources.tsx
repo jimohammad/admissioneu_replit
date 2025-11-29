@@ -107,7 +107,7 @@ const visaDocuments = [
   { name: 'Proof of Financial Means', required: true, description: 'Bank statements, sponsor letter, scholarship proof' },
   { name: 'Bank Statement (Sponsor)', required: true, description: '3-6 months bank statement of sponsor showing sufficient funds' },
   { name: 'Health Insurance', required: true, description: 'Travel insurance + health coverage for study period' },
-  { name: 'Proof of Accommodation', required: true, description: 'Housing confirmation or address' },
+  { name: 'Proof of Accommodation', required: true, description: 'Rental Agreement, Proof of Rent Payment transfer' },
   { name: 'Tuition Fee Payment Proof', required: false, description: 'Receipt or confirmation of payment' },
   { name: 'Sponsor\'s Salary Certificate', required: false, description: 'If financially sponsored by parent/guardian' },
   { name: 'Sponsorship Certificate', required: true, description: 'Affidavit/certificate by parents or legal guardian confirming financial support' },
