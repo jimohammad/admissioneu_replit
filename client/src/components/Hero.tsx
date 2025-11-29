@@ -1,7 +1,7 @@
 import { Search, Calculator, Wallet, FileText } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Link } from 'wouter';
-import heroBg from '@assets/stock_images/modern_university_ca_368ee2bc.jpg';
+import heroBg from '@assets/stock_images/modern_glass_buildin_0e142d1a.jpg';
 
 interface HeroProps {
   searchQuery: string;
