@@ -1,5 +1,6 @@
 import { University, CostOfLiving } from '@shared/schema';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -44,6 +45,9 @@ export function UniversityDetail({ university, isOpen, onClose }: UniversityDeta
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-2xl max-h-[90vh] p-0 overflow-hidden bg-white dark:bg-slate-950 border-none shadow-2xl" data-testid="dialog-university-detail">
+        <VisuallyHidden>
+          <DialogTitle>{university.name} - University Details</DialogTitle>
+        </VisuallyHidden>
         <div className="relative h-32 bg-gradient-to-r from-slate-900 to-slate-800 flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2070&auto=format&fit=crop')] opacity-10 bg-cover bg-center mix-blend-overlay"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
