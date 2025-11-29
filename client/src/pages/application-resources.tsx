@@ -296,7 +296,7 @@ export default function ApplicationResources() {
                       University Admission Documents
                     </CardTitle>
                     <CardDescription>
-                      Documents typically required for university applications
+                      Scanned Copies Documents (in PDF, JPEG, JPG Format) required for university applications
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-3">
