@@ -116,7 +116,7 @@ export function Header() {
                   <DropdownMenuItem 
                     key={name}
                     onClick={() => setLocation(`/insights/${name}`)}
-                    className={`flex items-center gap-3 cursor-pointer ${
+                    className={`cursor-pointer ${
                       location === `/insights/${name}` 
                         ? 'text-amber-400 bg-slate-700/50' 
                         : 'text-slate-300 hover:text-white focus:text-white hover:bg-slate-700/50 focus:bg-slate-700/50'
@@ -124,7 +124,7 @@ export function Header() {
                     data-testid={`nav-visa-${name.toLowerCase()}`}
                   >
                     <img src={`https://flagcdn.com/w24/${code.toLowerCase()}.png`} alt={name} className="w-6 h-4 object-cover rounded-sm" />
-                    <span className="font-medium">{name}</span>
+                    {name}
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
