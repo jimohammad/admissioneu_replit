@@ -43,9 +43,9 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
       {/* Content */}
       <div className="relative z-10 max-w-4xl w-full px-6 py-12 text-center space-y-8">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
         >
           <div className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm text-white text-sm font-medium tracking-wide">
             <span className="w-2 h-2 rounded-full bg-emerald-400 mr-2 animate-pulse"></span>
@@ -62,9 +62,9 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
         {/* Search Row */}
         <motion.div 
           className="max-w-2xl mx-auto"
-          initial={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
+          transition={{ delay: 0.1, duration: 0.3 }}
         >
           <div className="relative group">
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-emerald-500 rounded-xl blur opacity-25 group-hover:opacity-40 transition duration-500"></div>
@@ -109,9 +109,9 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
         {/* Country Cards */}
         <motion.div
           className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.5 }}
+          transition={{ delay: 0.15, duration: 0.3 }}
         >
           <button
             onClick={() => setSelectedCountry('all')}
