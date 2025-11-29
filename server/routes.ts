@@ -3,11 +3,51 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertUniversitySchema } from "@shared/schema";
 import { z } from "zod";
+import { autoSeedIfEmpty } from "./autoSeed";
 
 export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
+  // Health check endpoint for debugging
+  app.get("/api/health", async (req, res) => {
+    try {
+      const universities = await storage.getAllUniversities();
+      res.json({ 
+        status: "ok", 
+        universityCount: universities.length,
+        timestamp: new Date().toISOString()
+      });
+    } catch (error) {
+      console.error("Health check error:", error);
+      res.status(500).json({ 
+        status: "error", 
+        message: error instanceof Error ? error.message : "Unknown error",
+        timestamp: new Date().toISOString()
+      });
+    }
+  });
+
+  // Manual seed trigger endpoint (for production initialization)
+  app.post("/api/init-db", async (req, res) => {
+    try {
+      console.log("Manual database initialization triggered...");
+      await autoSeedIfEmpty();
+      const universities = await storage.getAllUniversities();
+      res.json({ 
+        status: "ok", 
+        message: "Database initialized",
+        universityCount: universities.length 
+      });
+    } catch (error) {
+      console.error("Init DB error:", error);
+      res.status(500).json({ 
+        status: "error", 
+        message: error instanceof Error ? error.message : "Unknown error"
+      });
+    }
+  });
+
   // Get all countries
   app.get("/api/countries", async (req, res) => {
     try {

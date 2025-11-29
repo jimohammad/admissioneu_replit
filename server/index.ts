@@ -61,7 +61,11 @@ app.use((req, res, next) => {
 });
 
 (async () => {
-  await autoSeedIfEmpty();
+  try {
+    await autoSeedIfEmpty();
+  } catch (error) {
+    console.error("Auto-seed failed, server will continue:", error);
+  }
   await registerRoutes(httpServer, app);
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
