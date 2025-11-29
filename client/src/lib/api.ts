@@ -3,11 +3,20 @@ import { University } from '@shared/schema';
 const API_BASE = '/api';
 
 export async function fetchUniversities(): Promise<University[]> {
-  const response = await fetch(`${API_BASE}/universities`);
-  if (!response.ok) {
-    throw new Error('Failed to fetch universities');
+  try {
+    const response = await fetch(`${API_BASE}/universities`);
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('API error:', response.status, errorText);
+      throw new Error(`Failed to fetch universities: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log('Universities fetched:', data.length);
+    return data;
+  } catch (error) {
+    console.error('Fetch error:', error);
+    throw error;
   }
-  return response.json();
 }
 
 export async function fetchUniversityById(id: number): Promise<University> {

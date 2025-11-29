@@ -1,6 +1,6 @@
 import { type University, type InsertUniversity, universities } from "@shared/schema";
 import { db } from "./db";
-import { eq, ilike, or, and, arrayContains, sql } from "drizzle-orm";
+import { eq, ilike, or, and, sql } from "drizzle-orm";
 
 export interface IStorage {
   // University CRUD operations
