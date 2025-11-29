@@ -105,6 +105,7 @@ const visaDocuments = [
   { name: 'National ID Card', required: true, description: 'Government-issued national identity card' },
   { name: 'University Admission Letter', required: true, description: 'Official acceptance with course details' },
   { name: 'Proof of Financial Means', required: true, description: 'Bank statements, sponsor letter, scholarship proof' },
+  { name: 'Bank Statement (Sponsor)', required: true, description: '3-6 months bank statement of sponsor showing sufficient funds' },
   { name: 'Health Insurance', required: true, description: 'Travel insurance + health coverage for study period' },
   { name: 'Proof of Accommodation', required: true, description: 'Housing confirmation or address' },
   { name: 'Tuition Fee Payment Proof', required: false, description: 'Receipt or confirmation of payment' },
