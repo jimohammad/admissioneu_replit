@@ -41,14 +41,14 @@ export function Header() {
     <header className="bg-slate-900 border-b border-slate-800 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto">
         {/* Top bar with logo */}
-        <div className="flex items-center justify-between px-4 py-3">
+        <div className="flex items-center justify-between px-4 py-5">
           <a 
             href="/" 
             onClick={(e) => handleNavClick(e, '/')}
-            className="flex items-center gap-2 text-white hover:text-blue-400 transition-colors no-underline"
+            className="flex items-center gap-3 text-white hover:text-blue-400 transition-colors no-underline"
           >
-            <GraduationCap className="w-6 h-6 text-amber-400" />
-            <span className="font-bold text-lg tracking-tight">EuroUni</span>
+            <GraduationCap className="w-8 h-8 text-amber-400" />
+            <span className="font-bold text-xl tracking-tight">EuroUni</span>
           </a>
           
           <div className="flex items-center gap-1 text-xs text-slate-400">
