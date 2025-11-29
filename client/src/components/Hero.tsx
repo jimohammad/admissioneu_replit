@@ -1,7 +1,6 @@
 import { Search, Calculator, Wallet, FileText } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Link } from 'wouter';
-import heroBg from '@assets/generated_images/modern_abstract_university_architecture_background.png';
 
 interface HeroProps {
   searchQuery: string;
@@ -13,14 +12,12 @@ export function Hero({ searchQuery, setSearchQuery, totalCount }: HeroProps) {
   
   return (
     <div className="relative w-full min-h-[520px] flex items-center justify-center bg-slate-900">
-      {/* Background Image with Overlay */}
+      {/* Lightweight CSS Gradient Background */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <img 
-          src={heroBg} 
-          alt="University Architecture" 
-          className="w-full h-full object-cover opacity-60"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/50 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-800 via-slate-900 to-blue-950"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-900/30 via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-amber-900/20 via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
       </div>
 
       {/* Content */}
