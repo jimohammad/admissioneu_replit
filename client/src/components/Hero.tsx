@@ -28,9 +28,9 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
   const totalCount = countryCounts ? Object.values(countryCounts).reduce((a, b) => a + b, 0) : 0;
   
   return (
-    <div className="relative w-full min-h-[480px] flex items-center justify-center overflow-hidden bg-slate-900">
+    <div className="relative w-full min-h-[520px] flex items-center justify-center bg-slate-900">
       {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 overflow-hidden">
         <img 
           src={heroBg} 
           alt="University Architecture" 
