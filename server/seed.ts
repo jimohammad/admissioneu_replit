@@ -2,6 +2,7 @@ import { db } from "./db";
 import { universities } from "@shared/schema";
 import { germanUniversities } from "./germanUniversities";
 import { hungarianUniversities } from "./hungarianUniversities";
+import { italianUniversities } from "./italianUniversities";
 
 const spanishUniversities = [
   // PUBLIC UNIVERSITIES - ANDALUSIA
@@ -1183,6 +1184,14 @@ const spanishUniversities = [
 ];
 
 function addTuitionFees(uni: any) {
+  // If university already has tuition fees defined, preserve them
+  if (uni.tuitionFeeEU && uni.tuitionFeeNonEU) {
+    return {
+      ...uni,
+      tuitionPeriod: uni.tuitionPeriod || 'per year',
+    };
+  }
+  
   const { country, type } = uni;
   
   let tuitionFeeEU: string;
@@ -1214,6 +1223,14 @@ function addTuitionFees(uni: any) {
       tuitionFeeEU = '€5,000 - €12,000';
       tuitionFeeNonEU = '€6,000 - €16,000';
     }
+  } else if (country === 'Italy') {
+    if (type === 'Public') {
+      tuitionFeeEU = '€156 - €2,800';
+      tuitionFeeNonEU = '€2,800 - €4,500';
+    } else {
+      tuitionFeeEU = '€5,000 - €15,000';
+      tuitionFeeNonEU = '€8,000 - €20,000';
+    }
   } else {
     tuitionFeeEU = 'Contact university';
     tuitionFeeNonEU = 'Contact university';
@@ -1227,7 +1244,7 @@ function addTuitionFees(uni: any) {
   };
 }
 
-const allUniversities = [...spanishUniversities, ...germanUniversities, ...hungarianUniversities].map(addTuitionFees);
+const allUniversities = [...spanishUniversities, ...germanUniversities, ...hungarianUniversities, ...italianUniversities].map(addTuitionFees);
 
 async function seed() {
   try {
@@ -1243,6 +1260,7 @@ async function seed() {
     console.log(`   - Spain: ${spanishUniversities.length} universities`);
     console.log(`   - Germany: ${germanUniversities.length} universities`);
     console.log(`   - Hungary: ${hungarianUniversities.length} universities`);
+    console.log(`   - Italy: ${italianUniversities.length} universities`);
     console.log(`   - Tuition fees added for all universities`);
     process.exit(0);
   } catch (error) {

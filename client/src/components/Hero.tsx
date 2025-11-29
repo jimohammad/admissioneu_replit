@@ -18,8 +18,8 @@ const countryFlags: Record<string, string> = {
   'Spain': '🇪🇸',
   'Germany': '🇩🇪',
   'Hungary': '🇭🇺',
-  'France': '🇫🇷',
   'Italy': '🇮🇹',
+  'France': '🇫🇷',
   'Netherlands': '🇳🇱',
   'All': '🌍',
 };
