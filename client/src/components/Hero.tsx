@@ -27,7 +27,7 @@ export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
       <div className="relative z-10 max-w-4xl w-full px-6 py-12 text-center space-y-8">
         <div>
           <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-4 font-heading">
-            Find Your Future in <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-300">Europe</span>
+            Database of <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-300">European Universities</span>
           </h1>
           <p className="text-base md:text-lg text-slate-300 max-w-xl mx-auto leading-relaxed">
             Explore accredited universities across 6 European countries
