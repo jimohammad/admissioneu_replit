@@ -1,4 +1,4 @@
-import { type University, type InsertUniversity, universities } from "@shared/schema";
+import { type University, type InsertUniversity, universities, type CostOfLiving, type InsertCostOfLiving, costOfLiving } from "@shared/schema";
 import { db } from "./db";
 import { eq, ilike, or, and, sql } from "drizzle-orm";
 
@@ -20,6 +20,12 @@ export interface IStorage {
   createUniversity(university: InsertUniversity): Promise<University>;
   updateUniversity(id: number, university: Partial<InsertUniversity>): Promise<University | undefined>;
   deleteUniversity(id: number): Promise<boolean>;
+  
+  // Cost of Living operations
+  getAllCostOfLiving(): Promise<CostOfLiving[]>;
+  getCostOfLivingByCity(city: string, country: string): Promise<CostOfLiving | undefined>;
+  getCostOfLivingByCountry(country: string): Promise<CostOfLiving[]>;
+  getCostOfLivingCities(): Promise<{ city: string; country: string }[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -147,6 +153,36 @@ export class DatabaseStorage implements IStorage {
       .where(eq(universities.id, id))
       .returning();
     return result.length > 0;
+  }
+
+  // Cost of Living methods
+  async getAllCostOfLiving(): Promise<CostOfLiving[]> {
+    return await db.select().from(costOfLiving).orderBy(costOfLiving.country, costOfLiving.city);
+  }
+
+  async getCostOfLivingByCity(city: string, country: string): Promise<CostOfLiving | undefined> {
+    const [result] = await db
+      .select()
+      .from(costOfLiving)
+      .where(and(eq(costOfLiving.city, city), eq(costOfLiving.country, country)))
+      .limit(1);
+    return result;
+  }
+
+  async getCostOfLivingByCountry(country: string): Promise<CostOfLiving[]> {
+    return await db
+      .select()
+      .from(costOfLiving)
+      .where(eq(costOfLiving.country, country))
+      .orderBy(costOfLiving.city);
+  }
+
+  async getCostOfLivingCities(): Promise<{ city: string; country: string }[]> {
+    const result = await db
+      .select({ city: costOfLiving.city, country: costOfLiving.country })
+      .from(costOfLiving)
+      .orderBy(costOfLiving.country, costOfLiving.city);
+    return result;
   }
 }
 

@@ -156,5 +156,49 @@ export async function registerRoutes(
     }
   });
 
+  // Cost of Living routes
+  app.get("/api/cost-of-living", async (req, res) => {
+    try {
+      const data = await storage.getAllCostOfLiving();
+      res.json(data);
+    } catch (error) {
+      console.error("Error fetching cost of living data:", error);
+      res.status(500).json({ error: "Failed to fetch cost of living data" });
+    }
+  });
+
+  app.get("/api/cost-of-living/cities", async (req, res) => {
+    try {
+      const cities = await storage.getCostOfLivingCities();
+      res.json(cities);
+    } catch (error) {
+      console.error("Error fetching cities:", error);
+      res.status(500).json({ error: "Failed to fetch cities" });
+    }
+  });
+
+  app.get("/api/cost-of-living/:country", async (req, res) => {
+    try {
+      const data = await storage.getCostOfLivingByCountry(req.params.country);
+      res.json(data);
+    } catch (error) {
+      console.error("Error fetching cost of living data:", error);
+      res.status(500).json({ error: "Failed to fetch cost of living data" });
+    }
+  });
+
+  app.get("/api/cost-of-living/:country/:city", async (req, res) => {
+    try {
+      const data = await storage.getCostOfLivingByCity(req.params.city, req.params.country);
+      if (!data) {
+        return res.status(404).json({ error: "City not found" });
+      }
+      res.json(data);
+    } catch (error) {
+      console.error("Error fetching cost of living data:", error);
+      res.status(500).json({ error: "Failed to fetch cost of living data" });
+    }
+  });
+
   return httpServer;
 }
