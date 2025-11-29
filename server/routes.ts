@@ -200,5 +200,29 @@ export async function registerRoutes(
     }
   });
 
+  // Country Profile routes
+  app.get("/api/country-insights", async (req, res) => {
+    try {
+      const profiles = await storage.getAllCountryProfiles();
+      res.json(profiles);
+    } catch (error) {
+      console.error("Error fetching country profiles:", error);
+      res.status(500).json({ error: "Failed to fetch country profiles" });
+    }
+  });
+
+  app.get("/api/country-insights/:country", async (req, res) => {
+    try {
+      const profile = await storage.getCountryProfile(req.params.country);
+      if (!profile) {
+        return res.status(404).json({ error: "Country profile not found" });
+      }
+      res.json(profile);
+    } catch (error) {
+      console.error("Error fetching country profile:", error);
+      res.status(500).json({ error: "Failed to fetch country profile" });
+    }
+  });
+
   return httpServer;
 }

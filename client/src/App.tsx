@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/home";
 import Calculator from "@/pages/calculator";
 import BudgetFinder from "@/pages/budget-finder";
+import CountryInsights from "@/pages/country-insights";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -14,6 +15,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/calculator" component={Calculator} />
       <Route path="/budget" component={BudgetFinder} />
+      <Route path="/insights/:country" component={CountryInsights} />
       <Route component={NotFound} />
     </Switch>
   );

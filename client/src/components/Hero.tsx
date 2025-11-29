@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Search, Calculator, Wallet } from 'lucide-react';
+import { Search, Calculator, Wallet, Info } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Link } from 'wouter';
@@ -127,20 +127,31 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
             <div className="text-xs opacity-70">{totalCount} universities</div>
           </button>
           {countries.map(country => (
-            <button
-              key={country}
-              onClick={() => setSelectedCountry(country)}
-              className={`relative p-4 rounded-xl transition-all duration-200 ${
-                selectedCountry === country
-                  ? 'bg-white text-slate-900 shadow-xl scale-105'
-                  : 'bg-white/10 text-white hover:bg-white/20 border border-white/10'
-              }`}
-              data-testid={`button-country-${country.toLowerCase()}`}
-            >
-              <div className="text-2xl mb-1">{countryFlags[country] || '🏛️'}</div>
-              <div className="font-semibold text-sm">{country}</div>
-              <div className="text-xs opacity-70">{countryCounts[country] || 0} universities</div>
-            </button>
+            <div key={country} className="relative">
+              <button
+                onClick={() => setSelectedCountry(country)}
+                className={`w-full p-4 rounded-xl transition-all duration-200 ${
+                  selectedCountry === country
+                    ? 'bg-white text-slate-900 shadow-xl scale-105'
+                    : 'bg-white/10 text-white hover:bg-white/20 border border-white/10'
+                }`}
+                data-testid={`button-country-${country.toLowerCase()}`}
+              >
+                <div className="text-2xl mb-1">{countryFlags[country] || '🏛️'}</div>
+                <div className="font-semibold text-sm">{country}</div>
+                <div className="text-xs opacity-70">{countryCounts[country] || 0} universities</div>
+              </button>
+              <Link href={`/insights/${country}`}>
+                <button
+                  className="absolute top-2 right-2 w-6 h-6 rounded-full bg-white/20 hover:bg-white/40 flex items-center justify-center transition-colors"
+                  title={`${country} immigration & job info`}
+                  data-testid={`button-insights-${country.toLowerCase()}`}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <Info className="w-3.5 h-3.5 text-white" />
+                </button>
+              </Link>
+            </div>
           ))}
         </motion.div>
       </div>

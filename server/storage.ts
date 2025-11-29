@@ -1,4 +1,4 @@
-import { type University, type InsertUniversity, universities, type CostOfLiving, type InsertCostOfLiving, costOfLiving } from "@shared/schema";
+import { type University, type InsertUniversity, universities, type CostOfLiving, type InsertCostOfLiving, costOfLiving, type CountryProfile, countryProfiles } from "@shared/schema";
 import { db } from "./db";
 import { eq, ilike, or, and, sql } from "drizzle-orm";
 
@@ -26,6 +26,10 @@ export interface IStorage {
   getCostOfLivingByCity(city: string, country: string): Promise<CostOfLiving | undefined>;
   getCostOfLivingByCountry(country: string): Promise<CostOfLiving[]>;
   getCostOfLivingCities(): Promise<{ city: string; country: string }[]>;
+  
+  // Country Profile operations
+  getAllCountryProfiles(): Promise<CountryProfile[]>;
+  getCountryProfile(country: string): Promise<CountryProfile | undefined>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -182,6 +186,20 @@ export class DatabaseStorage implements IStorage {
       .select({ city: costOfLiving.city, country: costOfLiving.country })
       .from(costOfLiving)
       .orderBy(costOfLiving.country, costOfLiving.city);
+    return result;
+  }
+  
+  // Country Profile methods
+  async getAllCountryProfiles(): Promise<CountryProfile[]> {
+    return await db.select().from(countryProfiles).orderBy(countryProfiles.country);
+  }
+  
+  async getCountryProfile(country: string): Promise<CountryProfile | undefined> {
+    const [result] = await db
+      .select()
+      .from(countryProfiles)
+      .where(eq(countryProfiles.country, country))
+      .limit(1);
     return result;
   }
 }
