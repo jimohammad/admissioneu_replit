@@ -127,14 +127,14 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
             onClick={() => setSelectedCountry('all')}
             className={`relative p-4 rounded-xl transition-all duration-200 ${
               selectedCountry === 'all'
-                ? 'bg-white text-slate-900 shadow-xl scale-105'
+                ? 'bg-blue-600 text-white shadow-xl scale-105 border-2 border-blue-400'
                 : 'bg-white/10 text-white hover:bg-white/20 border border-white/10'
             }`}
             data-testid="button-country-all"
           >
             <div className="text-2xl mb-1">🌍</div>
             <div className="font-semibold text-sm">All Countries</div>
-            <div className="text-xs opacity-70">{totalCount} universities</div>
+            <div className="text-xs opacity-80">{totalCount} universities</div>
           </button>
           {countries.map(country => (
             <div key={country} className="flex flex-col gap-2">
@@ -142,14 +142,14 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
                 onClick={() => setSelectedCountry(country)}
                 className={`w-full p-4 rounded-xl transition-all duration-200 ${
                   selectedCountry === country
-                    ? 'bg-white text-slate-900 shadow-xl scale-105'
+                    ? 'bg-blue-600 text-white shadow-xl scale-105 border-2 border-blue-400'
                     : 'bg-white/10 text-white hover:bg-white/20 border border-white/10'
                 }`}
                 data-testid={`button-country-${country.toLowerCase()}`}
               >
                 <div className="text-2xl mb-1">{countryFlags[country] || '🏛️'}</div>
                 <div className="font-semibold text-sm">{country}</div>
-                <div className="text-xs opacity-70">{countryCounts[country] || 0} universities</div>
+                <div className="text-xs opacity-80">{countryCounts[country] || 0} universities</div>
               </button>
               <Link href={`/insights/${country}`}>
                 <button
