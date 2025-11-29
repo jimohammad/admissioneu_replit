@@ -23,7 +23,9 @@ import {
   Timer,
   Shield,
   Home,
-  Wallet
+  Wallet,
+  CheckCircle2,
+  BookOpen
 } from 'lucide-react';
 import type { CountryProfile } from '@shared/schema';
 
@@ -120,10 +122,18 @@ export default function CountryInsights() {
                 <div className="text-sm opacity-80">Currency</div>
                 <div className="font-semibold">{profile.currency}</div>
               </div>
-              <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
-                <div className="text-sm opacity-80">Employment Rate</div>
-                <div className="font-semibold">{profile.graduateEmploymentRate}</div>
-              </div>
+              {profile.visaSuccessRate && (
+                <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
+                  <div className="text-sm opacity-80">Visa Success Rate</div>
+                  <div className="font-semibold">{profile.visaSuccessRate}</div>
+                </div>
+              )}
+              {profile.ieltsRecommended && (
+                <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
+                  <div className="text-sm opacity-80">IELTS Required</div>
+                  <div className="font-semibold">{profile.ieltsRecommended}</div>
+                </div>
+              )}
             </div>
           </div>
           <div className="absolute right-0 top-0 w-1/3 h-full opacity-10">
@@ -182,6 +192,47 @@ export default function CountryInsights() {
                       <div className="text-sm text-muted-foreground">Application Cost</div>
                       <div className="font-medium">{profile.visaCost}</div>
                     </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Visa Success & IELTS */}
+              <Card data-testid="card-visa-success">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-primary" />
+                    Visa Success & IELTS
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  {profile.visaSuccessRate && (
+                    <div className="p-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg border border-green-200 dark:border-green-800">
+                      <div className="flex items-center gap-2 mb-1">
+                        <CheckCircle2 className="w-5 h-5 text-green-600" />
+                        <div className="text-sm text-muted-foreground">Visa Approval Rate</div>
+                      </div>
+                      <div className="text-2xl font-bold text-green-700 dark:text-green-400">{profile.visaSuccessRate}</div>
+                    </div>
+                  )}
+                  <div className="grid grid-cols-2 gap-3">
+                    {profile.ieltsMinimum && (
+                      <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <div className="flex items-center gap-2 mb-1">
+                          <BookOpen className="w-4 h-4 text-blue-600" />
+                          <div className="text-xs text-muted-foreground">Minimum IELTS</div>
+                        </div>
+                        <div className="text-xl font-bold text-blue-700 dark:text-blue-400">{profile.ieltsMinimum}</div>
+                      </div>
+                    )}
+                    {profile.ieltsRecommended && (
+                      <div className="p-3 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                        <div className="flex items-center gap-2 mb-1">
+                          <BookOpen className="w-4 h-4 text-indigo-600" />
+                          <div className="text-xs text-muted-foreground">Recommended</div>
+                        </div>
+                        <div className="text-xl font-bold text-indigo-700 dark:text-indigo-400">{profile.ieltsRecommended}</div>
+                      </div>
+                    )}
                   </div>
                 </CardContent>
               </Card>

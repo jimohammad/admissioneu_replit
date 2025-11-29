@@ -61,6 +61,7 @@ export const countryProfiles = pgTable("country_profiles", {
   visaType: text("visa_type").notNull(),
   visaProcessingTime: text("visa_processing_time").notNull(),
   visaCost: text("visa_cost").notNull(),
+  visaSuccessRate: text("visa_success_rate"),
   financialRequirement: text("financial_requirement").notNull(),
   workHoursAllowed: text("work_hours_allowed").notNull(),
   postStudyWorkVisa: text("post_study_work_visa").notNull(),
@@ -68,6 +69,10 @@ export const countryProfiles = pgTable("country_profiles", {
   healthInsurance: text("health_insurance").notNull(),
   languageRequirement: text("language_requirement"),
   immigrationPortal: text("immigration_portal").notNull(),
+  
+  // IELTS requirements
+  ieltsMinimum: text("ielts_minimum"),
+  ieltsRecommended: text("ielts_recommended"),
   
   // Job market data
   graduateEmploymentRate: text("graduate_employment_rate").notNull(),
