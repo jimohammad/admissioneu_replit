@@ -116,5 +116,6 @@ Preferred communication style: Simple, everyday language.
 - German universities data (313 universities including research universities, Fachhochschulen, and specialized institutions)
 - Hungarian universities data (50 universities including major research universities, medical schools, and specialized institutions)
 - Italian universities data (50 universities including Politecnico di Milano, Bologna, La Sapienza and elite schools)
+- Polish universities data (42 universities including University of Warsaw, Jagiellonian, and top medical schools)
 - Seed scripts for initial database population
-- Total: 502 accredited European universities across 4 countries
+- Total: 544 accredited European universities across 5 countries

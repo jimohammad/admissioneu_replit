@@ -3,6 +3,7 @@ import { universities } from "@shared/schema";
 import { germanUniversities } from "./germanUniversities";
 import { hungarianUniversities } from "./hungarianUniversities";
 import { italianUniversities } from "./italianUniversities";
+import { polishUniversities } from "./polishUniversities";
 
 const spanishUniversities = [
   // PUBLIC UNIVERSITIES - ANDALUSIA
@@ -1231,6 +1232,14 @@ function addTuitionFees(uni: any) {
       tuitionFeeEU = '€5,000 - €15,000';
       tuitionFeeNonEU = '€8,000 - €20,000';
     }
+  } else if (country === 'Poland') {
+    if (type === 'Public') {
+      tuitionFeeEU = '€0 (Free for EU)';
+      tuitionFeeNonEU = '€2,000 - €4,000';
+    } else {
+      tuitionFeeEU = '€3,000 - €6,000';
+      tuitionFeeNonEU = '€4,000 - €8,000';
+    }
   } else {
     tuitionFeeEU = 'Contact university';
     tuitionFeeNonEU = 'Contact university';
@@ -1244,7 +1253,7 @@ function addTuitionFees(uni: any) {
   };
 }
 
-const allUniversities = [...spanishUniversities, ...germanUniversities, ...hungarianUniversities, ...italianUniversities].map(addTuitionFees);
+const allUniversities = [...spanishUniversities, ...germanUniversities, ...hungarianUniversities, ...italianUniversities, ...polishUniversities].map(addTuitionFees);
 
 async function seed() {
   try {
@@ -1261,6 +1270,7 @@ async function seed() {
     console.log(`   - Germany: ${germanUniversities.length} universities`);
     console.log(`   - Hungary: ${hungarianUniversities.length} universities`);
     console.log(`   - Italy: ${italianUniversities.length} universities`);
+    console.log(`   - Poland: ${polishUniversities.length} universities`);
     console.log(`   - Tuition fees added for all universities`);
     process.exit(0);
   } catch (error) {
