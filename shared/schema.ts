@@ -21,6 +21,7 @@ export const universities = pgTable("universities", {
   tuitionFeeEU: text("tuition_fee_eu"),
   tuitionFeeNonEU: text("tuition_fee_non_eu"),
   tuitionPeriod: text("tuition_period"),
+  totalEnrollment: integer("total_enrollment"),
 });
 
 export const insertUniversitySchema = createInsertSchema(universities).omit({

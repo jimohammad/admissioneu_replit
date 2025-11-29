@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
-import { MapPin, Calendar, BookOpen, ShieldCheck, ExternalLink, CheckCircle2, Euro, Calculator, Home } from 'lucide-react';
+import { MapPin, Calendar, BookOpen, ShieldCheck, ExternalLink, CheckCircle2, Euro, Calculator, Home, Users } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'wouter';
 
@@ -122,6 +122,20 @@ export function UniversityDetail({ university, isOpen, onClose }: UniversityDeta
                       ))}
                     </div>
                   </div>
+
+                  {university.totalEnrollment && (
+                    <>
+                      <Separator />
+                      <div>
+                        <div className="text-xs font-semibold text-muted-foreground uppercase mb-1 flex items-center gap-1">
+                          <Users className="w-3 h-3" /> Total Enrollment
+                        </div>
+                        <div className="flex items-center gap-2 font-medium text-purple-600 dark:text-purple-400" data-testid="text-detail-enrollment">
+                          {university.totalEnrollment.toLocaleString()} students
+                        </div>
+                      </div>
+                    </>
+                  )}
 
                   {(university.tuitionFeeEU || university.tuitionFeeNonEU) && (
                     <>
