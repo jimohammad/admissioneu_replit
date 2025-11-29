@@ -62,16 +62,16 @@ export default function Home() {
 
       <main className="container mx-auto px-4 py-12 -mt-20 relative z-20">
         {/* Filters Panel */}
-        <div className="bg-gradient-to-r from-slate-900 to-slate-800 dark:from-slate-950 dark:to-slate-900 rounded-xl shadow-2xl border border-slate-700 dark:border-slate-600 p-8 mb-10 backdrop-blur-md">
+        <div className="bg-gradient-to-r from-slate-100 to-slate-50 dark:from-slate-800 dark:to-slate-700 rounded-xl shadow-xl border border-slate-200 dark:border-slate-600 p-8 mb-10 backdrop-blur-md">
           <div className="flex flex-col gap-6">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-blue-500/20 rounded-lg">
-                  <SlidersHorizontal className="w-5 h-5 text-blue-400" />
+                <div className="p-2 bg-blue-100 dark:bg-blue-500/20 rounded-lg">
+                  <SlidersHorizontal className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-white text-lg">Find Universities</h3>
-                  <p className="text-xs text-slate-400 mt-0.5">Refine your search with advanced filters</p>
+                  <h3 className="font-semibold text-slate-900 dark:text-white text-lg">Find Universities</h3>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Refine your search with advanced filters</p>
                 </div>
               </div>
               <Button 
@@ -80,7 +80,7 @@ export default function Home() {
                 onClick={clearFilters} 
                 title="Reset Filters" 
                 data-testid="button-reset-filters"
-                className="text-slate-300 hover:text-white hover:bg-slate-700/50"
+                className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-700/50"
               >
                 <RotateCcw className="w-4 h-4 mr-1" />
                 Clear
@@ -89,9 +89,9 @@ export default function Home() {
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
               <div className="lg:col-span-2">
-                <label className="text-xs font-semibold text-slate-300 uppercase tracking-wide mb-2 block">Region</label>
+                <label className="text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wide mb-2 block">Region</label>
                 <Select value={selectedRegion} onValueChange={setSelectedRegion}>
-                  <SelectTrigger className="w-full bg-slate-800 border-slate-600 text-white hover:bg-slate-700" data-testid="select-region">
+                  <SelectTrigger className="w-full bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 text-slate-900 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-700" data-testid="select-region">
                     <SelectValue placeholder="All Regions" />
                   </SelectTrigger>
                   <SelectContent>
@@ -102,9 +102,9 @@ export default function Home() {
               </div>
 
               <div>
-                <label className="text-xs font-semibold text-slate-300 uppercase tracking-wide mb-2 block">Type</label>
+                <label className="text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wide mb-2 block">Type</label>
                 <Select value={selectedType} onValueChange={setSelectedType}>
-                  <SelectTrigger className="w-full bg-slate-800 border-slate-600 text-white hover:bg-slate-700" data-testid="select-type">
+                  <SelectTrigger className="w-full bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 text-slate-900 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-700" data-testid="select-type">
                     <SelectValue placeholder="All Types" />
                   </SelectTrigger>
                   <SelectContent>
@@ -116,9 +116,9 @@ export default function Home() {
               </div>
 
               <div>
-                <label className="text-xs font-semibold text-slate-300 uppercase tracking-wide mb-2 block">Field</label>
+                <label className="text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wide mb-2 block">Field</label>
                 <Select value={selectedDomain} onValueChange={setSelectedDomain}>
-                  <SelectTrigger className="w-full bg-slate-800 border-slate-600 text-white hover:bg-slate-700" data-testid="select-domain">
+                  <SelectTrigger className="w-full bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 text-slate-900 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-700" data-testid="select-domain">
                     <SelectValue placeholder="All Fields" />
                   </SelectTrigger>
                   <SelectContent>
@@ -129,10 +129,10 @@ export default function Home() {
               </div>
 
               <div>
-                <label className="text-xs font-semibold text-slate-300 uppercase tracking-wide mb-2 block">Program</label>
-                <div className="flex items-center h-10 bg-slate-800 border border-slate-600 px-3 rounded-md hover:bg-slate-700 transition">
+                <label className="text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wide mb-2 block">Program</label>
+                <div className="flex items-center h-10 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 px-3 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 transition">
                   <Switch id="english-mode" checked={showEnglishOnly} onCheckedChange={setShowEnglishOnly} data-testid="switch-english" className="scale-90" />
-                  <Label htmlFor="english-mode" className="text-sm font-medium cursor-pointer text-slate-200 ml-2">English</Label>
+                  <Label htmlFor="english-mode" className="text-sm font-medium cursor-pointer text-slate-700 dark:text-slate-200 ml-2">English</Label>
                 </div>
               </div>
             </div>
