@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Search, Calculator } from 'lucide-react';
+import { Search, Calculator, Wallet } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Link } from 'wouter';
@@ -58,32 +58,44 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
           </p>
         </motion.div>
 
-        {/* Search and Calculator Row */}
+        {/* Search Row */}
         <motion.div 
           className="max-w-2xl mx-auto"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2, duration: 0.5 }}
         >
-          <div className="flex flex-col sm:flex-row gap-3">
-            <div className="relative flex-1 group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-emerald-500 rounded-xl blur opacity-25 group-hover:opacity-40 transition duration-500"></div>
-              <div className="relative flex items-center">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
-                <Input 
-                  type="text" 
-                  placeholder="Search universities, cities, regions..." 
-                  className="w-full pl-12 py-6 text-base bg-white/95 backdrop-blur-xl border-0 text-slate-900 placeholder:text-slate-400 shadow-2xl rounded-xl focus-visible:ring-2 focus-visible:ring-blue-500"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  data-testid="input-search"
-                />
-              </div>
+          <div className="relative group">
+            <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-emerald-500 rounded-xl blur opacity-25 group-hover:opacity-40 transition duration-500"></div>
+            <div className="relative flex items-center">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
+              <Input 
+                type="text" 
+                placeholder="Search universities, cities, regions..." 
+                className="w-full pl-12 py-6 text-base bg-white/95 backdrop-blur-xl border-0 text-slate-900 placeholder:text-slate-400 shadow-2xl rounded-xl focus-visible:ring-2 focus-visible:ring-blue-500"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                data-testid="input-search"
+              />
             </div>
+          </div>
+          
+          {/* Tool Buttons */}
+          <div className="flex flex-col sm:flex-row gap-3 mt-4 justify-center">
+            <Link href="/budget">
+              <Button 
+                size="lg"
+                className="w-full sm:w-auto bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white shadow-lg shadow-emerald-500/25 py-5 px-6 rounded-xl font-semibold"
+                data-testid="button-budget-finder"
+              >
+                <Wallet className="w-5 h-5 mr-2" />
+                Find by Budget
+              </Button>
+            </Link>
             <Link href="/calculator">
               <Button 
                 size="lg"
-                className="w-full sm:w-auto bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-lg shadow-amber-500/25 py-6 px-6 rounded-xl font-semibold"
+                className="w-full sm:w-auto bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-lg shadow-amber-500/25 py-5 px-6 rounded-xl font-semibold"
                 data-testid="button-calculator-cta"
               >
                 <Calculator className="w-5 h-5 mr-2" />
