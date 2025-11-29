@@ -102,6 +102,7 @@ const admissionDocuments = [
 
 const visaDocuments = [
   { name: 'Valid Passport', required: true, description: 'Valid 6-12 months beyond intended stay' },
+  { name: 'Two Photos', required: true, description: 'Color photos 35mm x 45mm with white background, not older than 6 months' },
   { name: 'National ID Card', required: true, description: 'Government-issued national identity card' },
   { name: 'University Admission Letter', required: true, description: 'Official acceptance with course details' },
   { name: 'Proof of Financial Means', required: true, description: 'Bank statements, sponsor letter, scholarship proof' },
