@@ -1,16 +1,127 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
+import { insertUniversitySchema } from "@shared/schema";
+import { z } from "zod";
 
 export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
-  // put application routes here
-  // prefix all routes with /api
+  // Get all universities
+  app.get("/api/universities", async (req, res) => {
+    try {
+      const universities = await storage.getAllUniversities();
+      res.json(universities);
+    } catch (error) {
+      console.error("Error fetching universities:", error);
+      res.status(500).json({ error: "Failed to fetch universities" });
+    }
+  });
 
-  // use storage to perform CRUD operations on the storage interface
-  // e.g. storage.insertUser(user) or storage.getUserByUsername(username)
+  // Get university by ID
+  app.get("/api/universities/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      if (isNaN(id)) {
+        return res.status(400).json({ error: "Invalid university ID" });
+      }
+
+      const university = await storage.getUniversityById(id);
+      if (!university) {
+        return res.status(404).json({ error: "University not found" });
+      }
+
+      res.json(university);
+    } catch (error) {
+      console.error("Error fetching university:", error);
+      res.status(500).json({ error: "Failed to fetch university" });
+    }
+  });
+
+  // Search universities
+  app.get("/api/universities/search/:query", async (req, res) => {
+    try {
+      const query = req.params.query;
+      const universities = await storage.searchUniversities(query);
+      res.json(universities);
+    } catch (error) {
+      console.error("Error searching universities:", error);
+      res.status(500).json({ error: "Failed to search universities" });
+    }
+  });
+
+  // Filter universities
+  app.post("/api/universities/filter", async (req, res) => {
+    try {
+      const filters = req.body;
+      const universities = await storage.filterUniversities(filters);
+      res.json(universities);
+    } catch (error) {
+      console.error("Error filtering universities:", error);
+      res.status(500).json({ error: "Failed to filter universities" });
+    }
+  });
+
+  // Create university (admin endpoint)
+  app.post("/api/universities", async (req, res) => {
+    try {
+      const validatedData = insertUniversitySchema.parse(req.body);
+      const university = await storage.createUniversity(validatedData);
+      res.status(201).json(university);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ error: "Validation error", details: error.errors });
+      }
+      console.error("Error creating university:", error);
+      res.status(500).json({ error: "Failed to create university" });
+    }
+  });
+
+  // Update university (admin endpoint)
+  app.patch("/api/universities/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      if (isNaN(id)) {
+        return res.status(400).json({ error: "Invalid university ID" });
+      }
+
+      const validatedData = insertUniversitySchema.partial().parse(req.body);
+      const university = await storage.updateUniversity(id, validatedData);
+      
+      if (!university) {
+        return res.status(404).json({ error: "University not found" });
+      }
+
+      res.json(university);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ error: "Validation error", details: error.errors });
+      }
+      console.error("Error updating university:", error);
+      res.status(500).json({ error: "Failed to update university" });
+    }
+  });
+
+  // Delete university (admin endpoint)
+  app.delete("/api/universities/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      if (isNaN(id)) {
+        return res.status(400).json({ error: "Invalid university ID" });
+      }
+
+      const deleted = await storage.deleteUniversity(id);
+      if (!deleted) {
+        return res.status(404).json({ error: "University not found" });
+      }
+
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error deleting university:", error);
+      res.status(500).json({ error: "Failed to delete university" });
+    }
+  });
 
   return httpServer;
 }

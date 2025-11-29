@@ -56,6 +56,7 @@ export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
                 className="w-full pl-12 py-6 text-lg bg-white/95 backdrop-blur-xl border-white/20 text-slate-900 placeholder:text-slate-400 shadow-2xl rounded-lg focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
+                data-testid="input-search"
               />
             </div>
           </div>

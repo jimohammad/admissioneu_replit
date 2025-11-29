@@ -1,14 +1,16 @@
 import { useState, useMemo } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { Hero } from '@/components/Hero';
 import { UniversityCard } from '@/components/UniversityCard';
 import { UniversityDetail } from '@/components/UniversityDetail';
-import { universities, regions, domains, University } from '@/lib/universities';
+import { fetchUniversities } from '@/lib/api';
+import { University } from '@shared/schema';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
-import { RotateCcw, SlidersHorizontal } from 'lucide-react';
+import { RotateCcw, SlidersHorizontal, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Home() {
@@ -18,6 +20,19 @@ export default function Home() {
   const [selectedDomain, setSelectedDomain] = useState<string>('all');
   const [showEnglishOnly, setShowEnglishOnly] = useState(false);
   const [selectedUniversity, setSelectedUniversity] = useState<University | null>(null);
+
+  const { data: universities = [], isLoading, error } = useQuery({
+    queryKey: ['universities'],
+    queryFn: fetchUniversities,
+  });
+
+  const regions = useMemo(() => {
+    return Array.from(new Set(universities.map(u => u.region))).sort();
+  }, [universities]);
+
+  const domains = useMemo(() => {
+    return Array.from(new Set(universities.flatMap(u => u.domains))).sort();
+  }, [universities]);
 
   const filteredUniversities = useMemo(() => {
     return universities.filter((u) => {
@@ -31,7 +46,7 @@ export default function Home() {
 
       return matchesSearch && matchesRegion && matchesType && matchesDomain && matchesEnglish;
     });
-  }, [searchQuery, selectedRegion, selectedType, selectedDomain, showEnglishOnly]);
+  }, [universities, searchQuery, selectedRegion, selectedType, selectedDomain, showEnglishOnly]);
 
   const clearFilters = () => {
     setSearchQuery('');
@@ -56,7 +71,7 @@ export default function Home() {
             
             <div className="flex flex-wrap gap-4 flex-1 justify-end">
               <Select value={selectedRegion} onValueChange={setSelectedRegion}>
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger className="w-[180px]" data-testid="select-region">
                   <SelectValue placeholder="Region" />
                 </SelectTrigger>
                 <SelectContent>
@@ -66,7 +81,7 @@ export default function Home() {
               </Select>
 
               <Select value={selectedType} onValueChange={setSelectedType}>
-                <SelectTrigger className="w-[160px]">
+                <SelectTrigger className="w-[160px]" data-testid="select-type">
                   <SelectValue placeholder="Type" />
                 </SelectTrigger>
                 <SelectContent>
@@ -77,7 +92,7 @@ export default function Home() {
               </Select>
 
               <Select value={selectedDomain} onValueChange={setSelectedDomain}>
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger className="w-[180px]" data-testid="select-domain">
                   <SelectValue placeholder="Field of Study" />
                 </SelectTrigger>
                 <SelectContent>
@@ -87,11 +102,11 @@ export default function Home() {
               </Select>
 
               <div className="flex items-center space-x-2 bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-md border border-slate-200 dark:border-slate-700">
-                <Switch id="english-mode" checked={showEnglishOnly} onCheckedChange={setShowEnglishOnly} />
+                <Switch id="english-mode" checked={showEnglishOnly} onCheckedChange={setShowEnglishOnly} data-testid="switch-english" />
                 <Label htmlFor="english-mode" className="text-sm font-medium cursor-pointer">English Taught</Label>
               </div>
 
-              <Button variant="ghost" size="icon" onClick={clearFilters} title="Reset Filters">
+              <Button variant="ghost" size="icon" onClick={clearFilters} title="Reset Filters" data-testid="button-reset-filters">
                 <RotateCcw className="w-4 h-4" />
               </Button>
             </div>
@@ -104,12 +119,24 @@ export default function Home() {
             <h2 className="text-3xl font-bold text-slate-900 dark:text-white font-heading tracking-tight">
               Accredited Universities
             </h2>
-            <Badge variant="secondary" className="text-sm px-3 py-1">
-              {filteredUniversities.length} Results Found
-            </Badge>
+            {!isLoading && (
+              <Badge variant="secondary" className="text-sm px-3 py-1" data-testid="text-results-count">
+                {filteredUniversities.length} Results Found
+              </Badge>
+            )}
           </div>
 
-          {filteredUniversities.length > 0 ? (
+          {isLoading ? (
+            <div className="flex flex-col items-center justify-center py-20 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800">
+              <Loader2 className="w-8 h-8 animate-spin text-primary mb-4" />
+              <p className="text-slate-600 dark:text-slate-400">Loading universities...</p>
+            </div>
+          ) : error ? (
+            <div className="text-center py-20 bg-white dark:bg-slate-900 rounded-xl border border-red-200 dark:border-red-900">
+              <h3 className="text-xl font-semibold text-red-600 dark:text-red-400">Error loading data</h3>
+              <p className="text-slate-500 mt-2">Please try again later.</p>
+            </div>
+          ) : filteredUniversities.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               <AnimatePresence mode='popLayout'>
                 {filteredUniversities.map((university) => (
@@ -125,7 +152,7 @@ export default function Home() {
             <div className="text-center py-20 bg-white dark:bg-slate-900 rounded-xl border border-dashed border-slate-300 dark:border-slate-700">
               <h3 className="text-xl font-semibold text-slate-600 dark:text-slate-400">No universities found</h3>
               <p className="text-slate-500 mt-2">Try adjusting your filters or search query.</p>
-              <Button variant="link" onClick={clearFilters} className="mt-4 text-primary">Clear all filters</Button>
+              <Button variant="link" onClick={clearFilters} className="mt-4 text-primary" data-testid="button-clear-filters">Clear all filters</Button>
             </div>
           )}
         </div>
@@ -138,8 +165,8 @@ export default function Home() {
             Data sourced from official government registries: Ministry of Science, Innovation and Universities, CRUE, and verified partner networks.
           </p>
           <div className="flex justify-center gap-6 text-xs">
-             <a href="https://www.ciencia.gob.es/en/Universidades.html" className="hover:text-white transition-colors">Ministry of Universities</a>
-             <a href="https://www.crue.org/universidades/" className="hover:text-white transition-colors">CRUE</a>
+             <a href="https://www.ciencia.gob.es/en/Universidades.html" className="hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">Ministry of Universities</a>
+             <a href="https://www.crue.org/universidades/" className="hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">CRUE</a>
              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
           </div>
           <p className="text-xs pt-4 border-t border-slate-800 w-full max-w-md mx-auto">
