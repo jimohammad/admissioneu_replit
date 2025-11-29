@@ -46,7 +46,7 @@ export function Header() {
           
           <div className="flex items-center gap-1 text-xs text-slate-400">
             <Globe className="w-4 h-4" />
-            <span>6 Countries • 2026 Academic Year</span>
+            <span>6 Countries • 591 Universities</span>
           </div>
         </div>
         
