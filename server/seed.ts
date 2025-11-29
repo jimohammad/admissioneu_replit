@@ -1182,7 +1182,52 @@ const spanishUniversities = [
   },
 ];
 
-const allUniversities = [...spanishUniversities, ...germanUniversities, ...hungarianUniversities];
+function addTuitionFees(uni: any) {
+  const { country, type } = uni;
+  
+  let tuitionFeeEU: string;
+  let tuitionFeeNonEU: string;
+  let tuitionPeriod: string = 'per year';
+  
+  if (country === 'Spain') {
+    if (type === 'Public') {
+      tuitionFeeEU = '€750 - €2,500';
+      tuitionFeeNonEU = '€3,000 - €10,000';
+    } else {
+      tuitionFeeEU = '€6,000 - €18,000';
+      tuitionFeeNonEU = '€8,000 - €22,000';
+    }
+  } else if (country === 'Germany') {
+    if (type === 'Public') {
+      tuitionFeeEU = '€150 - €350';
+      tuitionFeeNonEU = '€150 - €1,500';
+      tuitionPeriod = 'per semester';
+    } else {
+      tuitionFeeEU = '€5,000 - €20,000';
+      tuitionFeeNonEU = '€8,000 - €25,000';
+    }
+  } else if (country === 'Hungary') {
+    if (type === 'Public') {
+      tuitionFeeEU = 'Free (scholarship) - €1,500';
+      tuitionFeeNonEU = '€4,000 - €8,000';
+    } else {
+      tuitionFeeEU = '€5,000 - €12,000';
+      tuitionFeeNonEU = '€6,000 - €16,000';
+    }
+  } else {
+    tuitionFeeEU = 'Contact university';
+    tuitionFeeNonEU = 'Contact university';
+  }
+  
+  return {
+    ...uni,
+    tuitionFeeEU,
+    tuitionFeeNonEU,
+    tuitionPeriod,
+  };
+}
+
+const allUniversities = [...spanishUniversities, ...germanUniversities, ...hungarianUniversities].map(addTuitionFees);
 
 async function seed() {
   try {
@@ -1198,6 +1243,7 @@ async function seed() {
     console.log(`   - Spain: ${spanishUniversities.length} universities`);
     console.log(`   - Germany: ${germanUniversities.length} universities`);
     console.log(`   - Hungary: ${hungarianUniversities.length} universities`);
+    console.log(`   - Tuition fees added for all universities`);
     process.exit(0);
   } catch (error) {
     console.error("❌ Error seeding database:", error);

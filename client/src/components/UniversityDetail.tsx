@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
-import { MapPin, Calendar, BookOpen, ShieldCheck, ExternalLink, CheckCircle2 } from 'lucide-react';
+import { MapPin, Calendar, BookOpen, ShieldCheck, ExternalLink, CheckCircle2, Euro } from 'lucide-react';
 
 const countryFlags: Record<string, string> = {
   'Spain': '🇪🇸',
@@ -101,6 +101,31 @@ export function UniversityDetail({ university, isOpen, onClose }: UniversityDeta
                       ))}
                     </div>
                   </div>
+
+                  {(university.tuitionFeeEU || university.tuitionFeeNonEU) && (
+                    <>
+                      <Separator />
+                      <div>
+                        <div className="text-xs font-semibold text-muted-foreground uppercase mb-2 flex items-center gap-1">
+                          <Euro className="w-3 h-3" /> Tuition Fees {university.tuitionPeriod && <span className="lowercase font-normal">({university.tuitionPeriod})</span>}
+                        </div>
+                        <div className="space-y-2">
+                          {university.tuitionFeeEU && (
+                            <div className="flex justify-between items-center text-sm" data-testid="text-detail-tuition-eu">
+                              <span className="text-muted-foreground">EU Students</span>
+                              <span className="font-medium text-emerald-600 dark:text-emerald-400">{university.tuitionFeeEU}</span>
+                            </div>
+                          )}
+                          {university.tuitionFeeNonEU && (
+                            <div className="flex justify-between items-center text-sm" data-testid="text-detail-tuition-non-eu">
+                              <span className="text-muted-foreground">Non-EU Students</span>
+                              <span className="font-medium text-amber-600 dark:text-amber-400">{university.tuitionFeeNonEU}</span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </>
+                  )}
 
                   <Separator />
 
