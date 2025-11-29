@@ -134,13 +134,13 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
                 <div className="text-xs opacity-80">{countryCounts[country] || 0} universities</div>
               </div>
               <Link href={`/insights/${country}`}>
-                <button
-                  className="w-full py-2 px-3 rounded-lg bg-white/20 hover:bg-white/30 text-white text-xs font-medium flex items-center justify-center gap-1.5 transition-colors border border-white/10"
+                <div
+                  className="w-full py-2 px-3 rounded-lg bg-white/20 hover:bg-white/30 text-white text-xs font-medium flex items-center justify-center gap-1.5 transition-colors border border-white/10 cursor-pointer"
                   data-testid={`button-insights-${country.toLowerCase()}`}
                 >
                   <Info className="w-3.5 h-3.5" />
                   Visa & Jobs Info
-                </button>
+                </div>
               </Link>
             </div>
           ))}
