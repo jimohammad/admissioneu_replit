@@ -30,7 +30,7 @@ export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
             Database of <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-300">European Universities</span>
           </h1>
           <p className="text-base md:text-lg text-slate-300 max-w-xl mx-auto leading-relaxed">
-            Explore accredited universities across 6 European countries
+            Discover world-class universities across Europe
           </p>
         </div>
 
