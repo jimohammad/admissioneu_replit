@@ -143,9 +143,11 @@ function addTuitionFees(uni: { name: string; country: string; region: string; ci
 
 export async function autoSeedIfEmpty(): Promise<void> {
   try {
-    console.log("Checking if database needs seeding...");
+    console.log("=== AUTO-SEED CHECK STARTING ===");
+    console.log("Database URL exists:", !!process.env.DATABASE_URL);
     
     const [uniCount] = await db.select({ count: count() }).from(universities);
+    console.log("Current university count:", uniCount.count);
     
     if (uniCount.count > 0) {
       console.log(`Database already has ${uniCount.count} universities. Skipping seed.`);
@@ -186,7 +188,11 @@ export async function autoSeedIfEmpty(): Promise<void> {
     }
     
     console.log("🎉 Auto-seed completed successfully!");
+    console.log("=== AUTO-SEED COMPLETE ===");
   } catch (error) {
-    console.error("❌ Error during auto-seed:", error);
+    console.error("=== AUTO-SEED ERROR ===");
+    console.error("Error during auto-seed:", error);
+    console.error("Error message:", error instanceof Error ? error.message : String(error));
+    console.error("Error stack:", error instanceof Error ? error.stack : 'No stack trace');
   }
 }
