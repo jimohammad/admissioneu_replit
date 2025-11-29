@@ -1,4 +1,5 @@
 import { useLocation, useSearch } from 'wouter';
+import { useQuery } from '@tanstack/react-query';
 import { GraduationCap, Globe, ChevronDown, Briefcase } from 'lucide-react';
 import {
   DropdownMenu,
@@ -8,6 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { fetchUniversities } from '@/lib/api';
 
 const countries = [
   { name: 'Germany', flag: '🇩🇪', code: 'DE' },
@@ -22,6 +24,11 @@ export function Header() {
   const [location, setLocation] = useLocation();
   const searchParams = useSearch();
   const urlCountry = new URLSearchParams(searchParams).get('country');
+  
+  const { data: universities = [] } = useQuery({
+    queryKey: ['universities'],
+    queryFn: fetchUniversities,
+  });
   
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
     e.preventDefault();
@@ -46,7 +53,7 @@ export function Header() {
           
           <div className="flex items-center gap-1 text-xs text-slate-400">
             <Globe className="w-4 h-4" />
-            <span>6 Countries • 591 Universities</span>
+            <span>6 Countries • {universities.length} Universities</span>
           </div>
         </div>
         
