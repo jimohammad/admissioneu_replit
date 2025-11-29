@@ -1,6 +1,13 @@
-import { useState, useRef, useEffect } from 'react';
 import { useLocation, useSearch } from 'wouter';
 import { GraduationCap, Globe, ChevronDown, Briefcase } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 const countries = [
   { name: 'Germany', flag: '🇩🇪' },
@@ -15,24 +22,11 @@ export function Header() {
   const [location, setLocation] = useLocation();
   const searchParams = useSearch();
   const urlCountry = new URLSearchParams(searchParams).get('country');
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
   
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
     e.preventDefault();
     setLocation(path);
-    setIsDropdownOpen(false);
   };
-
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsDropdownOpen(false);
-      }
-    }
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
   
   const isHome = location === '/' && !urlCountry;
   
@@ -90,46 +84,41 @@ export function Header() {
             ))}
             
             {/* Visa & Jobs Dropdown */}
-            <div className="relative ml-auto" ref={dropdownRef}>
-              <button
-                type="button"
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium whitespace-nowrap transition-colors border-b-2 cursor-pointer ${
-                  location.startsWith('/insights') 
-                    ? 'text-white border-amber-400 bg-slate-800/50' 
-                    : 'text-slate-400 border-transparent hover:text-white hover:bg-slate-800/30'
-                }`}
-                data-testid="nav-visa-jobs"
-              >
-                <Briefcase className="w-4 h-4" />
-                Visa & Jobs
-                <ChevronDown className={`w-4 h-4 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
-              </button>
-              
-              {isDropdownOpen && (
-                <div className="absolute top-full right-0 mt-1 bg-slate-800 border border-slate-700 rounded-lg shadow-2xl min-w-[220px] py-2 z-[100]">
-                  <div className="px-4 py-2 text-xs font-semibold text-slate-400 uppercase tracking-wide border-b border-slate-700 mb-1">
-                    Select Country
-                  </div>
-                  {countries.map(({ name, flag }) => (
-                    <a 
-                      key={name} 
-                      href={`/insights/${name}`}
-                      onClick={(e) => handleNavClick(e, `/insights/${name}`)}
-                      className={`flex items-center gap-3 px-4 py-3 text-sm transition-colors no-underline cursor-pointer ${
-                        location === `/insights/${name}` 
-                          ? 'text-amber-400 bg-slate-700/50' 
-                          : 'text-slate-300 hover:text-white hover:bg-slate-700/50'
-                      }`}
-                      data-testid={`nav-visa-${name.toLowerCase()}`}
-                    >
-                      <span className="text-xl">{flag}</span>
-                      <span className="font-medium">{name}</span>
-                    </a>
-                  ))}
-                </div>
-              )}
-            </div>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button
+                  className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium whitespace-nowrap transition-colors border-b-2 cursor-pointer ml-auto ${
+                    location.startsWith('/insights') 
+                      ? 'text-white border-amber-400 bg-slate-800/50' 
+                      : 'text-slate-400 border-transparent hover:text-white hover:bg-slate-800/30'
+                  }`}
+                  data-testid="nav-visa-jobs"
+                >
+                  <Briefcase className="w-4 h-4" />
+                  Visa & Jobs
+                  <ChevronDown className="w-4 h-4" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56 bg-slate-800 border-slate-700">
+                <DropdownMenuLabel className="text-slate-400">Select Country</DropdownMenuLabel>
+                <DropdownMenuSeparator className="bg-slate-700" />
+                {countries.map(({ name, flag }) => (
+                  <DropdownMenuItem 
+                    key={name}
+                    onClick={() => setLocation(`/insights/${name}`)}
+                    className={`flex items-center gap-3 cursor-pointer ${
+                      location === `/insights/${name}` 
+                        ? 'text-amber-400 bg-slate-700/50' 
+                        : 'text-slate-300 hover:text-white focus:text-white hover:bg-slate-700/50 focus:bg-slate-700/50'
+                    }`}
+                    data-testid={`nav-visa-${name.toLowerCase()}`}
+                  >
+                    <span className="text-xl">{flag}</span>
+                    <span className="font-medium">{name}</span>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </nav>
       </div>
