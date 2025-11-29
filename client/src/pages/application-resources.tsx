@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link } from 'wouter';
-import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -244,11 +243,7 @@ export default function ApplicationResources() {
       </header>
 
       <main className="container mx-auto px-4 py-8 max-w-6xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
+        <div>
           <div className="text-center mb-12">
             <Badge className="mb-4 bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-100">
               Free Resources
@@ -459,13 +454,8 @@ export default function ApplicationResources() {
 
             <TabsContent value="portals" className="space-y-6">
               <div className="grid gap-4">
-                {applicationPortals.map((portal, index) => (
-                  <motion.div
-                    key={portal.country}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                  >
+                {applicationPortals.map((portal) => (
+                  <div key={portal.country}>
                     <Card className="hover:shadow-md transition-shadow">
                       <CardContent className="pt-6">
                         <div className="flex flex-col md:flex-row md:items-center gap-4">
@@ -500,7 +490,7 @@ export default function ApplicationResources() {
                         </div>
                       </CardContent>
                     </Card>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
 
@@ -524,7 +514,7 @@ export default function ApplicationResources() {
               </Card>
             </TabsContent>
           </Tabs>
-        </motion.div>
+        </div>
       </main>
 
       <footer className="bg-slate-900 text-slate-400 py-8 mt-20 border-t border-slate-800">

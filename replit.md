@@ -19,7 +19,7 @@ Preferred communication style: Simple, everyday language.
 - **TanStack Query (React Query)** for server state management and data fetching
 - **Tailwind CSS v4** with custom theming for styling
 - **shadcn/ui** component library (New York variant) for consistent UI components
-- **Framer Motion** for Hero animations (removed from grid for performance)
+- CSS transitions for subtle UI effects (Framer Motion removed for performance)
 
 **Design Decisions:**
 - Component-based architecture with reusable UI components from shadcn/ui
@@ -127,4 +127,4 @@ Preferred communication style: Simple, everyday language.
 - UniversityCard memoized with React.memo() to prevent unnecessary re-renders
 - useCallback handlers for stable function references
 - useDeferredValue for search query to maintain UI responsiveness
-- Framer Motion animations removed from university grid (kept only in Hero)
+- All Framer Motion animations removed for faster page loads (using CSS transitions instead)

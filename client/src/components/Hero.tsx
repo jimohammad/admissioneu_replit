@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Search, Calculator, Wallet, FileText, Info } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -42,11 +41,7 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl w-full px-6 py-12 text-center space-y-8">
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
-        >
+        <div>
           <div className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm text-white text-sm font-medium tracking-wide">
             <span className="w-2 h-2 rounded-full bg-amber-400 mr-2 animate-pulse"></span>
             {totalCount} Universities • 2026 Academic Year
@@ -57,15 +52,10 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
           <p className="text-base md:text-lg text-slate-300 max-w-xl mx-auto leading-relaxed">
             Explore accredited universities across 6 European countries
           </p>
-        </motion.div>
+        </div>
 
         {/* Search Row */}
-        <motion.div 
-          className="max-w-2xl mx-auto"
-          initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.1, duration: 0.3 }}
-        >
+        <div className="max-w-2xl mx-auto">
           <div className="relative group">
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-blue-400 rounded-xl blur opacity-25 group-hover:opacity-40 transition duration-500"></div>
             <div className="relative flex items-center">
@@ -111,15 +101,10 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
               </div>
             </Link>
           </div>
-        </motion.div>
+        </div>
 
         {/* Country Cards */}
-        <motion.div
-          className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15, duration: 0.3 }}
-        >
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto">
           <div
             onClick={() => setSelectedCountry('all')}
             className={`relative p-4 rounded-xl transition-all duration-200 cursor-pointer text-white hover:bg-white/10 ${
@@ -159,7 +144,7 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
               </Link>
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </div>
   );
