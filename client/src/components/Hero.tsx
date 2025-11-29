@@ -123,9 +123,9 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15, duration: 0.3 }}
         >
-          <button
+          <div
             onClick={() => setSelectedCountry('all')}
-            className={`relative p-4 rounded-xl transition-all duration-200 bg-transparent text-white hover:bg-white/10 focus:outline-none ${
+            className={`relative p-4 rounded-xl transition-all duration-200 cursor-pointer text-white hover:bg-white/10 ${
               selectedCountry === 'all'
                 ? 'border-2 border-blue-400'
                 : 'border border-white/20'
@@ -135,12 +135,12 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
             <div className="text-2xl mb-1">🌍</div>
             <div className={`text-sm ${selectedCountry === 'all' ? 'font-bold' : 'font-medium'}`}>All Countries</div>
             <div className="text-xs opacity-80">{totalCount} universities</div>
-          </button>
+          </div>
           {countries.map(country => (
             <div key={country} className="flex flex-col gap-2">
-              <button
+              <div
                 onClick={() => setSelectedCountry(country)}
-                className={`w-full p-4 rounded-xl transition-all duration-200 bg-transparent text-white hover:bg-white/10 focus:outline-none ${
+                className={`w-full p-4 rounded-xl transition-all duration-200 cursor-pointer text-white hover:bg-white/10 ${
                   selectedCountry === country
                     ? 'border-2 border-blue-400'
                     : 'border border-white/20'
@@ -150,7 +150,7 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
                 <div className="text-2xl mb-1">{countryFlags[country] || '🏛️'}</div>
                 <div className={`text-sm ${selectedCountry === country ? 'font-bold' : 'font-medium'}`}>{country}</div>
                 <div className="text-xs opacity-80">{countryCounts[country] || 0} universities</div>
-              </button>
+              </div>
               <Link href={`/insights/${country}`}>
                 <button
                   className="w-full py-2 px-3 rounded-lg bg-white/20 hover:bg-white/30 text-white text-xs font-medium flex items-center justify-center gap-1.5 transition-colors border border-white/10"
