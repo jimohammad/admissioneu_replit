@@ -7,7 +7,7 @@ import { polishUniversities } from "./polishUniversities";
 import { dutchUniversities } from "./dutchUniversities";
 import { costOfLivingData } from "./costOfLivingData";
 import { countryProfilesData } from "./countryProfilesData";
-import { count } from "drizzle-orm";
+import { count, sql } from "drizzle-orm";
 
 const spanishUniversities = [
   { name: 'Universidad de Almería', country: 'Spain', region: 'Andalusia', city: 'Almería', type: 'Public', languages: ['Spanish', 'English'], domains: ['Science', 'Agriculture', 'Engineering', 'Humanities'], admissionPeriod: 'June - July', website: 'https://www.ual.es', description: 'A young and dynamic university focused on research in agriculture, environment, and renewable energies.', englishPrograms: true },
@@ -141,10 +141,89 @@ function addTuitionFees(uni: { name: string; country: string; region: string; ci
   };
 }
 
+async function ensureTablesExist(): Promise<void> {
+  console.log("Ensuring database tables exist...");
+  
+  await db.execute(sql`
+    CREATE TABLE IF NOT EXISTS universities (
+      id SERIAL PRIMARY KEY,
+      name TEXT NOT NULL,
+      country TEXT NOT NULL DEFAULT 'Spain',
+      region TEXT NOT NULL,
+      city TEXT NOT NULL,
+      type TEXT NOT NULL,
+      languages TEXT[] NOT NULL,
+      domains TEXT[] NOT NULL,
+      admission_period TEXT NOT NULL,
+      website TEXT NOT NULL,
+      logo_url TEXT,
+      description TEXT NOT NULL,
+      ranking SERIAL,
+      english_programs BOOLEAN NOT NULL DEFAULT false,
+      tuition_fee_eu TEXT,
+      tuition_fee_non_eu TEXT,
+      tuition_period TEXT
+    )
+  `);
+  
+  await db.execute(sql`
+    CREATE TABLE IF NOT EXISTS cost_of_living (
+      id SERIAL PRIMARY KEY,
+      country TEXT NOT NULL,
+      city TEXT NOT NULL,
+      rent_shared INTEGER NOT NULL,
+      rent_solo INTEGER NOT NULL,
+      utilities INTEGER NOT NULL,
+      groceries INTEGER NOT NULL,
+      dining INTEGER NOT NULL,
+      transport INTEGER NOT NULL,
+      healthcare INTEGER NOT NULL,
+      entertainment INTEGER NOT NULL,
+      currency TEXT NOT NULL DEFAULT 'EUR'
+    )
+  `);
+  
+  await db.execute(sql`
+    CREATE TABLE IF NOT EXISTS country_profiles (
+      id SERIAL PRIMARY KEY,
+      country TEXT NOT NULL UNIQUE,
+      visa_type TEXT NOT NULL,
+      visa_processing_time TEXT NOT NULL,
+      visa_cost TEXT NOT NULL,
+      visa_success_rate TEXT,
+      financial_requirement TEXT NOT NULL,
+      work_hours_allowed TEXT NOT NULL,
+      post_study_work_visa TEXT NOT NULL,
+      path_to_residency TEXT NOT NULL,
+      health_insurance TEXT NOT NULL,
+      language_requirement TEXT,
+      immigration_portal TEXT NOT NULL,
+      ielts_minimum TEXT,
+      ielts_recommended TEXT,
+      graduate_employment_rate TEXT NOT NULL,
+      average_salary_entry TEXT NOT NULL,
+      average_salary_mid TEXT NOT NULL,
+      top_sectors TEXT[] NOT NULL,
+      in_demand_jobs TEXT[] NOT NULL,
+      language_for_work TEXT NOT NULL,
+      job_search_timeline TEXT NOT NULL,
+      work_culture TEXT NOT NULL,
+      job_portals TEXT[] NOT NULL,
+      official_language TEXT NOT NULL,
+      currency TEXT NOT NULL,
+      quality_of_life TEXT
+    )
+  `);
+  
+  console.log("✅ Tables verified/created");
+}
+
 export async function autoSeedIfEmpty(): Promise<void> {
   try {
     console.log("=== AUTO-SEED CHECK STARTING ===");
     console.log("Database URL exists:", !!process.env.DATABASE_URL);
+    
+    await ensureTablesExist();
     
     const [uniCount] = await db.select({ count: count() }).from(universities);
     console.log("Current university count:", uniCount.count);
