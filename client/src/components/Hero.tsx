@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Search, Globe2, Calculator } from 'lucide-react';
+import { Search, Calculator } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Link } from 'wouter';
@@ -25,8 +25,10 @@ const countryFlags: Record<string, string> = {
 };
 
 export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelectedCountry, countries, countryCounts }: HeroProps) {
+  const totalCount = countryCounts ? Object.values(countryCounts).reduce((a, b) => a + b, 0) : 0;
+  
   return (
-    <div className="relative w-full h-[560px] flex items-center justify-center overflow-hidden bg-slate-900">
+    <div className="relative w-full min-h-[480px] flex items-center justify-center overflow-hidden bg-slate-900">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img 
@@ -38,7 +40,7 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-4xl w-full px-6 text-center space-y-6">
+      <div className="relative z-10 max-w-4xl w-full px-6 py-12 text-center space-y-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -46,96 +48,87 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
         >
           <div className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm text-white text-sm font-medium tracking-wide">
             <span className="w-2 h-2 rounded-full bg-emerald-400 mr-2 animate-pulse"></span>
-            Live Database: 2025 Academic Year
+            {totalCount} Universities • 2025 Academic Year
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight mb-6 font-heading">
+          <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-4 font-heading">
             Find Your Future in <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Europe</span>
           </h1>
-          <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            The comprehensive directory of accredited European universities. Explore programs across countries, compare campuses, and start your journey.
+          <p className="text-base md:text-lg text-slate-300 max-w-xl mx-auto leading-relaxed">
+            Explore accredited universities across Spain, Germany, and Hungary
           </p>
         </motion.div>
 
-        {/* Country Selection Pills */}
-        <motion.div
-          className="flex flex-wrap justify-center gap-2 pt-2"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.5 }}
-        >
-          <Button
-            variant={selectedCountry === 'all' ? 'default' : 'ghost'}
-            size="sm"
-            onClick={() => setSelectedCountry('all')}
-            className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
-              selectedCountry === 'all'
-                ? 'bg-white text-slate-900 shadow-lg'
-                : 'bg-white/10 text-white hover:bg-white/20 border border-white/20'
-            }`}
-            data-testid="button-country-all"
-          >
-            <Globe2 className="w-4 h-4 mr-1.5" />
-            All Countries
-            <span className="ml-1.5 text-xs opacity-70">({countryCounts ? Object.values(countryCounts).reduce((a, b) => a + b, 0) : 0})</span>
-          </Button>
-          {countries.map(country => (
-            <Button
-              key={country}
-              variant={selectedCountry === country ? 'default' : 'ghost'}
-              size="sm"
-              onClick={() => setSelectedCountry(country)}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
-                selectedCountry === country
-                  ? 'bg-white text-slate-900 shadow-lg'
-                  : 'bg-white/10 text-white hover:bg-white/20 border border-white/20'
-              }`}
-              data-testid={`button-country-${country.toLowerCase()}`}
-            >
-              <span className="mr-1.5">{countryFlags[country] || '🏛️'}</span>
-              {country}
-              <span className="ml-1.5 text-xs opacity-70">({countryCounts[country] || 0})</span>
-            </Button>
-          ))}
-        </motion.div>
-
+        {/* Search and Calculator Row */}
         <motion.div 
-          className="max-w-xl mx-auto relative"
+          className="max-w-2xl mx-auto"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2, duration: 0.5 }}
         >
-          <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-emerald-500 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-            <div className="relative flex items-center">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
-              <Input 
-                type="text" 
-                placeholder="Search universities by name, city, or region..." 
-                className="w-full pl-12 py-6 text-lg bg-white/95 backdrop-blur-xl border-white/20 text-slate-900 placeholder:text-slate-400 shadow-2xl rounded-lg focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                data-testid="input-search"
-              />
+          <div className="flex flex-col sm:flex-row gap-3">
+            <div className="relative flex-1 group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-emerald-500 rounded-xl blur opacity-25 group-hover:opacity-40 transition duration-500"></div>
+              <div className="relative flex items-center">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
+                <Input 
+                  type="text" 
+                  placeholder="Search universities, cities, regions..." 
+                  className="w-full pl-12 py-6 text-base bg-white/95 backdrop-blur-xl border-0 text-slate-900 placeholder:text-slate-400 shadow-2xl rounded-xl focus-visible:ring-2 focus-visible:ring-blue-500"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  data-testid="input-search"
+                />
+              </div>
             </div>
+            <Link href="/calculator">
+              <Button 
+                size="lg"
+                className="w-full sm:w-auto bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-lg shadow-amber-500/25 py-6 px-6 rounded-xl font-semibold"
+                data-testid="button-calculator-cta"
+              >
+                <Calculator className="w-5 h-5 mr-2" />
+                Cost Calculator
+              </Button>
+            </Link>
           </div>
         </motion.div>
 
-        {/* Calculator CTA */}
+        {/* Country Cards */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.5 }}
+          className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
         >
-          <Link href="/calculator">
-            <Button 
-              variant="outline" 
-              className="bg-white/10 text-white border-white/20 hover:bg-white/20 backdrop-blur-sm gap-2"
-              data-testid="button-calculator-cta"
+          <button
+            onClick={() => setSelectedCountry('all')}
+            className={`relative p-4 rounded-xl transition-all duration-200 ${
+              selectedCountry === 'all'
+                ? 'bg-white text-slate-900 shadow-xl scale-105'
+                : 'bg-white/10 text-white hover:bg-white/20 border border-white/10'
+            }`}
+            data-testid="button-country-all"
+          >
+            <div className="text-2xl mb-1">🌍</div>
+            <div className="font-semibold text-sm">All Countries</div>
+            <div className="text-xs opacity-70">{totalCount} universities</div>
+          </button>
+          {countries.map(country => (
+            <button
+              key={country}
+              onClick={() => setSelectedCountry(country)}
+              className={`relative p-4 rounded-xl transition-all duration-200 ${
+                selectedCountry === country
+                  ? 'bg-white text-slate-900 shadow-xl scale-105'
+                  : 'bg-white/10 text-white hover:bg-white/20 border border-white/10'
+              }`}
+              data-testid={`button-country-${country.toLowerCase()}`}
             >
-              <Calculator className="w-4 h-4" />
-              Cost of Living Calculator
-            </Button>
-          </Link>
+              <div className="text-2xl mb-1">{countryFlags[country] || '🏛️'}</div>
+              <div className="font-semibold text-sm">{country}</div>
+              <div className="text-xs opacity-70">{countryCounts[country] || 0} universities</div>
+            </button>
+          ))}
         </motion.div>
       </div>
     </div>
