@@ -63,10 +63,10 @@ export function Header() {
             <a 
               href="/"
               onClick={(e) => handleNavClick(e, '/')}
-              className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium whitespace-nowrap transition-colors no-underline border-b-2 ${
+              className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium whitespace-nowrap transition-all duration-200 no-underline border-b-2 ${
                 isHome 
-                  ? 'text-white border-blue-400 bg-slate-800/50' 
-                  : 'text-slate-400 border-transparent hover:text-white hover:bg-slate-800/30'
+                  ? 'text-white border-blue-400 bg-blue-500/20' 
+                  : 'text-slate-400 border-transparent hover:text-blue-300 hover:bg-blue-500/10 hover:border-blue-400/50'
               }`}
               data-testid="nav-home"
             >
@@ -80,10 +80,10 @@ export function Header() {
                 <a 
                   href={`/?country=${name}`}
                   onClick={(e) => handleNavClick(e, `/?country=${name}`)}
-                  className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium whitespace-nowrap transition-colors no-underline border-b-2 ${
+                  className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium whitespace-nowrap transition-all duration-200 no-underline border-b-2 ${
                     urlCountry === name 
-                      ? 'text-white border-blue-400 bg-slate-800/50' 
-                      : 'text-slate-400 border-transparent hover:text-white hover:bg-slate-800/30'
+                      ? 'text-white border-blue-400 bg-blue-500/20' 
+                      : 'text-slate-400 border-transparent hover:text-blue-300 hover:bg-blue-500/10 hover:border-blue-400/50'
                   }`}
                   data-testid={`nav-${name.toLowerCase()}`}
                 >
@@ -97,10 +97,10 @@ export function Header() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button
-                  className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium whitespace-nowrap transition-colors border-b-2 cursor-pointer ml-auto ${
+                  className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium whitespace-nowrap transition-all duration-200 border-b-2 cursor-pointer ml-auto ${
                     location.startsWith('/insights') 
-                      ? 'text-white border-amber-400 bg-slate-800/50' 
-                      : 'text-slate-400 border-transparent hover:text-white hover:bg-slate-800/30'
+                      ? 'text-white border-amber-400 bg-amber-500/20' 
+                      : 'text-slate-400 border-transparent hover:text-blue-300 hover:bg-blue-500/10 hover:border-blue-400/50'
                   }`}
                   data-testid="nav-visa-jobs"
                 >
