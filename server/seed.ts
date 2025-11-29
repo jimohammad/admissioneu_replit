@@ -1,6 +1,7 @@
 import { db } from "./db";
 import { universities } from "@shared/schema";
 import { germanUniversities } from "./germanUniversities";
+import { hungarianUniversities } from "./hungarianUniversities";
 
 const spanishUniversities = [
   // PUBLIC UNIVERSITIES - ANDALUSIA
@@ -1181,7 +1182,7 @@ const spanishUniversities = [
   },
 ];
 
-const allUniversities = [...spanishUniversities, ...germanUniversities];
+const allUniversities = [...spanishUniversities, ...germanUniversities, ...hungarianUniversities];
 
 async function seed() {
   try {
@@ -1196,6 +1197,7 @@ async function seed() {
     console.log(`✅ Database seeded successfully with ${allUniversities.length} universities!`);
     console.log(`   - Spain: ${spanishUniversities.length} universities`);
     console.log(`   - Germany: ${germanUniversities.length} universities`);
+    console.log(`   - Hungary: ${hungarianUniversities.length} universities`);
     process.exit(0);
   } catch (error) {
     console.error("❌ Error seeding database:", error);
