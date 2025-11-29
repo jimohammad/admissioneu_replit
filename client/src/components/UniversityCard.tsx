@@ -32,10 +32,10 @@ export const UniversityCard = memo(function UniversityCard({ university, onSelec
   return (
     <div className="transform transition-transform duration-200 hover:-translate-y-1">
       <Card className="h-full flex flex-col border-border/50 hover:border-primary/20 hover:shadow-lg transition-all duration-300 bg-white dark:bg-slate-900 overflow-hidden group cursor-pointer" onClick={handleClick} data-testid={`card-university-${university.id}`}>
-        <CardHeader className="pb-3 relative">
-          <div className="flex justify-between items-start gap-4">
-            <div className="space-y-1">
-              <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground mb-1">
+        <CardHeader className="pb-2 pt-4 px-4 relative">
+          <div className="flex justify-between items-start gap-3">
+            <div className="space-y-0.5">
+              <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground mb-0.5">
                 <span className={`px-2 py-0.5 rounded-full text-[10px] uppercase tracking-wider ${university.type === 'Public' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300' : 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300'}`} data-testid={`badge-type-${university.id}`}>
                   {university.type}
                 </span>
@@ -45,22 +45,22 @@ export const UniversityCard = memo(function UniversityCard({ university, onSelec
                   </span>
                 )}
               </div>
-              <CardTitle className="text-xl font-bold leading-tight group-hover:text-primary transition-colors" data-testid={`text-name-${university.id}`}>
+              <CardTitle className="text-lg font-bold leading-tight group-hover:text-primary transition-colors" data-testid={`text-name-${university.id}`}>
                 {university.name}
               </CardTitle>
             </div>
           </div>
         </CardHeader>
-        <CardContent className="flex-grow space-y-4">
+        <CardContent className="flex-grow space-y-2 px-4 pb-3">
           <div className="flex items-center gap-2 text-sm text-muted-foreground" data-testid={`text-location-${university.id}`}>
             <span className="text-base">{countryFlags[university.country] || '🏛️'}</span>
             <MapPin className="w-4 h-4 text-primary/70" />
             <span>{university.city}, {university.region}</span>
           </div>
           
-          <div className="space-y-2">
+          <div className="space-y-1.5">
             <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Core Domains</div>
-            <div className="flex flex-wrap gap-1.5">
+            <div className="flex flex-wrap gap-1">
               {university.domains.slice(0, 3).map((domain) => (
                 <Badge key={domain} variant="secondary" className="font-normal text-xs bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200" data-testid={`badge-domain-${domain}-${university.id}`}>
                   {domain}
@@ -72,7 +72,7 @@ export const UniversityCard = memo(function UniversityCard({ university, onSelec
             </div>
           </div>
         </CardContent>
-        <CardFooter className="pt-4 border-t border-border/40 bg-slate-50/50 dark:bg-slate-900/50">
+        <CardFooter className="pt-3 pb-3 px-4 border-t border-border/40 bg-slate-50/50 dark:bg-slate-900/50">
           <Button 
             variant="ghost" 
             className="w-full justify-between hover:bg-primary hover:text-white group-hover:bg-primary group-hover:text-white transition-all duration-300"
