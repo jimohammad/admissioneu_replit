@@ -92,8 +92,9 @@ export function Header() {
             {/* Visa & Jobs Dropdown */}
             <div className="relative ml-auto" ref={dropdownRef}>
               <button
+                type="button"
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium whitespace-nowrap transition-colors border-b-2 ${
+                className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium whitespace-nowrap transition-colors border-b-2 cursor-pointer ${
                   location.startsWith('/insights') 
                     ? 'text-white border-amber-400 bg-slate-800/50' 
                     : 'text-slate-400 border-transparent hover:text-white hover:bg-slate-800/30'
@@ -106,7 +107,7 @@ export function Header() {
               </button>
               
               {isDropdownOpen && (
-                <div className="absolute top-full right-0 mt-1 bg-slate-800 border border-slate-700 rounded-lg shadow-2xl min-w-[200px] py-2 z-50">
+                <div className="absolute top-full right-0 mt-1 bg-slate-800 border border-slate-700 rounded-lg shadow-2xl min-w-[220px] py-2 z-[100]">
                   <div className="px-4 py-2 text-xs font-semibold text-slate-400 uppercase tracking-wide border-b border-slate-700 mb-1">
                     Select Country
                   </div>
@@ -115,7 +116,7 @@ export function Header() {
                       key={name} 
                       href={`/insights/${name}`}
                       onClick={(e) => handleNavClick(e, `/insights/${name}`)}
-                      className={`flex items-center gap-3 px-4 py-3 text-sm transition-colors no-underline block ${
+                      className={`flex items-center gap-3 px-4 py-3 text-sm transition-colors no-underline cursor-pointer ${
                         location === `/insights/${name}` 
                           ? 'text-amber-400 bg-slate-700/50' 
                           : 'text-slate-300 hover:text-white hover:bg-slate-700/50'
