@@ -16,6 +16,8 @@ export async function registerRoutes(
       res.json({ 
         status: "ok", 
         universityCount: universities.length,
+        environment: process.env.NODE_ENV || 'unknown',
+        hasDbUrl: !!process.env.DATABASE_URL,
         timestamp: new Date().toISOString()
       });
     } catch (error) {
@@ -23,7 +25,29 @@ export async function registerRoutes(
       res.status(500).json({ 
         status: "error", 
         message: error instanceof Error ? error.message : "Unknown error",
+        environment: process.env.NODE_ENV || 'unknown',
+        hasDbUrl: !!process.env.DATABASE_URL,
         timestamp: new Date().toISOString()
+      });
+    }
+  });
+
+  // Manual seed trigger endpoint (for production initialization) - GET for easy browser access
+  app.get("/api/init-db", async (req, res) => {
+    try {
+      console.log("Manual database initialization triggered via GET...");
+      await autoSeedIfEmpty();
+      const universities = await storage.getAllUniversities();
+      res.json({ 
+        status: "ok", 
+        message: "Database initialized",
+        universityCount: universities.length 
+      });
+    } catch (error) {
+      console.error("Init DB error:", error);
+      res.status(500).json({ 
+        status: "error", 
+        message: error instanceof Error ? error.message : "Unknown error"
       });
     }
   });
