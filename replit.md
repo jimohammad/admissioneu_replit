@@ -19,7 +19,7 @@ Preferred communication style: Simple, everyday language.
 - **TanStack Query (React Query)** for server state management and data fetching
 - **Tailwind CSS v4** with custom theming for styling
 - **shadcn/ui** component library (New York variant) for consistent UI components
-- **Framer Motion** for animations and transitions
+- **Framer Motion** for Hero animations (removed from grid for performance)
 
 **Design Decisions:**
 - Component-based architecture with reusable UI components from shadcn/ui
@@ -121,3 +121,10 @@ Preferred communication style: Simple, everyday language.
 - Seed scripts for initial database population
 - Total: 591 accredited European universities across 6 countries
 - 81 cities across 6 countries for cost of living calculator
+- 10 simplified study fields: Agriculture & Environment, Arts & Design, Business & Economics, Engineering & Technology, Law & Politics, Media & Communication, Medicine & Health, Sciences, Social Sciences & Humanities, Sports & Tourism
+
+**Performance Optimizations:**
+- UniversityCard memoized with React.memo() to prevent unnecessary re-renders
+- useCallback handlers for stable function references
+- useDeferredValue for search query to maintain UI responsiveness
+- Framer Motion animations removed from university grid (kept only in Hero)
