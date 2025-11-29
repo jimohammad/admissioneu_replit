@@ -213,16 +213,16 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-slate-900 text-slate-400 py-12 mt-20 border-t border-slate-800">
         <div className="container mx-auto px-4 text-center space-y-4">
-          <p className="text-sm">
-            Data sourced from official government registries across Europe, including Spain's Ministry of Universities, Germany's HRK, and verified partner networks.
+          <p className="text-sm max-w-2xl mx-auto">
+            An <a href="https://iqbal.app" className="text-white hover:text-emerald-400 transition-colors font-medium" target="_blank" rel="noopener noreferrer">Iqbal.app</a> initiative, powered by intelligent systems to deliver precision-driven insights and next-generation information clarity.
           </p>
           <div className="flex justify-center gap-6 text-xs">
              <a href="https://www.ciencia.gob.es/en/Universidades.html" className="hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">Spain: Ministry of Universities</a>
              <a href="https://www.hrk.de/member-universities/" className="hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">Germany: HRK</a>
              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
           </div>
-          <p className="text-xs pt-4 border-t border-slate-800 w-full max-w-md mx-auto">
-            © 2025 EuroUni - European University Directory. All rights reserved.
+          <p className="text-xs pt-4 border-t border-slate-800 w-full max-w-lg mx-auto">
+            © 2025 EuroUni. All rights reserved.
           </p>
         </div>
       </footer>
