@@ -6,10 +6,9 @@ import heroBg from '@assets/stock_images/modern_glass_buildin_0e142d1a.jpg';
 interface HeroProps {
   searchQuery: string;
   setSearchQuery: (query: string) => void;
-  totalCount: number;
 }
 
-export function Hero({ searchQuery, setSearchQuery, totalCount }: HeroProps) {
+export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
   
   return (
     <div className="relative w-full min-h-[520px] flex items-center justify-center bg-slate-900">
@@ -27,10 +26,6 @@ export function Hero({ searchQuery, setSearchQuery, totalCount }: HeroProps) {
       {/* Content */}
       <div className="relative z-10 max-w-4xl w-full px-6 py-12 text-center space-y-8">
         <div>
-          <div className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm text-white text-sm font-medium tracking-wide">
-            <span className="w-2 h-2 rounded-full bg-amber-400 mr-2 animate-pulse"></span>
-            {totalCount} Universities • 2026 Academic Year
-          </div>
           <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-4 font-heading">
             Find Your Future in <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-300">Europe</span>
           </h1>
