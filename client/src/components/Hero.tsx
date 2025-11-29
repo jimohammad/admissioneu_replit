@@ -125,30 +125,30 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
         >
           <button
             onClick={() => setSelectedCountry('all')}
-            className={`relative p-4 rounded-xl transition-all duration-200 bg-white/10 text-white hover:bg-white/20 ${
+            className={`relative p-4 rounded-xl transition-all duration-200 bg-transparent text-white hover:bg-white/10 focus:outline-none ${
               selectedCountry === 'all'
                 ? 'border-2 border-blue-400'
-                : 'border border-white/10'
+                : 'border border-white/20'
             }`}
             data-testid="button-country-all"
           >
             <div className="text-2xl mb-1">🌍</div>
-            <div className={`text-sm ${selectedCountry === 'all' ? 'font-bold' : 'font-semibold'}`}>All Countries</div>
+            <div className={`text-sm ${selectedCountry === 'all' ? 'font-bold' : 'font-medium'}`}>All Countries</div>
             <div className="text-xs opacity-80">{totalCount} universities</div>
           </button>
           {countries.map(country => (
             <div key={country} className="flex flex-col gap-2">
               <button
                 onClick={() => setSelectedCountry(country)}
-                className={`w-full p-4 rounded-xl transition-all duration-200 bg-white/10 text-white hover:bg-white/20 ${
+                className={`w-full p-4 rounded-xl transition-all duration-200 bg-transparent text-white hover:bg-white/10 focus:outline-none ${
                   selectedCountry === country
                     ? 'border-2 border-blue-400'
-                    : 'border border-white/10'
+                    : 'border border-white/20'
                 }`}
                 data-testid={`button-country-${country.toLowerCase()}`}
               >
                 <div className="text-2xl mb-1">{countryFlags[country] || '🏛️'}</div>
-                <div className={`text-sm ${selectedCountry === country ? 'font-bold' : 'font-semibold'}`}>{country}</div>
+                <div className={`text-sm ${selectedCountry === country ? 'font-bold' : 'font-medium'}`}>{country}</div>
                 <div className="text-xs opacity-80">{countryCounts[country] || 0} universities</div>
               </button>
               <Link href={`/insights/${country}`}>
