@@ -24,14 +24,15 @@ interface UniversityDetailProps {
 }
 
 export function UniversityDetail({ university, isOpen, onClose }: UniversityDetailProps) {
-  const { data: costData } = useQuery<CostOfLiving>({
+  const { data: costData } = useQuery<CostOfLiving | null>({
     queryKey: ['/api/cost-of-living', university?.country, university?.city],
     queryFn: async () => {
-      const res = await fetch(`/api/cost-of-living/${university?.country}/${university?.city}`);
+      if (!university?.country || !university?.city) return null;
+      const res = await fetch(`/api/cost-of-living/${encodeURIComponent(university.country)}/${encodeURIComponent(university.city)}`);
       if (!res.ok) return null;
       return res.json();
     },
-    enabled: !!university,
+    enabled: !!university?.country && !!university?.city,
   });
 
   if (!university) return null;

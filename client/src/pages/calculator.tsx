@@ -45,6 +45,11 @@ export default function Calculator() {
 
   const { data: costData = [], isLoading } = useQuery<CostOfLiving[]>({
     queryKey: ['/api/cost-of-living'],
+    queryFn: async () => {
+      const res = await fetch('/api/cost-of-living');
+      if (!res.ok) throw new Error('Failed to fetch cost data');
+      return res.json();
+    },
   });
 
   const countries = useMemo(() => {
@@ -230,7 +235,14 @@ export default function Calculator() {
 
           {/* Results Panel */}
           <div className="lg:col-span-2 space-y-6">
-            {selectedCityData && calculatedCosts ? (
+            {isLoading ? (
+              <Card className="h-[400px] flex items-center justify-center" data-testid="card-loading">
+                <div className="text-center text-muted-foreground">
+                  <div className="animate-spin w-10 h-10 border-4 border-primary border-t-transparent rounded-full mx-auto mb-4"></div>
+                  <p className="text-lg font-medium">Loading cost data...</p>
+                </div>
+              </Card>
+            ) : selectedCityData && calculatedCosts ? (
               <>
                 {/* Summary Cards */}
                 <div className="grid sm:grid-cols-2 gap-4">
