@@ -82,36 +82,33 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
           </div>
           
           {/* Tool Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 mt-4 justify-center flex-wrap">
+          <div className="flex flex-col sm:flex-row gap-3 mt-4 justify-center">
             <Link href="/budget">
-              <Button 
-                size="lg"
-                className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white py-5 px-6 rounded-xl font-semibold border border-white/20 backdrop-blur-sm transition-all duration-200"
+              <div 
+                className="w-full sm:w-56 h-14 bg-slate-900/50 hover:bg-slate-900/70 border border-white/15 hover:border-blue-400 text-white rounded-xl inline-flex items-center justify-center gap-3 px-5 text-sm font-semibold tracking-wide transition-all duration-200 cursor-pointer active:scale-[0.98]"
                 data-testid="button-budget-finder"
               >
-                <Wallet className="w-5 h-5 mr-2 text-blue-400" />
+                <Wallet className="w-5 h-5 text-blue-400" />
                 Find by Budget
-              </Button>
+              </div>
             </Link>
             <Link href="/calculator">
-              <Button 
-                size="lg"
-                className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white py-5 px-6 rounded-xl font-semibold border border-white/20 backdrop-blur-sm transition-all duration-200"
+              <div 
+                className="w-full sm:w-56 h-14 bg-slate-900/50 hover:bg-slate-900/70 border border-white/15 hover:border-amber-400 text-white rounded-xl inline-flex items-center justify-center gap-3 px-5 text-sm font-semibold tracking-wide transition-all duration-200 cursor-pointer active:scale-[0.98]"
                 data-testid="button-calculator-cta"
               >
-                <Calculator className="w-5 h-5 mr-2 text-blue-400" />
+                <Calculator className="w-5 h-5 text-amber-400" />
                 Cost Calculator
-              </Button>
+              </div>
             </Link>
             <Link href="/resources">
-              <Button 
-                size="lg"
-                className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white py-5 px-6 rounded-xl font-semibold border border-white/20 backdrop-blur-sm transition-all duration-200"
+              <div 
+                className="w-full sm:w-56 h-14 bg-slate-900/50 hover:bg-slate-900/70 border border-white/15 hover:border-slate-300 text-white rounded-xl inline-flex items-center justify-center gap-3 px-5 text-sm font-semibold tracking-wide transition-all duration-200 cursor-pointer active:scale-[0.98]"
                 data-testid="button-resources"
               >
-                <FileText className="w-5 h-5 mr-2 text-blue-400" />
-                Application Resources
-              </Button>
+                <FileText className="w-5 h-5 text-slate-300" />
+                Resources
+              </div>
             </Link>
           </div>
         </motion.div>
