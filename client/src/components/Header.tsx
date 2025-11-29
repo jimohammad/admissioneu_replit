@@ -75,20 +75,22 @@ export function Header() {
             </a>
             
             {countries.map(({ name, code }) => (
-              <a 
-                key={name} 
-                href={`/?country=${name}`}
-                onClick={(e) => handleNavClick(e, `/?country=${name}`)}
-                className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium whitespace-nowrap transition-colors no-underline border-b-2 ${
-                  urlCountry === name 
-                    ? 'text-white border-blue-400 bg-slate-800/50' 
-                    : 'text-slate-400 border-transparent hover:text-white hover:bg-slate-800/30'
-                }`}
-                data-testid={`nav-${name.toLowerCase()}`}
-              >
-                <img src={`https://flagcdn.com/w20/${code.toLowerCase()}.png`} alt={name} className="w-5 h-4 object-cover rounded-sm" />
-                <span>{name}</span>
-              </a>
+              <div key={name} className="flex items-center">
+                <div className="h-4 w-px bg-slate-700"></div>
+                <a 
+                  href={`/?country=${name}`}
+                  onClick={(e) => handleNavClick(e, `/?country=${name}`)}
+                  className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium whitespace-nowrap transition-colors no-underline border-b-2 ${
+                    urlCountry === name 
+                      ? 'text-white border-blue-400 bg-slate-800/50' 
+                      : 'text-slate-400 border-transparent hover:text-white hover:bg-slate-800/30'
+                  }`}
+                  data-testid={`nav-${name.toLowerCase()}`}
+                >
+                  <img src={`https://flagcdn.com/w20/${code.toLowerCase()}.png`} alt={name} className="w-5 h-4 object-cover rounded-sm" />
+                  <span>{name}</span>
+                </a>
+              </div>
             ))}
             
             {/* Visa & Jobs Dropdown */}
