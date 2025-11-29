@@ -205,14 +205,68 @@ export default function Home() {
               <p className="text-slate-500 mt-2">Please try again later.</p>
             </div>
           ) : filteredUniversities.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredUniversities.map((university) => (
-                <UniversityCard 
-                  key={university.id} 
-                  university={university} 
-                  onSelect={handleSelectUniversity} 
-                />
-              ))}
+            <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-slate-100 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
+                    <tr>
+                      <th className="text-left px-4 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider">University</th>
+                      <th className="text-left px-4 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider hidden md:table-cell">Type</th>
+                      <th className="text-left px-4 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider hidden sm:table-cell">Location</th>
+                      <th className="text-left px-4 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider hidden lg:table-cell">Fields</th>
+                      <th className="text-center px-4 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider hidden md:table-cell">English</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+                    {filteredUniversities.map((university) => (
+                      <tr 
+                        key={university.id} 
+                        className="hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors"
+                        onClick={() => handleSelectUniversity(university)}
+                        data-testid={`row-university-${university.id}`}
+                      >
+                        <td className="px-4 py-3">
+                          <div className="flex items-center gap-3">
+                            <span className="text-lg">{university.country === 'Spain' ? '🇪🇸' : university.country === 'Germany' ? '🇩🇪' : university.country === 'Hungary' ? '🇭🇺' : university.country === 'Italy' ? '🇮🇹' : university.country === 'Netherlands' ? '🇳🇱' : university.country === 'Poland' ? '🇵🇱' : '🏛️'}</span>
+                            <div>
+                              <div className="font-medium text-slate-900 dark:text-white text-sm" data-testid={`text-name-${university.id}`}>{university.name}</div>
+                              <div className="text-xs text-slate-500 dark:text-slate-400 sm:hidden">{university.city}, {university.country}</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-4 py-3 hidden md:table-cell">
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${university.type === 'Public' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300' : 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300'}`} data-testid={`badge-type-${university.id}`}>
+                            {university.type}
+                          </span>
+                        </td>
+                        <td className="px-4 py-3 hidden sm:table-cell">
+                          <div className="text-sm text-slate-700 dark:text-slate-300" data-testid={`text-location-${university.id}`}>{university.city}</div>
+                          <div className="text-xs text-slate-500 dark:text-slate-400">{university.region}</div>
+                        </td>
+                        <td className="px-4 py-3 hidden lg:table-cell">
+                          <div className="flex flex-wrap gap-1">
+                            {university.domains.slice(0, 2).map((domain) => (
+                              <span key={domain} className="px-2 py-0.5 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded text-xs">
+                                {domain}
+                              </span>
+                            ))}
+                            {university.domains.length > 2 && (
+                              <span className="px-2 py-0.5 text-slate-500 dark:text-slate-400 text-xs">+{university.domains.length - 2}</span>
+                            )}
+                          </div>
+                        </td>
+                        <td className="px-4 py-3 text-center hidden md:table-cell">
+                          {university.englishPrograms ? (
+                            <span className="inline-flex items-center justify-center w-6 h-6 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-full text-xs" data-testid={`badge-english-${university.id}`}>✓</span>
+                          ) : (
+                            <span className="text-slate-300 dark:text-slate-600">—</span>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           ) : (
             <div className="text-center py-20 bg-white dark:bg-slate-900 rounded-xl border border-dashed border-slate-300 dark:border-slate-700">
