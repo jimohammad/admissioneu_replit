@@ -6,25 +6,10 @@ import heroBg from '@assets/generated_images/modern_abstract_university_architec
 interface HeroProps {
   searchQuery: string;
   setSearchQuery: (query: string) => void;
-  selectedCountry: string;
-  setSelectedCountry: (country: string) => void;
-  countries: string[];
-  countryCounts: Record<string, number>;
+  totalCount: number;
 }
 
-const countryFlags: Record<string, string> = {
-  'Spain': '🇪🇸',
-  'Germany': '🇩🇪',
-  'Hungary': '🇭🇺',
-  'Italy': '🇮🇹',
-  'Poland': '🇵🇱',
-  'France': '🇫🇷',
-  'Netherlands': '🇳🇱',
-  'All': '🌍',
-};
-
-export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelectedCountry, countries, countryCounts }: HeroProps) {
-  const totalCount = countryCounts ? Object.values(countryCounts).reduce((a, b) => a + b, 0) : 0;
+export function Hero({ searchQuery, setSearchQuery, totalCount }: HeroProps) {
   
   return (
     <div className="relative w-full min-h-[520px] flex items-center justify-center bg-slate-900">
@@ -100,39 +85,6 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
               </div>
             </Link>
           </div>
-        </div>
-
-        {/* Country Cards */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto pb-4">
-          <div
-            onClick={() => setSelectedCountry('all')}
-            className={`relative p-4 rounded-xl transition-all duration-200 cursor-pointer text-white hover:bg-white/10 ${
-              selectedCountry === 'all'
-                ? 'border-2 border-blue-400'
-                : 'border border-white/20'
-            }`}
-            data-testid="button-country-all"
-          >
-            <div className="text-2xl mb-1">🌍</div>
-            <div className={`text-sm ${selectedCountry === 'all' ? 'font-bold' : 'font-medium'}`}>All Countries</div>
-            <div className="text-xs opacity-80">{totalCount} universities</div>
-          </div>
-          {countries.map(country => (
-            <div
-              key={country}
-              onClick={() => setSelectedCountry(country)}
-              className={`p-4 rounded-xl transition-all duration-200 cursor-pointer text-white hover:bg-white/10 ${
-                selectedCountry === country
-                  ? 'border-2 border-blue-400'
-                  : 'border border-white/20'
-              }`}
-              data-testid={`button-country-${country.toLowerCase()}`}
-            >
-              <div className="text-2xl mb-1">{countryFlags[country] || '🏛️'}</div>
-              <div className={`text-sm ${selectedCountry === country ? 'font-bold' : 'font-medium'}`}>{country}</div>
-              <div className="text-xs opacity-80">{countryCounts[country] || 0} universities</div>
-            </div>
-          ))}
         </div>
       </div>
     </div>

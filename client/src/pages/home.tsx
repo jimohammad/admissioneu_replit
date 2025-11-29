@@ -91,10 +91,7 @@ export default function Home() {
       <Hero 
         searchQuery={searchQuery} 
         setSearchQuery={setSearchQuery}
-        selectedCountry={selectedCountry}
-        setSelectedCountry={setSelectedCountry}
-        countries={countries}
-        countryCounts={countryCounts}
+        totalCount={universities.length}
       />
 
       <main className="container mx-auto px-4 py-12 -mt-20 relative z-20">
