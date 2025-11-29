@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useCallback, useDeferredValue } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Hero } from '@/components/Hero';
 import { UniversityCard } from '@/components/UniversityCard';
@@ -11,7 +11,6 @@ import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { RotateCcw, SlidersHorizontal, Loader2 } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -21,6 +20,16 @@ export default function Home() {
   const [selectedDomain, setSelectedDomain] = useState<string>('all');
   const [showEnglishOnly, setShowEnglishOnly] = useState(false);
   const [selectedUniversity, setSelectedUniversity] = useState<University | null>(null);
+  
+  const deferredSearchQuery = useDeferredValue(searchQuery);
+  
+  const handleSelectUniversity = useCallback((university: University) => {
+    setSelectedUniversity(university);
+  }, []);
+  
+  const handleCloseDetail = useCallback(() => {
+    setSelectedUniversity(null);
+  }, []);
 
   const { data: universities = [], isLoading, error } = useQuery({
     queryKey: ['universities'],
@@ -51,11 +60,13 @@ export default function Home() {
   }, [universities]);
 
   const filteredUniversities = useMemo(() => {
+    const searchLower = deferredSearchQuery.toLowerCase();
     return universities.filter((u) => {
-      const matchesSearch = u.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                           u.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                           u.region.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                           u.country.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesSearch = !searchLower || 
+                           u.name.toLowerCase().includes(searchLower) || 
+                           u.city.toLowerCase().includes(searchLower) ||
+                           u.region.toLowerCase().includes(searchLower) ||
+                           u.country.toLowerCase().includes(searchLower);
       const matchesCountry = selectedCountry === 'all' || u.country === selectedCountry;
       const matchesRegion = selectedRegion === 'all' || u.region === selectedRegion;
       const matchesType = selectedType === 'all' || u.type === selectedType;
@@ -64,7 +75,7 @@ export default function Home() {
 
       return matchesSearch && matchesCountry && matchesRegion && matchesType && matchesDomain && matchesEnglish;
     });
-  }, [universities, searchQuery, selectedCountry, selectedRegion, selectedType, selectedDomain, showEnglishOnly]);
+  }, [universities, deferredSearchQuery, selectedCountry, selectedRegion, selectedType, selectedDomain, showEnglishOnly]);
 
   const clearFilters = () => {
     setSearchQuery('');
@@ -190,15 +201,13 @@ export default function Home() {
             </div>
           ) : filteredUniversities.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              <AnimatePresence mode='popLayout'>
-                {filteredUniversities.map((university) => (
-                  <UniversityCard 
-                    key={university.id} 
-                    university={university} 
-                    onSelect={setSelectedUniversity} 
-                  />
-                ))}
-              </AnimatePresence>
+              {filteredUniversities.map((university) => (
+                <UniversityCard 
+                  key={university.id} 
+                  university={university} 
+                  onSelect={handleSelectUniversity} 
+                />
+              ))}
             </div>
           ) : (
             <div className="text-center py-20 bg-white dark:bg-slate-900 rounded-xl border border-dashed border-slate-300 dark:border-slate-700">
@@ -230,7 +239,7 @@ export default function Home() {
       <UniversityDetail 
         university={selectedUniversity} 
         isOpen={!!selectedUniversity} 
-        onClose={() => setSelectedUniversity(null)} 
+        onClose={handleCloseDetail} 
       />
     </div>
   );

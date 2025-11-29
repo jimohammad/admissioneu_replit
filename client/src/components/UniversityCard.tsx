@@ -1,9 +1,9 @@
+import { memo, useCallback } from 'react';
 import { University } from '@shared/schema';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { MapPin, ExternalLink } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 interface UniversityCardProps {
   university: University;
@@ -19,15 +19,19 @@ const countryFlags: Record<string, string> = {
   'Netherlands': '🇳🇱',
 };
 
-export function UniversityCard({ university, onSelect }: UniversityCardProps) {
+export const UniversityCard = memo(function UniversityCard({ university, onSelect }: UniversityCardProps) {
+  const handleClick = useCallback(() => {
+    onSelect(university);
+  }, [university, onSelect]);
+
+  const handleButtonClick = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    onSelect(university);
+  }, [university, onSelect]);
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      whileHover={{ y: -4 }}
-      transition={{ duration: 0.3 }}
-    >
-      <Card className="h-full flex flex-col border-border/50 hover:border-primary/20 hover:shadow-lg transition-all duration-300 bg-white dark:bg-slate-900 overflow-hidden group cursor-pointer" onClick={() => onSelect(university)} data-testid={`card-university-${university.id}`}>
+    <div className="transform transition-transform duration-200 hover:-translate-y-1">
+      <Card className="h-full flex flex-col border-border/50 hover:border-primary/20 hover:shadow-lg transition-all duration-300 bg-white dark:bg-slate-900 overflow-hidden group cursor-pointer" onClick={handleClick} data-testid={`card-university-${university.id}`}>
         <CardHeader className="pb-3 relative">
           <div className="flex justify-between items-start gap-4">
             <div className="space-y-1">
@@ -72,10 +76,7 @@ export function UniversityCard({ university, onSelect }: UniversityCardProps) {
           <Button 
             variant="ghost" 
             className="w-full justify-between hover:bg-primary hover:text-white group-hover:bg-primary group-hover:text-white transition-all duration-300"
-            onClick={(e) => {
-              e.stopPropagation();
-              onSelect(university);
-            }}
+            onClick={handleButtonClick}
             data-testid={`button-details-${university.id}`}
           >
             View Details
@@ -83,6 +84,6 @@ export function UniversityCard({ university, onSelect }: UniversityCardProps) {
           </Button>
         </CardFooter>
       </Card>
-    </motion.div>
+    </div>
   );
-}
+});
