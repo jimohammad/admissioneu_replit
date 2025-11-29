@@ -1,6 +1,5 @@
-import { Search, Calculator, Wallet, FileText, Info } from 'lucide-react';
+import { Search, Calculator, Wallet, FileText } from 'lucide-react';
 import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
 import { Link } from 'wouter';
 import heroBg from '@assets/generated_images/modern_abstract_university_architecture_background.png';
 
@@ -105,45 +104,33 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
 
         {/* Country Cards */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto pb-4">
-          <div className="flex flex-col gap-2">
+          <div
+            onClick={() => setSelectedCountry('all')}
+            className={`relative p-4 rounded-xl transition-all duration-200 cursor-pointer text-white hover:bg-white/10 ${
+              selectedCountry === 'all'
+                ? 'border-2 border-blue-400'
+                : 'border border-white/20'
+            }`}
+            data-testid="button-country-all"
+          >
+            <div className="text-2xl mb-1">🌍</div>
+            <div className={`text-sm ${selectedCountry === 'all' ? 'font-bold' : 'font-medium'}`}>All Countries</div>
+            <div className="text-xs opacity-80">{totalCount} universities</div>
+          </div>
+          {countries.map(country => (
             <div
-              onClick={() => setSelectedCountry('all')}
-              className={`relative p-4 rounded-xl transition-all duration-200 cursor-pointer text-white hover:bg-white/10 ${
-                selectedCountry === 'all'
+              key={country}
+              onClick={() => setSelectedCountry(country)}
+              className={`p-4 rounded-xl transition-all duration-200 cursor-pointer text-white hover:bg-white/10 ${
+                selectedCountry === country
                   ? 'border-2 border-blue-400'
                   : 'border border-white/20'
               }`}
-              data-testid="button-country-all"
+              data-testid={`button-country-${country.toLowerCase()}`}
             >
-              <div className="text-2xl mb-1">🌍</div>
-              <div className={`text-sm ${selectedCountry === 'all' ? 'font-bold' : 'font-medium'}`}>All Countries</div>
-              <div className="text-xs opacity-80">{totalCount} universities</div>
-            </div>
-            <div className="h-[34px]"></div>
-          </div>
-          {countries.map(country => (
-            <div key={country} className="flex flex-col gap-2">
-              <div
-                onClick={() => setSelectedCountry(country)}
-                className={`w-full p-4 rounded-xl transition-all duration-200 cursor-pointer text-white hover:bg-white/10 ${
-                  selectedCountry === country
-                    ? 'border-2 border-blue-400'
-                    : 'border border-white/20'
-                }`}
-                data-testid={`button-country-${country.toLowerCase()}`}
-              >
-                <div className="text-2xl mb-1">{countryFlags[country] || '🏛️'}</div>
-                <div className={`text-sm ${selectedCountry === country ? 'font-bold' : 'font-medium'}`}>{country}</div>
-                <div className="text-xs opacity-80">{countryCounts[country] || 0} universities</div>
-              </div>
-              <a
-                href={`/insights/${country}`}
-                className="w-full py-2 px-3 rounded-lg bg-white/20 hover:bg-white/30 text-white text-xs font-medium flex items-center justify-center gap-1.5 transition-colors border border-white/10 cursor-pointer no-underline"
-                data-testid={`button-insights-${country.toLowerCase()}`}
-              >
-                <Info className="w-3.5 h-3.5" />
-                Visa & Jobs Info
-              </a>
+              <div className="text-2xl mb-1">{countryFlags[country] || '🏛️'}</div>
+              <div className={`text-sm ${selectedCountry === country ? 'font-bold' : 'font-medium'}`}>{country}</div>
+              <div className="text-xs opacity-80">{countryCounts[country] || 0} universities</div>
             </div>
           ))}
         </div>
