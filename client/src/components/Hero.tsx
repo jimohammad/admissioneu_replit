@@ -86,30 +86,30 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
             <Link href="/budget">
               <Button 
                 size="lg"
-                className="w-full sm:w-auto bg-white/95 hover:bg-white text-slate-900 shadow-lg hover:shadow-xl py-5 px-6 rounded-xl font-semibold border border-white/20 backdrop-blur-sm transition-all duration-200"
+                className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white py-5 px-6 rounded-xl font-semibold border border-white/20 backdrop-blur-sm transition-all duration-200"
                 data-testid="button-budget-finder"
               >
-                <Wallet className="w-5 h-5 mr-2 text-blue-600" />
+                <Wallet className="w-5 h-5 mr-2 text-blue-400" />
                 Find by Budget
               </Button>
             </Link>
             <Link href="/calculator">
               <Button 
                 size="lg"
-                className="w-full sm:w-auto bg-white/95 hover:bg-white text-slate-900 shadow-lg hover:shadow-xl py-5 px-6 rounded-xl font-semibold border border-white/20 backdrop-blur-sm transition-all duration-200"
+                className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white py-5 px-6 rounded-xl font-semibold border border-white/20 backdrop-blur-sm transition-all duration-200"
                 data-testid="button-calculator-cta"
               >
-                <Calculator className="w-5 h-5 mr-2 text-blue-600" />
+                <Calculator className="w-5 h-5 mr-2 text-blue-400" />
                 Cost Calculator
               </Button>
             </Link>
             <Link href="/resources">
               <Button 
                 size="lg"
-                className="w-full sm:w-auto bg-white/95 hover:bg-white text-slate-900 shadow-lg hover:shadow-xl py-5 px-6 rounded-xl font-semibold border border-white/20 backdrop-blur-sm transition-all duration-200"
+                className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white py-5 px-6 rounded-xl font-semibold border border-white/20 backdrop-blur-sm transition-all duration-200"
                 data-testid="button-resources"
               >
-                <FileText className="w-5 h-5 mr-2 text-blue-600" />
+                <FileText className="w-5 h-5 mr-2 text-blue-400" />
                 Application Resources
               </Button>
             </Link>
