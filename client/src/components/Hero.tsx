@@ -1,7 +1,7 @@
 import { Search, Calculator, Wallet, FileText, Info } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Link } from 'wouter';
+import { Link, useLocation } from 'wouter';
 import heroBg from '@assets/generated_images/modern_abstract_university_architecture_background.png';
 
 interface HeroProps {
@@ -25,6 +25,7 @@ const countryFlags: Record<string, string> = {
 };
 
 export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelectedCountry, countries, countryCounts }: HeroProps) {
+  const [, setLocation] = useLocation();
   const totalCount = countryCounts ? Object.values(countryCounts).reduce((a, b) => a + b, 0) : 0;
   
   return (
@@ -133,15 +134,14 @@ export function Hero({ searchQuery, setSearchQuery, selectedCountry, setSelected
                 <div className={`text-sm ${selectedCountry === country ? 'font-bold' : 'font-medium'}`}>{country}</div>
                 <div className="text-xs opacity-80">{countryCounts[country] || 0} universities</div>
               </div>
-              <Link href={`/insights/${country}`}>
-                <div
-                  className="w-full py-2 px-3 rounded-lg bg-white/20 hover:bg-white/30 text-white text-xs font-medium flex items-center justify-center gap-1.5 transition-colors border border-white/10 cursor-pointer"
-                  data-testid={`button-insights-${country.toLowerCase()}`}
-                >
-                  <Info className="w-3.5 h-3.5" />
-                  Visa & Jobs Info
-                </div>
-              </Link>
+              <div
+                onClick={() => setLocation(`/insights/${country}`)}
+                className="w-full py-2 px-3 rounded-lg bg-white/20 hover:bg-white/30 text-white text-xs font-medium flex items-center justify-center gap-1.5 transition-colors border border-white/10 cursor-pointer"
+                data-testid={`button-insights-${country.toLowerCase()}`}
+              >
+                <Info className="w-3.5 h-3.5" />
+                Visa & Jobs Info
+              </div>
             </div>
           ))}
         </div>
