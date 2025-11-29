@@ -185,7 +185,7 @@ export default function Home() {
         <div className="space-y-6">
           <div className="flex justify-between items-end px-2">
             <h2 className="text-3xl font-bold text-slate-900 dark:text-white font-heading tracking-tight">
-              Accredited Universities {selectedCountry !== 'all' && `in ${selectedCountry}`}
+              {selectedCountry === 'all' ? 'Accredited Universities/All' : `Accredited Universities in ${selectedCountry}`}
             </h2>
             {!isLoading && (
               <Badge variant="secondary" className="text-sm px-3 py-1" data-testid="text-results-count">
