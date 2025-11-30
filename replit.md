@@ -120,8 +120,8 @@ Preferred communication style: Simple, everyday language.
 - Dutch universities data (47 universities including TU Delft, University of Amsterdam, Wageningen, and leading applied sciences universities)
 - French universities data (54 universities including Sorbonne, Sciences Po, HEC Paris, INSEAD, and top grandes écoles)
 - Seed scripts for initial database population
-- Total: 645 accredited European universities across 7 countries
-- 93 cities across 7 countries for cost of living calculator
+- Total: 598 accredited European universities across 10 countries
+- 93 cities across 10 countries for cost of living calculator
 - 10 simplified study fields: Agriculture & Environment, Arts & Design, Business & Economics, Engineering & Technology, Law & Politics, Media & Communication, Medicine & Health, Sciences, Social Sciences & Humanities, Sports & Tourism
 
 **Performance Optimizations:**

@@ -18,6 +18,7 @@ const countries = [
   { name: 'Italy', code: 'IT' },
   { name: 'Netherlands', code: 'NL' },
   { name: 'Poland', code: 'PL' },
+  { name: 'Portugal', code: 'PT' },
   { name: 'Spain', code: 'ES' },
 ];
 

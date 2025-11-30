@@ -217,6 +217,30 @@ const countryData: Record<string, {
       { task: 'IND Registration', deadline: 'Non-EU students', description: 'University usually handles this. Collect residence permit at IND.' },
     ],
   },
+  'Portugal': {
+    flag: '🇵🇹',
+    simCards: [
+      { name: 'NOS', price: '€10-20/month', data: '10-30GB', network: 'NOS', highlight: true, notes: 'Best coverage, student plans available' },
+      { name: 'MEO', price: '€10-25/month', data: '15-40GB', network: 'MEO', highlight: true, notes: 'Largest network, reliable coverage' },
+      { name: 'Vodafone PT', price: '€12-25/month', data: '15-35GB', network: 'Vodafone', notes: 'Good urban coverage, youth plans' },
+      { name: 'Lycamobile', price: '€7.50-15/month', data: '5-20GB', network: 'NOS', notes: 'Budget option, international calls' },
+      { name: 'WTF (NOS)', price: '€10-15/month', data: '10-25GB', network: 'NOS', notes: 'Youth brand, good value' },
+    ],
+    banks: [
+      { name: 'N26', type: 'Digital Bank', monthlyFee: '€0', highlight: true, pros: ['Easy signup', 'No Portuguese needed', 'Multi-currency'], website: 'https://n26.com' },
+      { name: 'Revolut', type: 'Digital Bank', monthlyFee: '€0', highlight: true, pros: ['Instant setup', 'Multi-currency', 'Great app'], website: 'https://revolut.com' },
+      { name: 'Moey!', type: 'Digital Bank', monthlyFee: '€0', pros: ['Portuguese IBAN', 'Free transfers', 'Good app'] },
+      { name: 'ActivoBank', type: 'Digital Bank', monthlyFee: '€0', pros: ['Portuguese IBAN', 'No fees', 'Millennium BCP subsidiary'] },
+      { name: 'Millennium BCP', type: 'Traditional', monthlyFee: '€0 (students)', pros: ['Largest Portuguese bank', 'Student accounts', 'Wide branch network'] },
+    ],
+    essentials: [
+      { task: 'NIF (Tax Number)', deadline: 'First priority', description: 'Número de Identificação Fiscal - essential for everything: bank, rent, work, phone.', documents: ['Passport', 'Proof of address (can be hotel initially)'] },
+      { task: 'Residence Registration', deadline: 'Within 3 months (EU)', description: 'EU citizens register at Câmara Municipal. Non-EU apply for residence permit at SEF/AIMA.', documents: ['Passport', 'NIF', 'Proof of address', 'Health insurance', 'Financial proof'] },
+      { task: 'NISS (Social Security)', deadline: 'For work/healthcare', description: 'Social security number needed for work and access to public healthcare.', documents: ['Passport', 'NIF', 'Employment contract or university letter'] },
+      { task: 'Health Insurance', deadline: 'Before arrival', description: 'EU: EHIC card. Non-EU: private insurance required. After NISS, can access SNS (public health).', documents: ['Passport', 'NISS'] },
+      { task: 'Lisboa/Porto Viva Card', deadline: 'First week', description: 'Transport pass with student discounts. Sub23 pass for under 23 is very affordable.' },
+    ],
+  },
   'Poland': {
     flag: '🇵🇱',
     simCards: [
