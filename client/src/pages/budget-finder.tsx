@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { Link } from 'wouter';
+import { useLocation } from 'wouter';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -71,6 +71,7 @@ function parseTuitionRange(tuitionStr: string | null): { min: number; max: numbe
 }
 
 export default function BudgetFinder() {
+  const [, setLocation] = useLocation();
   const [monthlyBudget, setMonthlyBudget] = useState<number>(1500);
   const [budgetInput, setBudgetInput] = useState<string>('1500');
   const [isEU, setIsEU] = useState<boolean>(true);
@@ -174,12 +175,15 @@ export default function BudgetFinder() {
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-slate-950 dark:to-slate-900">
       <header className="sticky top-0 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-lg border-b border-slate-200 dark:border-slate-800">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/">
-            <Button variant="ghost" className="gap-2" data-testid="button-back-home">
-              <ArrowLeft className="w-4 h-4" />
-              Back to Universities
-            </Button>
-          </Link>
+          <Button 
+            variant="ghost" 
+            className="gap-2 cursor-pointer" 
+            onClick={() => setLocation('/')}
+            data-testid="button-back-home"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Back to Universities
+          </Button>
           <div className="flex items-center gap-2">
             <Wallet className="w-5 h-5 text-primary" />
             <span className="font-heading font-semibold">Budget Finder</span>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'wouter';
+import { useLocation } from 'wouter';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -289,6 +289,7 @@ Date: [Current Date]
 Registration No: [Notary Registration Number]`;
 
 export default function ApplicationResources() {
+  const [, setLocation] = useLocation();
   const { toast } = useToast();
 
   const copyToClipboard = (text: string, type: string) => {
@@ -304,12 +305,16 @@ export default function ApplicationResources() {
       <header className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <Link href="/">
-              <Button variant="ghost" size="sm" className="gap-2" data-testid="button-back-home">
-                <ArrowLeft className="w-4 h-4" />
-                Back
-              </Button>
-            </Link>
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="gap-2 cursor-pointer" 
+              onClick={() => setLocation('/')}
+              data-testid="button-back-home"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Back
+            </Button>
             <div className="h-6 w-px bg-slate-300 dark:bg-slate-700" />
             <h1 className="text-xl font-bold text-slate-900 dark:text-white">Application Resources</h1>
           </div>
