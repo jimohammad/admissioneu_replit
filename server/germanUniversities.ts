@@ -12,6 +12,7 @@ export const germanUniversities = [
     website: 'https://www.uni-heidelberg.de',
     description: 'Germany\'s oldest university (founded 1386) and one of Europe\'s leading research institutions.',
     englishPrograms: true,
+    globalRank: 47,
   },
   {
     name: 'Karlsruher Institut für Technologie (KIT)',
@@ -25,6 +26,7 @@ export const germanUniversities = [
     website: 'https://www.kit.edu',
     description: 'One of the largest and most prestigious German technical universities, combining tradition with cutting-edge research.',
     englishPrograms: true,
+    globalRank: 119,
   },
   {
     name: 'Universität Stuttgart',
@@ -38,6 +40,7 @@ export const germanUniversities = [
     website: 'https://www.uni-stuttgart.de',
     description: 'A leading technical university known for automotive engineering and architecture.',
     englishPrograms: true,
+    globalRank: 285,
   },
   {
     name: 'Universität Freiburg',
@@ -51,6 +54,7 @@ export const germanUniversities = [
     website: 'https://www.uni-freiburg.de',
     description: 'A research university with strong interdisciplinary focus and beautiful Black Forest location.',
     englishPrograms: true,
+    globalRank: 192,
   },
   {
     name: 'Universität Tübingen',
@@ -64,6 +68,7 @@ export const germanUniversities = [
     website: 'https://www.uni-tuebingen.de',
     description: 'One of Europe\'s oldest universities, now a leader in AI and neuroscience research.',
     englishPrograms: true,
+    globalRank: 169,
   },
   {
     name: 'Universität Mannheim',
@@ -77,6 +82,7 @@ export const germanUniversities = [
     website: 'https://www.uni-mannheim.de',
     description: 'Germany\'s leading university for business and economics, housed in a Baroque palace.',
     englishPrograms: true,
+    globalRank: 411,
   },
   {
     name: 'Universität Konstanz',
@@ -90,6 +96,7 @@ export const germanUniversities = [
     website: 'https://www.uni-konstanz.de',
     description: 'A reform university known for innovative teaching and research excellence.',
     englishPrograms: true,
+    globalRank: 430,
   },
   {
     name: 'Universität Ulm',
@@ -103,6 +110,7 @@ export const germanUniversities = [
     website: 'https://www.uni-ulm.de',
     description: 'A young research university with strong focus on natural sciences and medicine.',
     englishPrograms: true,
+    globalRank: 421,
   },
   {
     name: 'Universität Hohenheim',
@@ -274,6 +282,7 @@ export const germanUniversities = [
     website: 'https://www.lmu.de',
     description: 'One of Europe\'s premier academic and research institutions, founded in 1472.',
     englishPrograms: true,
+    globalRank: 54,
   },
   {
     name: 'Technische Universität München',
@@ -287,6 +296,7 @@ export const germanUniversities = [
     website: 'https://www.tum.de',
     description: 'Germany\'s top-ranked technical university and a member of TU9 excellence network.',
     englishPrograms: true,
+    globalRank: 37,
   },
   {
     name: 'Friedrich-Alexander-Universität Erlangen-Nürnberg',
@@ -300,6 +310,7 @@ export const germanUniversities = [
     website: 'https://www.fau.de',
     description: 'Bavaria\'s second largest university with strong engineering and medical faculties.',
     englishPrograms: true,
+    globalRank: 227,
   },
   {
     name: 'Julius-Maximilians-Universität Würzburg',
@@ -313,6 +324,7 @@ export const germanUniversities = [
     website: 'https://www.uni-wuerzburg.de',
     description: 'Historic university founded in 1402, known for X-ray discovery by Wilhelm Röntgen.',
     englishPrograms: true,
+    globalRank: 281,
   },
   {
     name: 'Universität Regensburg',
@@ -510,6 +522,7 @@ export const germanUniversities = [
     website: 'https://www.fu-berlin.de',
     description: 'One of Berlin\'s elite universities, known for humanities and political science.',
     englishPrograms: true,
+    globalRank: 98,
   },
   {
     name: 'Humboldt-Universität zu Berlin',
@@ -523,6 +536,7 @@ export const germanUniversities = [
     website: 'https://www.hu-berlin.de',
     description: 'Historic university founded in 1810, pioneering the modern research university concept.',
     englishPrograms: true,
+    globalRank: 120,
   },
   {
     name: 'Technische Universität Berlin',
@@ -536,6 +550,7 @@ export const germanUniversities = [
     website: 'https://www.tu.berlin',
     description: 'Berlin\'s technical university with strong international reputation.',
     englishPrograms: true,
+    globalRank: 154,
   },
   {
     name: 'Charité - Universitätsmedizin Berlin',
@@ -549,6 +564,7 @@ export const germanUniversities = [
     website: 'https://www.charite.de',
     description: 'One of Europe\'s largest and most prestigious university hospitals.',
     englishPrograms: true,
+    globalRank: 75,
   },
   {
     name: 'Universität der Künste Berlin',
@@ -828,6 +844,7 @@ export const germanUniversities = [
     website: 'https://www.uni-hamburg.de',
     description: 'Northern Germany\'s largest university and recent Excellence University.',
     englishPrograms: true,
+    globalRank: 164,
   },
   {
     name: 'Technische Universität Hamburg',
@@ -841,6 +858,7 @@ export const germanUniversities = [
     website: 'https://www.tuhh.de',
     description: 'Technical university with strong focus on engineering and innovation.',
     englishPrograms: true,
+    globalRank: 501,
   },
   {
     name: 'HafenCity Universität Hamburg',
@@ -947,6 +965,7 @@ export const germanUniversities = [
     website: 'https://www.uni-frankfurt.de',
     description: 'Major research university in Germany\'s financial capital.',
     englishPrograms: true,
+    globalRank: 217,
   },
   {
     name: 'Technische Universität Darmstadt',
@@ -1105,6 +1124,7 @@ export const germanUniversities = [
     website: 'https://www.uni-goettingen.de',
     description: 'Historic university with 47 Nobel Prize laureates associated with it.',
     englishPrograms: true,
+    globalRank: 232,
   },
   {
     name: 'Gottfried Wilhelm Leibniz Universität Hannover',
@@ -1118,6 +1138,7 @@ export const germanUniversities = [
     website: 'https://www.uni-hannover.de',
     description: 'One of the largest and oldest technical universities in Germany.',
     englishPrograms: true,
+    globalRank: 369,
   },
   {
     name: 'Technische Universität Braunschweig',
@@ -1131,6 +1152,7 @@ export const germanUniversities = [
     website: 'https://www.tu-braunschweig.de',
     description: 'Germany\'s oldest technical university with strong automotive research.',
     englishPrograms: true,
+    globalRank: 471,
   },
   {
     name: 'Carl von Ossietzky Universität Oldenburg',
@@ -1369,6 +1391,7 @@ export const germanUniversities = [
     website: 'https://www.rwth-aachen.de',
     description: 'Germany\'s largest technical university and Excellence University.',
     englishPrograms: true,
+    globalRank: 106,
   },
   {
     name: 'Universität zu Köln',
@@ -1382,6 +1405,7 @@ export const germanUniversities = [
     website: 'https://www.uni-koeln.de',
     description: 'One of Germany\'s oldest and largest universities.',
     englishPrograms: true,
+    globalRank: 194,
   },
   {
     name: 'Universität Bonn',
@@ -1395,6 +1419,7 @@ export const germanUniversities = [
     website: 'https://www.uni-bonn.de',
     description: 'Excellence University known for mathematics and natural sciences.',
     englishPrograms: true,
+    globalRank: 89,
   },
   {
     name: 'Heinrich-Heine-Universität Düsseldorf',
@@ -1408,6 +1433,7 @@ export const germanUniversities = [
     website: 'https://www.hhu.de',
     description: 'Modern campus university with strong medical faculty.',
     englishPrograms: true,
+    globalRank: 351,
   },
   {
     name: 'Universität Duisburg-Essen',
@@ -1421,6 +1447,7 @@ export const germanUniversities = [
     website: 'https://www.uni-due.de',
     description: 'One of Germany\'s youngest universities with strong engineering programs.',
     englishPrograms: true,
+    globalRank: 432,
   },
   {
     name: 'Ruhr-Universität Bochum',
@@ -1434,6 +1461,7 @@ export const germanUniversities = [
     website: 'https://www.ruhr-uni-bochum.de',
     description: 'First new public university in Germany after WWII, known for IT security.',
     englishPrograms: true,
+    globalRank: 284,
   },
   {
     name: 'Technische Universität Dortmund',
@@ -1447,6 +1475,7 @@ export const germanUniversities = [
     website: 'https://www.tu-dortmund.de',
     description: 'Technical university with strong research in automation and logistics.',
     englishPrograms: true,
+    globalRank: 421,
   },
   {
     name: 'Westfälische Wilhelms-Universität Münster',
@@ -1460,6 +1489,7 @@ export const germanUniversities = [
     website: 'https://www.uni-muenster.de',
     description: 'One of Germany\'s largest universities in a historic city.',
     englishPrograms: true,
+    globalRank: 268,
   },
   {
     name: 'Universität Bielefeld',
@@ -1791,6 +1821,7 @@ export const germanUniversities = [
     website: 'https://tu-dresden.de',
     description: 'One of Germany\'s largest technical universities and Excellence University.',
     englishPrograms: true,
+    globalRank: 173,
   },
   {
     name: 'Universität Leipzig',
