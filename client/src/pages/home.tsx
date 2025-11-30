@@ -284,7 +284,14 @@ export default function Home() {
                               <td className="px-2 py-3 text-center text-sm text-slate-500 dark:text-slate-400">{rowNumber}</td>
                               <td className="px-4 py-3">
                                 <div>
-                                  <div className="font-medium text-slate-900 dark:text-white text-sm" data-testid={`text-name-${university.id}`}>{university.name}</div>
+                                  <div className="flex items-center gap-2">
+                                    <span className="font-medium text-slate-900 dark:text-white text-sm" data-testid={`text-name-${university.id}`}>{university.name}</span>
+                                    {university.globalRank && (
+                                      <span className="sm:hidden inline-flex items-center justify-center px-1.5 py-0.5 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded text-xs font-semibold">
+                                        #{university.globalRank}
+                                      </span>
+                                    )}
+                                  </div>
                                   <div className="text-xs text-slate-500 dark:text-slate-400 sm:hidden">{university.city}</div>
                                 </div>
                               </td>
