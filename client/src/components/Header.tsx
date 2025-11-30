@@ -1,6 +1,6 @@
 import { useLocation, useSearch } from 'wouter';
 import { useQuery } from '@tanstack/react-query';
-import { GraduationCap, Globe, Trophy } from 'lucide-react';
+import { GraduationCap, Globe } from 'lucide-react';
 import { fetchUniversities } from '@/lib/api';
 
 const countries = [
@@ -85,24 +85,6 @@ export function Header() {
                 </a>
               </div>
             ))}
-            
-            {/* Rankings Link */}
-            <div className="flex items-center ml-auto">
-              <div className="h-4 w-px bg-slate-700"></div>
-              <a 
-                href="/rankings"
-                onClick={(e) => handleNavClick(e, '/rankings')}
-                className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium whitespace-nowrap transition-all duration-200 no-underline border-b-2 ${
-                  location === '/rankings' 
-                    ? 'text-amber-400 border-amber-400 bg-amber-500/20' 
-                    : 'text-amber-400/80 border-transparent hover:text-amber-300 hover:bg-amber-500/10 hover:border-amber-400/50'
-                }`}
-                data-testid="nav-rankings"
-              >
-                <Trophy className="w-4 h-4" />
-                <span>Ranking</span>
-              </a>
-            </div>
           </div>
         </nav>
       </div>

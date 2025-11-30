@@ -1,4 +1,4 @@
-import { Search, Calculator, Wallet, FileText, Briefcase } from 'lucide-react';
+import { Search, Calculator, Wallet, FileText, Briefcase, Trophy } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Link, useLocation } from 'wouter';
 import {
@@ -69,7 +69,7 @@ export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
           </div>
           
           {/* Tool Buttons - Uniform Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6 max-w-3xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 mt-6 max-w-4xl mx-auto">
             <Link href="/budget" className="block">
               <div 
                 className="h-12 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-blue-400 text-white rounded-lg flex items-center justify-center gap-2 px-3 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98]"
@@ -86,6 +86,15 @@ export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
               >
                 <Calculator className="w-4 h-4 text-amber-400 flex-shrink-0" />
                 <span className="truncate">Calculator</span>
+              </div>
+            </Link>
+            <Link href="/rankings" className="block">
+              <div 
+                className="h-12 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-yellow-400 text-white rounded-lg flex items-center justify-center gap-2 px-3 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98]"
+                data-testid="button-rankings"
+              >
+                <Trophy className="w-4 h-4 text-yellow-400 flex-shrink-0" />
+                <span className="truncate">Ranking</span>
               </div>
             </Link>
             <Link href="/resources" className="block">
@@ -126,6 +135,11 @@ export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
+          
+          {/* Developer Credit */}
+          <p className="text-xs text-slate-500 mt-6">
+            Developed by <span className="text-slate-400 font-medium">Iqbal Sons</span>
+          </p>
         </div>
       </div>
     </div>
