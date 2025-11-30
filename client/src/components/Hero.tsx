@@ -68,46 +68,46 @@ export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
             </div>
           </div>
           
-          {/* Tool Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 mt-4 justify-center">
-            <Link href="/budget">
+          {/* Tool Buttons - Uniform Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6 max-w-3xl mx-auto">
+            <Link href="/budget" className="block">
               <div 
-                className="w-full sm:w-56 h-14 bg-slate-900/50 hover:bg-slate-900/70 border border-white/15 hover:border-blue-400 text-white rounded-xl inline-flex items-center justify-center gap-3 px-5 text-sm font-semibold tracking-wide transition-all duration-200 cursor-pointer active:scale-[0.98]"
+                className="h-12 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-blue-400 text-white rounded-lg flex items-center justify-center gap-2 px-3 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98]"
                 data-testid="button-budget-finder"
               >
-                <Wallet className="w-5 h-5 text-blue-400" />
-                Find by Budget
+                <Wallet className="w-4 h-4 text-blue-400 flex-shrink-0" />
+                <span className="truncate">Budget</span>
               </div>
             </Link>
-            <Link href="/calculator">
+            <Link href="/calculator" className="block">
               <div 
-                className="w-full sm:w-56 h-14 bg-slate-900/50 hover:bg-slate-900/70 border border-white/15 hover:border-amber-400 text-white rounded-xl inline-flex items-center justify-center gap-3 px-5 text-sm font-semibold tracking-wide transition-all duration-200 cursor-pointer active:scale-[0.98]"
+                className="h-12 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-amber-400 text-white rounded-lg flex items-center justify-center gap-2 px-3 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98]"
                 data-testid="button-calculator-cta"
               >
-                <Calculator className="w-5 h-5 text-amber-400" />
-                Cost Calculator
+                <Calculator className="w-4 h-4 text-amber-400 flex-shrink-0" />
+                <span className="truncate">Calculator</span>
               </div>
             </Link>
-            <Link href="/resources">
+            <Link href="/resources" className="block">
               <div 
-                className="w-full sm:w-56 h-14 bg-slate-900/50 hover:bg-slate-900/70 border border-white/15 hover:border-slate-300 text-white rounded-xl inline-flex items-center justify-center gap-3 px-5 text-sm font-semibold tracking-wide transition-all duration-200 cursor-pointer active:scale-[0.98]"
+                className="h-12 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-slate-300 text-white rounded-lg flex items-center justify-center gap-2 px-3 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98]"
                 data-testid="button-resources"
               >
-                <FileText className="w-5 h-5 text-slate-300" />
-                Resources
+                <FileText className="w-4 h-4 text-slate-300 flex-shrink-0" />
+                <span className="truncate">Resources</span>
               </div>
             </Link>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <div 
-                  className="w-full sm:w-56 h-14 bg-slate-900/50 hover:bg-slate-900/70 border border-white/15 hover:border-emerald-400 text-white rounded-xl inline-flex items-center justify-center gap-3 px-5 text-sm font-semibold tracking-wide transition-all duration-200 cursor-pointer active:scale-[0.98]"
+                  className="h-12 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-emerald-400 text-white rounded-lg flex items-center justify-center gap-2 px-3 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98]"
                   data-testid="button-visa-jobs"
                 >
-                  <Briefcase className="w-5 h-5 text-emerald-400" />
-                  Visa & Jobs
+                  <Briefcase className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                  <span className="truncate">Visa & Jobs</span>
                 </div>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="center" className="w-56 bg-slate-800 border-slate-700">
+              <DropdownMenuContent align="end" className="w-48 bg-slate-800 border-slate-700">
                 {countries.map(({ name, code }) => (
                   <DropdownMenuItem 
                     key={name}
