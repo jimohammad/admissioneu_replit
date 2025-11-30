@@ -481,24 +481,24 @@ export default function ApplicationResources() {
           </div>
 
           <Tabs defaultValue="documents" className="space-y-8">
-            <TabsList className="grid w-full grid-cols-5 lg:w-auto lg:inline-flex">
-              <TabsTrigger value="documents" className="gap-2" data-testid="tab-documents">
+            <TabsList className="flex flex-wrap h-auto gap-1 p-1 w-full justify-start lg:w-auto lg:inline-flex">
+              <TabsTrigger value="documents" className="gap-2 text-xs sm:text-sm px-2 sm:px-3" data-testid="tab-documents">
                 <ClipboardList className="w-4 h-4 hidden sm:block" />
-                Documents
+                Docs
               </TabsTrigger>
-              <TabsTrigger value="blocked" className="gap-2" data-testid="tab-blocked">
+              <TabsTrigger value="blocked" className="gap-2 text-xs sm:text-sm px-2 sm:px-3" data-testid="tab-blocked">
                 <Landmark className="w-4 h-4 hidden sm:block" />
-                Blocked Account
+                Blocked
               </TabsTrigger>
-              <TabsTrigger value="motivation" className="gap-2" data-testid="tab-motivation">
+              <TabsTrigger value="motivation" className="gap-2 text-xs sm:text-sm px-2 sm:px-3" data-testid="tab-motivation">
                 <FileText className="w-4 h-4 hidden sm:block" />
-                Letter of Intent
+                Letter
               </TabsTrigger>
-              <TabsTrigger value="salary" className="gap-2" data-testid="tab-salary">
+              <TabsTrigger value="salary" className="gap-2 text-xs sm:text-sm px-2 sm:px-3" data-testid="tab-salary">
                 <CreditCard className="w-4 h-4 hidden sm:block" />
-                Salary Certificate
+                Salary
               </TabsTrigger>
-              <TabsTrigger value="portals" className="gap-2" data-testid="tab-portals">
+              <TabsTrigger value="portals" className="gap-2 text-xs sm:text-sm px-2 sm:px-3" data-testid="tab-portals">
                 <Globe className="w-4 h-4 hidden sm:block" />
                 Portals
               </TabsTrigger>
