@@ -49,6 +49,30 @@ const countryData: Record<string, {
     documents?: string[];
   }>;
 }> = {
+  'Finland': {
+    flag: '🇫🇮',
+    simCards: [
+      { name: 'DNA', price: '€10-25/month', data: '10-50GB', network: 'DNA', highlight: true, notes: 'Good coverage, student plans available' },
+      { name: 'Elisa', price: '€15-30/month', data: '20-100GB', network: 'Elisa', highlight: true, notes: 'Largest network, best coverage' },
+      { name: 'Telia', price: '€15-30/month', data: '15-50GB', network: 'Telia', notes: 'Reliable network, good plans' },
+      { name: 'Moi', price: '€10-20/month', data: '10-30GB', network: 'DNA', notes: 'Budget MVNO option' },
+      { name: 'Saunalahti', price: '€10-20/month', data: '10-30GB', network: 'Elisa', notes: 'Elisa subsidiary, good value' },
+    ],
+    banks: [
+      { name: 'N26', type: 'Digital Bank', monthlyFee: '€0', highlight: true, pros: ['Easy signup', 'No Finnish needed', 'Multi-currency'], website: 'https://n26.com' },
+      { name: 'Revolut', type: 'Digital Bank', monthlyFee: '€0', highlight: true, pros: ['Instant setup', 'Multi-currency', 'Great app'], website: 'https://revolut.com' },
+      { name: 'Nordea', type: 'Traditional', monthlyFee: '€0 (students)', pros: ['Largest Nordic bank', 'Student accounts free', 'Finnish IBAN'] },
+      { name: 'OP Financial', type: 'Traditional', monthlyFee: '€0 (students)', pros: ['Cooperative bank', 'Good student offers', 'Wide branch network'] },
+      { name: 'Danske Bank', type: 'Traditional', monthlyFee: '€0 (students)', pros: ['International bank', 'English support', 'Student packages'] },
+    ],
+    essentials: [
+      { task: 'Register at DVV (Digital and Population Data)', deadline: 'Within 1 week', description: 'Register your address and get Finnish personal ID (henkilötunnus) if staying 1+ year.', documents: ['Passport', 'Proof of accommodation', 'University acceptance letter'] },
+      { task: 'Residence Permit', deadline: 'Before arrival (non-EU)', description: 'Apply online at Migri. Students need proof of funds (€560/month) and insurance.', documents: ['Passport', 'University letter', 'Financial proof', 'Health insurance'] },
+      { task: 'KELA Registration', deadline: 'After Finnish ID', description: 'Social Insurance Institution. EU citizens may be eligible for Finnish healthcare.', documents: ['Finnish ID', 'EU health card or insurance'] },
+      { task: 'Frank Student App', deadline: 'At university', description: 'Digital student ID with discounts on food, transport, and services.' },
+      { task: 'HSL Travel Card', deadline: 'First week (Helsinki)', description: 'Helsinki region transport. Student prices available with valid ID.' },
+    ],
+  },
   'Czech Republic': {
     flag: '🇨🇿',
     simCards: [

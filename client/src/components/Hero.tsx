@@ -11,6 +11,7 @@ import heroBg from '@assets/stock_images/modern_glass_buildin_0e142d1a.jpg';
 
 const countries = [
   { name: 'Czech Republic', code: 'CZ' },
+  { name: 'Finland', code: 'FI' },
   { name: 'France', code: 'FR' },
   { name: 'Germany', code: 'DE' },
   { name: 'Hungary', code: 'HU' },

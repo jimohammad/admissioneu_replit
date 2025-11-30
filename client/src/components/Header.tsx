@@ -5,6 +5,7 @@ import { fetchUniversities } from '@/lib/api';
 
 const countries = [
   { name: 'Czech Republic', flag: '🇨🇿', code: 'CZ' },
+  { name: 'Finland', flag: '🇫🇮', code: 'FI' },
   { name: 'France', flag: '🇫🇷', code: 'FR' },
   { name: 'Germany', flag: '🇩🇪', code: 'DE' },
   { name: 'Hungary', flag: '🇭🇺', code: 'HU' },
@@ -47,7 +48,7 @@ export function Header() {
           
           <div className="flex items-center gap-1 text-xs text-slate-400">
             <Globe className="w-4 h-4" />
-            <span>8 Countries • {universities.length} Universities</span>
+            <span>9 Countries • {universities.length} Universities</span>
           </div>
         </div>
         
