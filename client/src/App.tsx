@@ -11,6 +11,7 @@ import BudgetFinder from "@/pages/budget-finder";
 import CountryInsights from "@/pages/country-insights";
 import ApplicationResources from "@/pages/application-resources";
 import Rankings from "@/pages/rankings";
+import ArrivalGuide from "@/pages/arrival-guide";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -22,6 +23,7 @@ function Router() {
       <Route path="/insights/:country" component={CountryInsights} />
       <Route path="/resources" component={ApplicationResources} />
       <Route path="/rankings" component={Rankings} />
+      <Route path="/arrival-guide" component={ArrivalGuide} />
       <Route component={NotFound} />
     </Switch>
   );
