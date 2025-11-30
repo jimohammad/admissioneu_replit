@@ -1,14 +1,6 @@
 import { useLocation, useSearch } from 'wouter';
 import { useQuery } from '@tanstack/react-query';
-import { GraduationCap, Globe, ChevronDown, Briefcase } from 'lucide-react';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+import { GraduationCap, Globe } from 'lucide-react';
 import { fetchUniversities } from '@/lib/api';
 
 const countries = [
@@ -93,47 +85,6 @@ export function Header() {
                 </a>
               </div>
             ))}
-            
-            {/* Visa & Jobs Dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button
-                  className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium whitespace-nowrap transition-all duration-200 border-b-2 cursor-pointer ml-auto ${
-                    location.startsWith('/insights') 
-                      ? 'text-white border-amber-400 bg-amber-500/20' 
-                      : 'text-slate-400 border-transparent hover:text-blue-300 hover:bg-blue-500/10 hover:border-blue-400/50'
-                  }`}
-                  data-testid="nav-visa-jobs"
-                >
-                  <Briefcase className="w-4 h-4" />
-                  Visa & Jobs
-                  <ChevronDown className="w-4 h-4" />
-                </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56 bg-slate-800 border-slate-700">
-                <DropdownMenuLabel className="text-slate-400">Select Country</DropdownMenuLabel>
-                <DropdownMenuSeparator className="bg-slate-700" />
-                {countries.map(({ name, code }) => (
-                  <DropdownMenuItem 
-                    key={name}
-                    onClick={() => setLocation(`/insights/${name}`)}
-                    className={`cursor-pointer ${
-                      location === `/insights/${name}` 
-                        ? 'text-amber-400 bg-slate-700/50' 
-                        : 'text-slate-300 hover:text-white focus:text-white hover:bg-slate-700/50 focus:bg-slate-700/50'
-                    }`}
-                    data-testid={`nav-visa-${name.toLowerCase()}`}
-                  >
-                    <img 
-                      src={`https://flagcdn.com/w40/${code.toLowerCase()}.png`} 
-                      alt="" 
-                      className="w-5 h-3.5 object-cover rounded-sm flex-shrink-0" 
-                    />
-                    <span>{name}</span>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
           </div>
         </nav>
       </div>

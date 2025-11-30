@@ -1,7 +1,23 @@
-import { Search, Calculator, Wallet, FileText } from 'lucide-react';
+import { Search, Calculator, Wallet, FileText, Briefcase } from 'lucide-react';
 import { Input } from '@/components/ui/input';
-import { Link } from 'wouter';
+import { Link, useLocation } from 'wouter';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import heroBg from '@assets/stock_images/modern_glass_buildin_0e142d1a.jpg';
+
+const countries = [
+  { name: 'France', code: 'FR' },
+  { name: 'Germany', code: 'DE' },
+  { name: 'Hungary', code: 'HU' },
+  { name: 'Italy', code: 'IT' },
+  { name: 'Netherlands', code: 'NL' },
+  { name: 'Poland', code: 'PL' },
+  { name: 'Spain', code: 'ES' },
+];
 
 interface HeroProps {
   searchQuery: string;
@@ -9,6 +25,7 @@ interface HeroProps {
 }
 
 export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
+  const [, setLocation] = useLocation();
   
   return (
     <div className="relative w-full min-h-[520px] flex items-center justify-center bg-slate-900">
@@ -80,6 +97,34 @@ export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
                 Resources
               </div>
             </Link>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <div 
+                  className="w-full sm:w-56 h-14 bg-slate-900/50 hover:bg-slate-900/70 border border-white/15 hover:border-emerald-400 text-white rounded-xl inline-flex items-center justify-center gap-3 px-5 text-sm font-semibold tracking-wide transition-all duration-200 cursor-pointer active:scale-[0.98]"
+                  data-testid="button-visa-jobs"
+                >
+                  <Briefcase className="w-5 h-5 text-emerald-400" />
+                  Visa & Jobs
+                </div>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="center" className="w-56 bg-slate-800 border-slate-700">
+                {countries.map(({ name, code }) => (
+                  <DropdownMenuItem 
+                    key={name}
+                    onClick={() => setLocation(`/insights/${name}`)}
+                    className="cursor-pointer text-slate-300 hover:text-white focus:text-white hover:bg-slate-700/50 focus:bg-slate-700/50"
+                    data-testid={`nav-visa-${name.toLowerCase()}`}
+                  >
+                    <img 
+                      src={`https://flagcdn.com/w40/${code.toLowerCase()}.png`} 
+                      alt="" 
+                      className="w-5 h-3.5 object-cover rounded-sm flex-shrink-0 mr-2" 
+                    />
+                    <span>{name}</span>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       </div>
