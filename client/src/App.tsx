@@ -9,6 +9,7 @@ import Calculator from "@/pages/calculator";
 import BudgetFinder from "@/pages/budget-finder";
 import CountryInsights from "@/pages/country-insights";
 import ApplicationResources from "@/pages/application-resources";
+import Rankings from "@/pages/rankings";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -19,6 +20,7 @@ function Router() {
       <Route path="/budget" component={BudgetFinder} />
       <Route path="/insights/:country" component={CountryInsights} />
       <Route path="/resources" component={ApplicationResources} />
+      <Route path="/rankings" component={Rankings} />
       <Route component={NotFound} />
     </Switch>
   );
