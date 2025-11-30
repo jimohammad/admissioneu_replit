@@ -49,7 +49,7 @@ export function Header() {
             className="flex items-center gap-3 text-white hover:text-blue-400 transition-colors no-underline"
           >
             <GraduationCap className="w-10 h-10 text-amber-400" />
-            <span className="font-bold text-2xl tracking-tight">EuroUni</span>
+            <span className="font-bold text-2xl tracking-tight">AdmissionEU</span>
           </a>
           
           <div className="flex items-center gap-1 text-xs text-slate-400">

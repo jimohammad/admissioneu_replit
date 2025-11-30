@@ -50,8 +50,8 @@ async function main() {
   const { data: user } = await octokit.users.getAuthenticated();
   console.log(`✅ Authenticated as: ${user.login}`);
   
-  const repoName = 'eurouni';
-  const repoDescription = 'EuroUni - European University Directory with 645+ universities across 7 countries';
+  const repoName = 'admissioneu';
+  const repoDescription = 'AdmissionEU - European University Directory with 645+ universities across 7 countries';
   
   // Check if repo exists
   let repoExists = false;
@@ -86,7 +86,7 @@ async function main() {
   console.log(`git remote remove origin 2>/dev/null || true`);
   console.log(`git remote add origin https://github.com/${user.login}/${repoName}.git`);
   console.log(`git add .`);
-  console.log(`git commit -m "Initial commit - EuroUni European University Directory"`);
+  console.log(`git commit -m "Initial commit - AdmissionEU European University Directory"`);
   console.log(`git branch -M main`);
   console.log(`git push -u origin main\n`);
 }

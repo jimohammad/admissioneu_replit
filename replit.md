@@ -1,8 +1,8 @@
-# EuroUni - European University Directory
+# AdmissionEU - European University Directory
 
 ## Overview
 
-EuroUni is a comprehensive web application that serves as a directory of accredited universities across Europe. The platform allows users to explore, search, and filter universities in Spain, Germany, Hungary, Italy, Poland, Netherlands, and France, with information about programs, languages, admission periods, and institutional details. The application provides a modern, responsive interface for discovering educational opportunities across European institutions.
+AdmissionEU (admissionEU.com) is a comprehensive web application that serves as a directory of accredited universities across Europe. The platform allows users to explore, search, and filter universities in Spain, Germany, Hungary, Italy, Poland, Netherlands, and France, with information about programs, languages, admission periods, and institutional details. The application provides a modern, responsive interface for discovering educational opportunities across European institutions.
 
 ## User Preferences
 

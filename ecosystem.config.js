@@ -1,6 +1,6 @@
 module.exports = {
   apps: [{
-    name: 'eurouni',
+    name: 'admissioneu',
     script: 'dist/index.cjs',
     instances: 1,
     autorestart: true,

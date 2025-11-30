@@ -1,8 +1,8 @@
-# EuroUni Deployment Guide for Hostinger
+# AdmissionEU Deployment Guide for Hostinger
 
 ## Important: Hosting Plan Requirements
 
-EuroUni is a **full-stack application** with:
+AdmissionEU is a **full-stack application** with:
 - Node.js/Express backend
 - React frontend
 - PostgreSQL database
@@ -70,16 +70,16 @@ npm install -g pm2
 Option A - Using Git:
 ```bash
 cd /var/www
-git clone your-repository-url eurouni
-cd eurouni
+git clone your-repository-url admissioneu
+cd admissioneu
 ```
 
 Option B - Using SFTP:
-- Upload all project files to `/var/www/eurouni/`
+- Upload all project files to `/var/www/admissioneu/`
 
 ### Step 5: Install Dependencies & Build
 ```bash
-cd /var/www/eurouni
+cd /var/www/admissioneu
 npm install
 npm run build
 ```
@@ -105,7 +105,7 @@ npm run db:push
 ### Step 8: Start Application with PM2
 ```bash
 # Start the server
-pm2 start dist/index.cjs --name "eurouni"
+pm2 start dist/index.cjs --name "admissioneu"
 
 # Save PM2 configuration
 pm2 save
@@ -116,14 +116,14 @@ pm2 startup
 
 ### Step 9: Configure Nginx Reverse Proxy
 ```bash
-sudo nano /etc/nginx/sites-available/eurouni
+sudo nano /etc/nginx/sites-available/admissioneu
 ```
 
 Add this configuration:
 ```nginx
 server {
     listen 80;
-    server_name yourdomain.com www.yourdomain.com;
+    server_name admissioneu.com www.admissioneu.com;
 
     location / {
         proxy_pass http://localhost:3000;
@@ -141,7 +141,7 @@ server {
 
 Enable the site:
 ```bash
-sudo ln -s /etc/nginx/sites-available/eurouni /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/admissioneu /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl restart nginx
 ```
@@ -149,7 +149,7 @@ sudo systemctl restart nginx
 ### Step 10: Set Up SSL (Let's Encrypt)
 ```bash
 sudo apt install certbot python3-certbot-nginx
-sudo certbot --nginx -d yourdomain.com -d www.yourdomain.com
+sudo certbot --nginx -d admissioneu.com -d www.admissioneu.com
 ```
 
 ---
@@ -161,13 +161,13 @@ sudo certbot --nginx -d yourdomain.com -d www.yourdomain.com
 pm2 status
 
 # View logs
-pm2 logs eurouni
+pm2 logs admissioneu
 
 # Restart app
-pm2 restart eurouni
+pm2 restart admissioneu
 
 # Stop app
-pm2 stop eurouni
+pm2 stop admissioneu
 
 # Monitor resources
 pm2 monit
@@ -194,7 +194,7 @@ pm2 monit
 
 ### App not starting?
 ```bash
-pm2 logs eurouni --lines 100
+pm2 logs admissioneu --lines 100
 ```
 
 ### Port already in use?
@@ -212,7 +212,7 @@ kill -9 <PID>
 
 ### 502 Bad Gateway?
 - Check if PM2 is running: `pm2 status`
-- Restart: `pm2 restart eurouni`
+- Restart: `pm2 restart admissioneu`
 - Check Nginx config: `sudo nginx -t`
 
 ---
@@ -240,11 +240,11 @@ Upload these folders/files to your VPS:
 Save as `deploy.sh` and run on VPS:
 ```bash
 #!/bin/bash
-cd /var/www/eurouni
+cd /var/www/admissioneu
 git pull origin main
 npm install
 npm run build
-pm2 restart eurouni
+pm2 restart admissioneu
 echo "Deployment complete!"
 ```
 
