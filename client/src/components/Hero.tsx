@@ -120,15 +120,16 @@ export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
             </Link>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <div 
+                <button 
+                  type="button"
                   className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-emerald-400 text-white rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap"
                   data-testid="button-visa-jobs"
                 >
                   <Briefcase className="w-4 h-4 text-emerald-400 flex-shrink-0" />
                   <span>Visa & Jobs</span>
-                </div>
+                </button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-48 bg-slate-800 border-slate-700">
+              <DropdownMenuContent align="center" sideOffset={8} className="w-48 bg-slate-800 border-slate-700 z-50">
                 {countries.map(({ name, code }) => (
                   <DropdownMenuItem 
                     key={name}
