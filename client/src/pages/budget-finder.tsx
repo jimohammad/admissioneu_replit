@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { 
   ArrowLeft,
   Euro,
@@ -17,9 +18,34 @@ import {
   AlertCircle,
   TrendingDown,
   Building2,
-  ExternalLink
+  ExternalLink,
+  Globe
 } from 'lucide-react';
 import type { University, CostOfLiving } from '@shared/schema';
+
+const currencies = [
+  { code: 'EUR', symbol: '€', name: 'Euro', rate: 1 },
+  { code: 'USD', symbol: '$', name: 'US Dollar', rate: 1.09 },
+  { code: 'GBP', symbol: '£', name: 'British Pound', rate: 0.86 },
+  { code: 'INR', symbol: '₹', name: 'Indian Rupee', rate: 91.5 },
+  { code: 'PKR', symbol: '₨', name: 'Pakistani Rupee', rate: 303 },
+  { code: 'BDT', symbol: '৳', name: 'Bangladeshi Taka', rate: 119 },
+  { code: 'CNY', symbol: '¥', name: 'Chinese Yuan', rate: 7.9 },
+  { code: 'NGN', symbol: '₦', name: 'Nigerian Naira', rate: 1650 },
+  { code: 'EGP', symbol: 'E£', name: 'Egyptian Pound', rate: 53 },
+  { code: 'TRY', symbol: '₺', name: 'Turkish Lira', rate: 35 },
+  { code: 'BRL', symbol: 'R$', name: 'Brazilian Real', rate: 5.4 },
+  { code: 'MXN', symbol: 'MX$', name: 'Mexican Peso', rate: 18.5 },
+  { code: 'VND', symbol: '₫', name: 'Vietnamese Dong', rate: 27000 },
+  { code: 'IDR', symbol: 'Rp', name: 'Indonesian Rupiah', rate: 17200 },
+  { code: 'PHP', symbol: '₱', name: 'Philippine Peso', rate: 62 },
+  { code: 'THB', symbol: '฿', name: 'Thai Baht', rate: 38 },
+  { code: 'MAD', symbol: 'د.م.', name: 'Moroccan Dirham', rate: 10.8 },
+  { code: 'SAR', symbol: 'ر.س', name: 'Saudi Riyal', rate: 4.1 },
+  { code: 'AED', symbol: 'د.إ', name: 'UAE Dirham', rate: 4.0 },
+  { code: 'KRW', symbol: '₩', name: 'South Korean Won', rate: 1450 },
+  { code: 'JPY', symbol: '¥', name: 'Japanese Yen', rate: 163 },
+];
 
 const countryFlags: Record<string, string> = {
   'France': '🇫🇷',
@@ -49,6 +75,18 @@ export default function BudgetFinder() {
   const [budgetInput, setBudgetInput] = useState<string>('1500');
   const [isEU, setIsEU] = useState<boolean>(true);
   const [housingType, setHousingType] = useState<'shared' | 'solo'>('shared');
+  const [selectedCurrency, setSelectedCurrency] = useState<string>('EUR');
+
+  const currentCurrency = currencies.find(c => c.code === selectedCurrency) || currencies[0];
+  
+  const convertToLocal = (eurAmount: number) => {
+    return Math.round(eurAmount * currentCurrency.rate);
+  };
+  
+  const formatLocal = (eurAmount: number) => {
+    const converted = convertToLocal(eurAmount);
+    return `${currentCurrency.symbol}${converted.toLocaleString()}`;
+  };
 
   const { data: universities = [], isLoading: loadingUnis } = useQuery<University[]>({
     queryKey: ['/api/universities'],
@@ -213,6 +251,11 @@ export default function BudgetFinder() {
               <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-lg">
                 <div className="text-sm text-muted-foreground mb-1">Annual Budget</div>
                 <div className="text-2xl font-bold text-primary">€{(monthlyBudget * 12).toLocaleString()}</div>
+                {selectedCurrency !== 'EUR' && (
+                  <div className="text-sm text-muted-foreground mt-1">
+                    ≈ {formatLocal(monthlyBudget * 12)}
+                  </div>
+                )}
               </div>
 
               {/* Student Status */}
@@ -259,6 +302,34 @@ export default function BudgetFinder() {
                     Solo Apartment
                   </Button>
                 </div>
+              </div>
+
+              {/* Local Currency */}
+              <div className="space-y-3">
+                <label className="text-sm font-medium flex items-center gap-2">
+                  <Globe className="w-4 h-4 text-primary" />
+                  View in Local Currency
+                </label>
+                <Select value={selectedCurrency} onValueChange={setSelectedCurrency}>
+                  <SelectTrigger className="w-full" data-testid="select-currency">
+                    <SelectValue placeholder="Select currency" />
+                  </SelectTrigger>
+                  <SelectContent className="max-h-60">
+                    {currencies.map(currency => (
+                      <SelectItem key={currency.code} value={currency.code}>
+                        <span className="flex items-center gap-2">
+                          <span className="font-mono">{currency.symbol}</span>
+                          <span>{currency.name}</span>
+                        </span>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                {selectedCurrency !== 'EUR' && (
+                  <p className="text-xs text-muted-foreground">
+                    1 EUR = {currentCurrency.rate.toLocaleString()} {currentCurrency.code}
+                  </p>
+                )}
               </div>
 
               {/* Results Summary */}
@@ -346,19 +417,24 @@ export default function BudgetFinder() {
                             <div className="sm:text-right space-y-2">
                               <div>
                                 <div className="text-2xl font-bold text-primary">€{monthlyTotal}/mo</div>
+                                {selectedCurrency !== 'EUR' && (
+                                  <div className="text-sm text-muted-foreground">
+                                    ≈ {formatLocal(monthlyTotal)}/mo
+                                  </div>
+                                )}
                                 <div className="text-xs text-muted-foreground">Total monthly cost</div>
                               </div>
                               <div className="flex flex-wrap gap-2 text-xs">
                                 <span className="px-2 py-1 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 rounded">
-                                  Living: €{monthlyLiving}/mo
+                                  Living: €{monthlyLiving}/mo {selectedCurrency !== 'EUR' && <span className="opacity-75">({formatLocal(monthlyLiving)})</span>}
                                 </span>
                                 <span className="px-2 py-1 bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400 rounded">
-                                  Tuition: €{Math.round(annualTuition/12)}/mo
+                                  Tuition: €{Math.round(annualTuition/12)}/mo {selectedCurrency !== 'EUR' && <span className="opacity-75">({formatLocal(Math.round(annualTuition/12))})</span>}
                                 </span>
                               </div>
                               {savings > 0 && (
                                 <div className="text-xs text-emerald-600 font-medium">
-                                  ✓ €{Math.round(savings/12)}/mo under budget
+                                  ✓ €{Math.round(savings/12)}/mo under budget {selectedCurrency !== 'EUR' && `(${formatLocal(Math.round(savings/12))})`}
                                 </div>
                               )}
                             </div>
