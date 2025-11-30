@@ -69,10 +69,10 @@ export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
           </div>
           
           {/* Tool Buttons - Uniform Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 mt-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mt-6 w-full max-w-6xl mx-auto px-2">
             <Link href="/budget" className="block">
               <div 
-                className="h-14 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-blue-400 text-white rounded-lg flex items-center justify-center gap-2 px-3 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98]"
+                className="h-16 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-blue-400 text-white rounded-xl flex items-center justify-center gap-2.5 px-4 text-base font-medium transition-all duration-200 cursor-pointer active:scale-[0.98]"
                 data-testid="button-budget-finder"
               >
                 <Wallet className="w-5 h-5 text-blue-400 flex-shrink-0" />
@@ -81,7 +81,7 @@ export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
             </Link>
             <Link href="/calculator" className="block">
               <div 
-                className="h-14 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-amber-400 text-white rounded-lg flex items-center justify-center gap-2 px-3 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98]"
+                className="h-16 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-amber-400 text-white rounded-xl flex items-center justify-center gap-2.5 px-4 text-base font-medium transition-all duration-200 cursor-pointer active:scale-[0.98]"
                 data-testid="button-calculator-cta"
               >
                 <Calculator className="w-5 h-5 text-amber-400 flex-shrink-0" />
@@ -90,7 +90,7 @@ export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
             </Link>
             <Link href="/rankings" className="block">
               <div 
-                className="h-14 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-yellow-400 text-white rounded-lg flex items-center justify-center gap-2 px-3 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98]"
+                className="h-16 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-yellow-400 text-white rounded-xl flex items-center justify-center gap-2.5 px-4 text-base font-medium transition-all duration-200 cursor-pointer active:scale-[0.98]"
                 data-testid="button-rankings"
               >
                 <Trophy className="w-5 h-5 text-yellow-400 flex-shrink-0" />
@@ -99,7 +99,7 @@ export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
             </Link>
             <Link href="/arrival-guide" className="block">
               <div 
-                className="h-14 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-cyan-400 text-white rounded-lg flex items-center justify-center gap-2 px-3 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98]"
+                className="h-16 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-cyan-400 text-white rounded-xl flex items-center justify-center gap-2.5 px-4 text-base font-medium transition-all duration-200 cursor-pointer active:scale-[0.98]"
                 data-testid="button-arrival-guide"
               >
                 <Plane className="w-5 h-5 text-cyan-400 flex-shrink-0" />
@@ -108,7 +108,7 @@ export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
             </Link>
             <Link href="/resources" className="block">
               <div 
-                className="h-14 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-slate-300 text-white rounded-lg flex items-center justify-center gap-2 px-3 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98]"
+                className="h-16 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-slate-300 text-white rounded-xl flex items-center justify-center gap-2.5 px-4 text-base font-medium transition-all duration-200 cursor-pointer active:scale-[0.98]"
                 data-testid="button-resources"
               >
                 <FileText className="w-5 h-5 text-slate-300 flex-shrink-0" />
@@ -118,7 +118,7 @@ export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <div 
-                  className="h-14 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-emerald-400 text-white rounded-lg flex items-center justify-center gap-2 px-3 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98]"
+                  className="h-16 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-emerald-400 text-white rounded-xl flex items-center justify-center gap-2.5 px-4 text-base font-medium transition-all duration-200 cursor-pointer active:scale-[0.98]"
                   data-testid="button-visa-jobs"
                 >
                   <Briefcase className="w-5 h-5 text-emerald-400 flex-shrink-0" />
