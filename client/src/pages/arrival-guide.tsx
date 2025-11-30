@@ -49,6 +49,30 @@ const countryData: Record<string, {
     documents?: string[];
   }>;
 }> = {
+  'Czech Republic': {
+    flag: '🇨🇿',
+    simCards: [
+      { name: 'Vodafone CZ', price: '300-500 CZK/month', data: '10-30GB', network: 'Vodafone', highlight: true, notes: 'Best coverage, student discounts' },
+      { name: 'T-Mobile CZ', price: '400-600 CZK/month', data: '15-40GB', network: 'T-Mobile', highlight: true, notes: 'Reliable network, good data' },
+      { name: 'O2 CZ', price: '350-550 CZK/month', data: '10-30GB', network: 'O2', notes: 'Third major carrier, competitive' },
+      { name: 'Kaktus', price: '200-400 CZK/month', data: '5-20GB', network: 'T-Mobile', notes: 'Budget MVNO option' },
+      { name: 'Sazkamobil', price: '249 CZK/month', data: '4GB', network: 'O2', notes: 'Very affordable prepaid' },
+    ],
+    banks: [
+      { name: 'Revolut', type: 'Digital Bank', monthlyFee: '€0', highlight: true, pros: ['CZK account', 'No documents needed', 'Multi-currency'], website: 'https://revolut.com' },
+      { name: 'Wise', type: 'Money Account', monthlyFee: '€0', highlight: true, pros: ['Great for transfers', 'Low fees', 'Multi-currency'], website: 'https://wise.com' },
+      { name: 'Fio Banka', type: 'Traditional', monthlyFee: '0 CZK', highlight: true, pros: ['Completely free', 'Free ATM withdrawals', 'English support'] },
+      { name: 'ČSOB', type: 'Traditional', monthlyFee: '0 CZK (students)', pros: ['Large bank', 'Student accounts free', 'Branch network'] },
+      { name: 'Česká spořitelna', type: 'Traditional', monthlyFee: '0 CZK (students)', pros: ['Largest Czech bank', 'George app', 'Student offers'] },
+    ],
+    essentials: [
+      { task: 'Temporary Residence Permit', deadline: 'Within 3 days of arrival', description: 'Non-EU students must report at Foreign Police within 3 working days.', documents: ['Passport', 'Visa', 'Proof of accommodation', 'Photos'] },
+      { task: 'Health Insurance', deadline: 'Before arrival', description: 'VZP or private insurance. EU students use EHIC. ~500-1500 CZK/month for non-EU.', documents: ['Passport', 'Enrollment letter'] },
+      { task: 'Student ISIC Card', deadline: 'At university', description: 'International student ID with discounts on transport, museums, and more.' },
+      { task: 'Lítačka Transport Card', deadline: 'First week in Prague', description: 'Prague transport pass. Students get 50% discount with valid university ID.' },
+      { task: 'Bank Account', deadline: 'First 2 weeks', description: 'Fio Banka offers free accounts for everyone including foreigners.' },
+    ],
+  },
   'Germany': {
     flag: '🇩🇪',
     simCards: [
