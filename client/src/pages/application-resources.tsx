@@ -20,7 +20,10 @@ import {
   Shield,
   BookOpen,
   Users,
-  ClipboardList
+  ClipboardList,
+  Landmark,
+  Lock,
+  AlertTriangle
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
@@ -122,6 +125,148 @@ const visaDocuments = [
   { name: 'Visa Application Form', required: true, description: 'Embassy-specific forms' },
   { name: 'VFS Appointment Letter', required: true, description: 'Confirmation of visa appointment booking at VFS Global or embassy' },
   { name: 'Previous Visa Copies', required: false, description: 'If you have traveled before' },
+];
+
+const blockedAccountProviders = [
+  {
+    name: 'Expatrio',
+    country: 'Germany',
+    flag: '🇩🇪',
+    website: 'https://www.expatrio.com',
+    minDeposit: '€11,904',
+    monthlyRelease: '€992/month',
+    setupFee: '€49',
+    processingTime: '1-3 days',
+    features: ['Fast digital process', 'Mobile app', 'Health insurance bundle', 'English support'],
+    highlight: true,
+  },
+  {
+    name: 'Fintiba',
+    country: 'Germany',
+    flag: '🇩🇪',
+    website: 'https://www.fintiba.com',
+    minDeposit: '€11,904',
+    monthlyRelease: '€992/month',
+    setupFee: '€89',
+    processingTime: '2-5 days',
+    features: ['Trusted provider', 'Insurance options', 'Visa-compliant', 'Good support'],
+    highlight: true,
+  },
+  {
+    name: 'Deutsche Bank',
+    country: 'Germany',
+    flag: '🇩🇪',
+    website: 'https://www.deutsche-bank.de',
+    minDeposit: '€11,904',
+    monthlyRelease: '€992/month',
+    setupFee: '€0 (account fees apply)',
+    processingTime: '2-4 weeks',
+    features: ['Traditional bank', 'Physical presence', 'Full banking services'],
+    highlight: false,
+  },
+  {
+    name: 'Coracle (for Austria)',
+    country: 'Austria',
+    flag: '🇦🇹',
+    website: 'https://www.coracle.de',
+    minDeposit: '€12,768',
+    monthlyRelease: '€1,064/month',
+    setupFee: '€100',
+    processingTime: '3-5 days',
+    features: ['Austria-compliant', 'Digital process', 'English support'],
+    highlight: true,
+  },
+];
+
+const blockedAccountRequirements = [
+  {
+    country: 'Germany',
+    flag: '🇩🇪',
+    required: 'Mandatory',
+    amount: '€11,904/year (€992/month)',
+    description: 'Sperrkonto (blocked account) is mandatory for all non-EU students applying for a German student visa. Money is released monthly to cover living expenses.',
+    notes: 'Amount updated annually by German government. For 2024/2025, it is €992/month × 12 months.',
+  },
+  {
+    country: 'Austria',
+    flag: '🇦🇹',
+    required: 'Mandatory',
+    amount: '€12,768/year (€1,064/month)',
+    description: 'Similar to Germany, Austria requires non-EU students to prove sufficient funds through a blocked account.',
+    notes: 'Can also show scholarship proof or sponsor guarantee as alternatives.',
+  },
+  {
+    country: 'Netherlands',
+    flag: '🇳🇱',
+    required: 'Proof of Funds',
+    amount: '€13,176/year',
+    description: 'Not specifically a blocked account, but proof of sufficient funds is required. Bank statement or scholarship letter accepted.',
+    notes: 'Amount may vary. Check with IND (immigration) for current requirements.',
+  },
+  {
+    country: 'France',
+    flag: '🇫🇷',
+    required: 'Proof of Funds',
+    amount: '€615/month minimum',
+    description: 'Proof of financial resources required. Can be bank statement, sponsor letter, or scholarship.',
+    notes: 'Campus France may require additional documentation.',
+  },
+  {
+    country: 'Italy',
+    flag: '🇮🇹',
+    required: 'Proof of Funds',
+    amount: '€6,000-8,000/year',
+    description: 'Financial guarantee required. Bank statement, scholarship, or sponsor letter accepted.',
+    notes: 'Requirements vary by consulate. Check specific embassy requirements.',
+  },
+  {
+    country: 'Spain',
+    flag: '🇪🇸',
+    required: 'Proof of Funds',
+    amount: '€600/month (IPREM)',
+    description: 'Based on IPREM indicator. Bank statement or sponsor letter showing sufficient funds.',
+    notes: 'Some consulates prefer funds in a Spanish bank account.',
+  },
+  {
+    country: 'Poland',
+    flag: '🇵🇱',
+    required: 'Proof of Funds',
+    amount: '€700/month',
+    description: 'Proof of financial means required. Bank statement or scholarship letter accepted.',
+    notes: 'Lower cost of living means lower financial requirements.',
+  },
+  {
+    country: 'Czech Republic',
+    flag: '🇨🇿',
+    required: 'Proof of Funds',
+    amount: 'CZK 85,800/year (~€3,500)',
+    description: 'Proof of financial means required for visa. Bank statement with sufficient balance.',
+    notes: 'Relatively low financial requirement compared to Western Europe.',
+  },
+  {
+    country: 'Hungary',
+    flag: '🇭🇺',
+    required: 'Proof of Funds',
+    amount: '€5,000-6,000/year',
+    description: 'Financial proof required. Scholarship, bank statement, or sponsor letter.',
+    notes: 'Stipendium Hungaricum scholarship covers all costs if awarded.',
+  },
+  {
+    country: 'Finland',
+    flag: '🇫🇮',
+    required: 'Mandatory',
+    amount: '€6,720/year (€560/month)',
+    description: 'Proof of funds required for residence permit. Bank statement or scholarship letter.',
+    notes: 'Must show funds available for entire study period or first year.',
+  },
+  {
+    country: 'Portugal',
+    flag: '🇵🇹',
+    required: 'Proof of Funds',
+    amount: '€760/month (minimum wage)',
+    description: 'Financial proof required for visa. Bank statement or sponsor documentation.',
+    notes: 'Relatively affordable compared to other Western European countries.',
+  },
 ];
 
 const sampleMotivationLetter = `[Your Full Name]
@@ -336,10 +481,14 @@ export default function ApplicationResources() {
           </div>
 
           <Tabs defaultValue="documents" className="space-y-8">
-            <TabsList className="grid w-full grid-cols-4 lg:w-auto lg:inline-flex">
+            <TabsList className="grid w-full grid-cols-5 lg:w-auto lg:inline-flex">
               <TabsTrigger value="documents" className="gap-2" data-testid="tab-documents">
                 <ClipboardList className="w-4 h-4 hidden sm:block" />
                 Documents
+              </TabsTrigger>
+              <TabsTrigger value="blocked" className="gap-2" data-testid="tab-blocked">
+                <Landmark className="w-4 h-4 hidden sm:block" />
+                Blocked Account
               </TabsTrigger>
               <TabsTrigger value="motivation" className="gap-2" data-testid="tab-motivation">
                 <FileText className="w-4 h-4 hidden sm:block" />
@@ -431,6 +580,135 @@ export default function ApplicationResources() {
                         <li>• Check specific university requirements as they may vary</li>
                         <li>• Apostille or notarization may be required for some documents</li>
                       </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="blocked" className="space-y-8">
+              <Card className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/30 border-amber-200 dark:border-amber-800">
+                <CardContent className="pt-6">
+                  <div className="flex items-start gap-4">
+                    <AlertTriangle className="w-8 h-8 text-amber-600 flex-shrink-0" />
+                    <div>
+                      <h3 className="font-semibold text-amber-900 dark:text-amber-100 mb-2">What is a Blocked Account?</h3>
+                      <p className="text-sm text-amber-800 dark:text-amber-200 mb-3">
+                        A <strong>blocked account (Sperrkonto)</strong> is a special bank account required by some countries to prove you have sufficient funds to support yourself during your studies. The money is "blocked" and released to you monthly after you arrive.
+                      </p>
+                      <ul className="space-y-1 text-sm text-amber-800 dark:text-amber-200">
+                        <li>• <strong>Germany & Austria:</strong> Mandatory blocked account required for visa</li>
+                        <li>• <strong>Other countries:</strong> Proof of funds via bank statement or scholarship</li>
+                        <li>• Open the account <strong>before</strong> your visa appointment</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <div className="space-y-4">
+                <h3 className="text-xl font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+                  <Lock className="w-5 h-5 text-blue-600" />
+                  Blocked Account Providers
+                </h3>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {blockedAccountProviders.map((provider) => (
+                    <Card key={provider.name} className={provider.highlight ? 'border-blue-200 dark:border-blue-800 bg-blue-50/50 dark:bg-blue-950/20' : ''}>
+                      <CardContent className="pt-6">
+                        <div className="flex items-start justify-between mb-4">
+                          <div>
+                            <div className="flex items-center gap-2 mb-1">
+                              <span className="text-xl">{provider.flag}</span>
+                              <h4 className="font-semibold text-slate-900 dark:text-white">{provider.name}</h4>
+                              {provider.highlight && (
+                                <Badge className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100">Recommended</Badge>
+                              )}
+                            </div>
+                            <p className="text-sm text-slate-600 dark:text-slate-400">For {provider.country}</p>
+                          </div>
+                          <a href={provider.website} target="_blank" rel="noopener noreferrer">
+                            <Button variant="outline" size="sm" className="gap-1">
+                              <ExternalLink className="w-3 h-3" />
+                              Visit
+                            </Button>
+                          </a>
+                        </div>
+                        <div className="grid grid-cols-2 gap-3 text-sm mb-4">
+                          <div>
+                            <p className="text-slate-500 dark:text-slate-400">Min. Deposit</p>
+                            <p className="font-semibold text-slate-900 dark:text-white">{provider.minDeposit}</p>
+                          </div>
+                          <div>
+                            <p className="text-slate-500 dark:text-slate-400">Monthly Release</p>
+                            <p className="font-semibold text-slate-900 dark:text-white">{provider.monthlyRelease}</p>
+                          </div>
+                          <div>
+                            <p className="text-slate-500 dark:text-slate-400">Setup Fee</p>
+                            <p className="font-semibold text-slate-900 dark:text-white">{provider.setupFee}</p>
+                          </div>
+                          <div>
+                            <p className="text-slate-500 dark:text-slate-400">Processing</p>
+                            <p className="font-semibold text-slate-900 dark:text-white">{provider.processingTime}</p>
+                          </div>
+                        </div>
+                        <div className="flex flex-wrap gap-1">
+                          {provider.features.map((feature, idx) => (
+                            <Badge key={idx} variant="secondary" className="text-xs">{feature}</Badge>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <h3 className="text-xl font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+                  <Globe className="w-5 h-5 text-emerald-600" />
+                  Financial Requirements by Country
+                </h3>
+                <div className="grid gap-3">
+                  {blockedAccountRequirements.map((req) => (
+                    <Card key={req.country}>
+                      <CardContent className="py-4">
+                        <div className="flex flex-col md:flex-row md:items-center gap-4">
+                          <div className="flex items-center gap-3 md:w-40">
+                            <span className="text-2xl">{req.flag}</span>
+                            <span className="font-semibold text-slate-900 dark:text-white">{req.country}</span>
+                          </div>
+                          <div className="flex-1">
+                            <div className="flex flex-wrap items-center gap-2 mb-2">
+                              <Badge className={req.required === 'Mandatory' ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-100' : 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100'}>
+                                {req.required}
+                              </Badge>
+                              <span className="font-semibold text-emerald-600 dark:text-emerald-400">{req.amount}</span>
+                            </div>
+                            <p className="text-sm text-slate-600 dark:text-slate-400 mb-1">{req.description}</p>
+                            <p className="text-xs text-slate-500 dark:text-slate-500 italic">{req.notes}</p>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+
+              <Card className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/30 dark:to-purple-950/30 border-blue-200 dark:border-blue-800">
+                <CardContent className="pt-6">
+                  <div className="flex items-start gap-4">
+                    <Shield className="w-8 h-8 text-blue-600 flex-shrink-0" />
+                    <div>
+                      <h3 className="font-semibold text-slate-900 dark:text-white mb-2">How to Open a Blocked Account</h3>
+                      <ol className="space-y-2 text-sm text-slate-700 dark:text-slate-300 list-decimal list-inside">
+                        <li>Choose a provider (Expatrio or Fintiba recommended for Germany)</li>
+                        <li>Create an account on their website with your passport details</li>
+                        <li>Pay the setup fee and transfer the required deposit amount</li>
+                        <li>Receive the blocking confirmation letter (needed for visa)</li>
+                        <li>After arriving and registering, funds are released monthly to your regular account</li>
+                      </ol>
+                      <p className="text-sm text-slate-600 dark:text-slate-400 mt-3">
+                        <strong>Tip:</strong> Open your blocked account 2-3 weeks before your visa appointment to allow time for processing and receiving the confirmation letter.
+                      </p>
                     </div>
                   </div>
                 </CardContent>
