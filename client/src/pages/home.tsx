@@ -243,7 +243,7 @@ export default function Home() {
                       <th className="text-left px-4 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider">University</th>
                       <th className="text-center px-3 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider hidden sm:table-cell w-16">Rank</th>
                       <th className="text-left px-4 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider hidden md:table-cell">Type</th>
-                      <th className="text-left px-4 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider hidden sm:table-cell">Location</th>
+                      <th className="text-center px-4 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider hidden sm:table-cell">Enrollment</th>
                       <th className="text-left px-4 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider hidden lg:table-cell">Fields</th>
                       <th className="text-center px-4 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider hidden md:table-cell">English</th>
                     </tr>
@@ -292,7 +292,7 @@ export default function Home() {
                                       </span>
                                     )}
                                   </div>
-                                  <div className="text-xs text-slate-500 dark:text-slate-400 sm:hidden">{university.city}</div>
+                                  <div className="text-xs text-slate-500 dark:text-slate-400">{university.city}</div>
                                 </div>
                               </td>
                               <td className="px-3 py-3 text-center hidden sm:table-cell">
@@ -309,9 +309,14 @@ export default function Home() {
                                   {university.type}
                                 </span>
                               </td>
-                              <td className="px-4 py-3 hidden sm:table-cell">
-                                <div className="text-sm text-slate-700 dark:text-slate-300" data-testid={`text-location-${university.id}`}>{university.city}</div>
-                                <div className="text-xs text-slate-500 dark:text-slate-400">{university.region}</div>
+                              <td className="px-4 py-3 text-center hidden sm:table-cell">
+                                {university.totalEnrollment ? (
+                                  <span className="text-sm text-slate-700 dark:text-slate-300" data-testid={`text-enrollment-${university.id}`}>
+                                    {university.totalEnrollment.toLocaleString()}
+                                  </span>
+                                ) : (
+                                  <span className="text-slate-300 dark:text-slate-600">—</span>
+                                )}
                               </td>
                               <td className="px-4 py-3 hidden lg:table-cell">
                                 <div className="flex flex-wrap gap-1">
