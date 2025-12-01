@@ -98,7 +98,7 @@ export default function CountryInsights() {
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Button variant="ghost" className="gap-2" onClick={handleBackClick} data-testid="button-back-home">
             <ArrowLeft className="w-4 h-4" />
-            Back to Universities
+            Home
           </Button>
           <div className="flex items-center gap-2">
             <span className="text-2xl">{countryFlags[profile.country]}</span>

@@ -182,7 +182,7 @@ export default function BudgetFinder() {
             data-testid="button-back-home"
           >
             <ArrowLeft className="w-4 h-4" />
-            Back to Universities
+            Home
           </Button>
           <div className="flex items-center gap-2">
             <Wallet className="w-5 h-5 text-primary" />
