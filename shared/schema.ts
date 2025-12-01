@@ -23,6 +23,7 @@ export const universities = pgTable("universities", {
   tuitionPeriod: text("tuition_period"),
   totalEnrollment: integer("total_enrollment"),
   globalRank: integer("global_rank"), // QS/THE/ARWU composite ranking (lower = better)
+  numberOfPrograms: integer("number_of_programs"), // Number of degree programs/majors offered
 });
 
 export const insertUniversitySchema = createInsertSchema(universities).omit({
