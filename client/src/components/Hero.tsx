@@ -126,7 +126,7 @@ export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
                   data-testid="button-visa-jobs"
                 >
                   <Briefcase className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                  <span>Visa & Jobs</span>
+                  <span>PR & Jobs</span>
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="center" sideOffset={8} className="w-48 bg-slate-800 border-slate-700 z-50">
