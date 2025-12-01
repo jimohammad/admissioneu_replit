@@ -109,6 +109,15 @@ export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
                 <span>Admission & Visa Docs</span>
               </div>
             </Link>
+            <Link href="/arrival-guide" className="block">
+              <div 
+                className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-cyan-400 text-white rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap"
+                data-testid="button-arrival-guide"
+              >
+                <Plane className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+                <span>Arrival Guide</span>
+              </div>
+            </Link>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button 
@@ -138,15 +147,6 @@ export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-            <Link href="/arrival-guide" className="block">
-              <div 
-                className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-cyan-400 text-white rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap"
-                data-testid="button-arrival-guide"
-              >
-                <Plane className="w-4 h-4 text-cyan-400 flex-shrink-0" />
-                <span>Arrival Guide</span>
-              </div>
-            </Link>
           </div>
         </div>
       </div>
