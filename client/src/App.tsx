@@ -13,6 +13,7 @@ import ApplicationResources from "@/pages/application-resources";
 import Rankings from "@/pages/rankings";
 import ArrivalGuide from "@/pages/arrival-guide";
 import PRJobs from "@/pages/pr-jobs";
+import Accreditation from "@/pages/accreditation";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -26,6 +27,7 @@ function Router() {
       <Route path="/rankings" component={Rankings} />
       <Route path="/arrival-guide" component={ArrivalGuide} />
       <Route path="/pr-jobs" component={PRJobs} />
+      <Route path="/accreditation" component={Accreditation} />
       <Route component={NotFound} />
     </Switch>
   );
