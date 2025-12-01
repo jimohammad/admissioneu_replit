@@ -1290,7 +1290,7 @@ function addTuitionFees(uni: any) {
   };
 }
 
-const allUniversities = [...spanishUniversities, ...germanUniversities, ...hungarianUniversities, ...italianUniversities, ...polishUniversities, ...czechUniversities, ...finnishUniversities, ...portugueseUniversities, ...dutchUniversities].map(addTuitionFees);
+const allUniversities = [...spanishUniversities, ...germanUniversities, ...hungarianUniversities, ...italianUniversities, ...polishUniversities, ...czechUniversities, ...finnishUniversities, ...portugueseUniversities, ...dutchUniversities, ...frenchUniversities].map(addTuitionFees);
 
 async function seed() {
   try {
@@ -1312,6 +1312,7 @@ async function seed() {
     console.log(`   - Finland: ${finnishUniversities.length} universities`);
     console.log(`   - Portugal: ${portugueseUniversities.length} universities`);
     console.log(`   - Netherlands: ${dutchUniversities.length} universities`);
+    console.log(`   - France: ${frenchUniversities.length} universities`);
     console.log(`   - Tuition fees added for all universities`);
     process.exit(0);
   } catch (error) {
