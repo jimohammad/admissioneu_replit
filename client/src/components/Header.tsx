@@ -67,7 +67,7 @@ export function Header() {
               data-testid="nav-home"
             >
               <img src="https://flagcdn.com/w20/eu.png" alt="EU" className="w-5 h-4 object-cover rounded-sm" />
-              <span>All</span>
+              <span>Home</span>
             </a>
             
             {countries.map(({ name, code }) => (
