@@ -53,54 +53,54 @@ export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
           
           {/* Tool Buttons - Flexbox Layout */}
           <div className="flex flex-wrap justify-center gap-3 mt-6 w-full max-w-4xl mx-auto px-4">
-            <Link href="/budget" className="block">
+            <Link href="/budget" className="block group">
               <div 
-                className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-blue-400 text-white rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap"
+                className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-blue-400 text-white hover:text-blue-400 rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap"
                 data-testid="button-budget-finder"
               >
                 <Wallet className="w-4 h-4 text-blue-400 flex-shrink-0" />
                 <span>My Budget</span>
               </div>
             </Link>
-            <Link href="/calculator" className="block">
+            <Link href="/calculator" className="block group">
               <div 
-                className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-amber-400 text-white rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap"
+                className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-amber-400 text-white hover:text-amber-400 rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap"
                 data-testid="button-calculator-cta"
               >
                 <Calculator className="w-4 h-4 text-amber-400 flex-shrink-0" />
                 <span>Cost of Living</span>
               </div>
             </Link>
-            <Link href="/rankings" className="block">
+            <Link href="/rankings" className="block group">
               <div 
-                className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-yellow-400 text-white rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap"
+                className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-yellow-400 text-white hover:text-yellow-400 rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap"
                 data-testid="button-rankings"
               >
                 <Trophy className="w-4 h-4 text-yellow-400 flex-shrink-0" />
                 <span>Ranking</span>
               </div>
             </Link>
-            <Link href="/resources" className="block">
+            <Link href="/resources" className="block group">
               <div 
-                className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-slate-300 text-white rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap"
+                className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-slate-100 text-white hover:text-slate-100 rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap"
                 data-testid="button-resources"
               >
                 <FileText className="w-4 h-4 text-slate-300 flex-shrink-0" />
                 <span>Admission & Visa Docs</span>
               </div>
             </Link>
-            <Link href="/arrival-guide" className="block">
+            <Link href="/arrival-guide" className="block group">
               <div 
-                className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-cyan-400 text-white rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap"
+                className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-cyan-400 text-white hover:text-cyan-400 rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap"
                 data-testid="button-arrival-guide"
               >
                 <Plane className="w-4 h-4 text-cyan-400 flex-shrink-0" />
                 <span>Arrival Guide</span>
               </div>
             </Link>
-            <Link href="/pr-jobs" className="block">
+            <Link href="/pr-jobs" className="block group">
               <div 
-                className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-emerald-400 text-white rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap"
+                className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-emerald-400 text-white hover:text-emerald-400 rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap"
                 data-testid="button-pr-jobs"
               >
                 <Briefcase className="w-4 h-4 text-emerald-400 flex-shrink-0" />
@@ -109,7 +109,7 @@ export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
             </Link>
             <Link 
               href="/accreditation" 
-              className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-purple-400 text-white rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap"
+              className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-purple-400 text-white hover:text-purple-400 rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap"
               data-testid="button-accreditation"
             >
               <Building2 className="w-4 h-4 text-purple-400 flex-shrink-0" />
