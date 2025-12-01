@@ -12,6 +12,7 @@ import CountryInsights from "@/pages/country-insights";
 import ApplicationResources from "@/pages/application-resources";
 import Rankings from "@/pages/rankings";
 import ArrivalGuide from "@/pages/arrival-guide";
+import PRJobs from "@/pages/pr-jobs";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -24,6 +25,7 @@ function Router() {
       <Route path="/resources" component={ApplicationResources} />
       <Route path="/rankings" component={Rankings} />
       <Route path="/arrival-guide" component={ArrivalGuide} />
+      <Route path="/pr-jobs" component={PRJobs} />
       <Route component={NotFound} />
     </Switch>
   );

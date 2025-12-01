@@ -1,26 +1,7 @@
 import { Search, Calculator, Wallet, FileText, Briefcase, Trophy, Plane } from 'lucide-react';
 import { Input } from '@/components/ui/input';
-import { Link, useLocation } from 'wouter';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+import { Link } from 'wouter';
 import heroBg from '@assets/stock_images/modern_glass_buildin_0e142d1a.jpg';
-
-const countries = [
-  { name: 'Czech Republic', code: 'CZ' },
-  { name: 'Finland', code: 'FI' },
-  { name: 'France', code: 'FR' },
-  { name: 'Germany', code: 'DE' },
-  { name: 'Hungary', code: 'HU' },
-  { name: 'Italy', code: 'IT' },
-  { name: 'Netherlands', code: 'NL' },
-  { name: 'Poland', code: 'PL' },
-  { name: 'Portugal', code: 'PT' },
-  { name: 'Spain', code: 'ES' },
-];
 
 interface HeroProps {
   searchQuery: string;
@@ -28,7 +9,6 @@ interface HeroProps {
 }
 
 export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
-  const [, setLocation] = useLocation();
   
   return (
     <div className="relative w-full min-h-[520px] flex items-center justify-center bg-slate-900">
@@ -118,35 +98,15 @@ export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
                 <span>Arrival Guide</span>
               </div>
             </Link>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button 
-                  type="button"
-                  className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-emerald-400 text-white rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap"
-                  data-testid="button-visa-jobs"
-                >
-                  <Briefcase className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                  <span>PR & Jobs</span>
-                </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="center" sideOffset={8} className="w-48 bg-slate-800 border-slate-700 z-50">
-                {countries.map(({ name, code }) => (
-                  <DropdownMenuItem 
-                    key={name}
-                    onClick={() => setLocation(`/insights/${name}`)}
-                    className="cursor-pointer text-slate-300 hover:text-white focus:text-white hover:bg-slate-700/50 focus:bg-slate-700/50"
-                    data-testid={`nav-visa-${name.toLowerCase()}`}
-                  >
-                    <img 
-                      src={`https://flagcdn.com/w40/${code.toLowerCase()}.png`} 
-                      alt="" 
-                      className="w-5 h-3.5 object-cover rounded-sm flex-shrink-0 mr-2" 
-                    />
-                    <span>{name}</span>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <Link href="/pr-jobs" className="block">
+              <div 
+                className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-emerald-400 text-white rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap"
+                data-testid="button-pr-jobs"
+              >
+                <Briefcase className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                <span>PR & Jobs</span>
+              </div>
+            </Link>
           </div>
         </div>
       </div>
