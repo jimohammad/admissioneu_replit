@@ -9,7 +9,6 @@ interface HeroProps {
 }
 
 export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
-  
   return (
     <div className="relative w-full min-h-[520px] flex items-center justify-center bg-slate-900">
       {/* Background Image with Overlay */}
@@ -20,7 +19,7 @@ export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
           className="w-full h-full object-cover opacity-50"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/70 to-slate-900/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/70 to-slate-900/30 pointer-events-none"></div>
       </div>
 
       {/* Content */}
@@ -54,67 +53,60 @@ export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
           {/* Tool Buttons - Flexbox Layout */}
           <div className="flex flex-wrap justify-center gap-3 mt-6 w-full max-w-4xl mx-auto px-4">
             <Link 
-              href="/budget" 
-              className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-blue-400 text-white hover:text-blue-400 rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap"
-              style={{ touchAction: 'manipulation' }}
+              href="/budget"
+              className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-blue-400 text-white hover:text-blue-400 rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap select-none"
               data-testid="button-budget-finder"
             >
-              <Wallet className="w-4 h-4 text-blue-400 flex-shrink-0" />
-              <span>My Budget</span>
+              <Wallet className="w-4 h-4 text-blue-400 flex-shrink-0 pointer-events-none" />
+              <span className="pointer-events-none">My Budget</span>
             </Link>
             <Link 
-              href="/calculator" 
-              className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-amber-400 text-white hover:text-amber-400 rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap"
-              style={{ touchAction: 'manipulation' }}
+              href="/calculator"
+              className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-amber-400 text-white hover:text-amber-400 rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap select-none"
               data-testid="button-calculator-cta"
             >
-              <Calculator className="w-4 h-4 text-amber-400 flex-shrink-0" />
-              <span>Cost of Living</span>
+              <Calculator className="w-4 h-4 text-amber-400 flex-shrink-0 pointer-events-none" />
+              <span className="pointer-events-none">Cost of Living</span>
             </Link>
             <Link 
-              href="/rankings" 
-              className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-yellow-400 text-white hover:text-yellow-400 rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap"
-              style={{ touchAction: 'manipulation' }}
+              href="/rankings"
+              className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-yellow-400 text-white hover:text-yellow-400 rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap select-none"
               data-testid="button-rankings"
             >
-              <Trophy className="w-4 h-4 text-yellow-400 flex-shrink-0" />
-              <span>Ranking</span>
+              <Trophy className="w-4 h-4 text-yellow-400 flex-shrink-0 pointer-events-none" />
+              <span className="pointer-events-none">Ranking</span>
             </Link>
             <Link 
-              href="/resources" 
-              className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-slate-100 text-white hover:text-slate-100 rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap"
-              style={{ touchAction: 'manipulation' }}
+              href="/resources"
+              className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-slate-100 text-white hover:text-slate-100 rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap select-none"
               data-testid="button-resources"
             >
-              <FileText className="w-4 h-4 text-slate-300 flex-shrink-0" />
-              <span>Admission & Visa Docs</span>
+              <FileText className="w-4 h-4 text-slate-300 flex-shrink-0 pointer-events-none" />
+              <span className="pointer-events-none">Admission & Visa Docs</span>
             </Link>
             <Link 
-              href="/arrival-guide" 
-              className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-cyan-400 text-white hover:text-cyan-400 rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap"
-              style={{ touchAction: 'manipulation' }}
+              href="/arrival-guide"
+              className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-cyan-400 text-white hover:text-cyan-400 rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap select-none"
               data-testid="button-arrival-guide"
             >
-              <Plane className="w-4 h-4 text-cyan-400 flex-shrink-0" />
-              <span>Arrival Guide</span>
+              <Plane className="w-4 h-4 text-cyan-400 flex-shrink-0 pointer-events-none" />
+              <span className="pointer-events-none">Arrival Guide</span>
             </Link>
             <Link 
-              href="/pr-jobs" 
-              className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-emerald-400 text-white hover:text-emerald-400 rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap"
-              style={{ touchAction: 'manipulation' }}
+              href="/pr-jobs"
+              className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-emerald-400 text-white hover:text-emerald-400 rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap select-none"
               data-testid="button-pr-jobs"
             >
-              <Briefcase className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-              <span>PR & Jobs</span>
+              <Briefcase className="w-4 h-4 text-emerald-400 flex-shrink-0 pointer-events-none" />
+              <span className="pointer-events-none">PR & Jobs</span>
             </Link>
             <Link 
-              href="/accreditation" 
-              className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-purple-400 text-white hover:text-purple-400 rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap"
-              style={{ touchAction: 'manipulation' }}
+              href="/accreditation"
+              className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-purple-400 text-white hover:text-purple-400 rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap select-none"
               data-testid="button-accreditation"
             >
-              <Building2 className="w-4 h-4 text-purple-400 flex-shrink-0" />
-              <span>Degree Recognition</span>
+              <Building2 className="w-4 h-4 text-purple-400 flex-shrink-0 pointer-events-none" />
+              <span className="pointer-events-none">Degree Recognition</span>
             </Link>
           </div>
         </div>
