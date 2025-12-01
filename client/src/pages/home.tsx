@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback, useDeferredValue, useEffect } from 'react';
+import React, { useState, useMemo, useCallback, useDeferredValue, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useSearch, useLocation } from 'wouter';
 import { Hero } from '@/components/Hero';
@@ -11,7 +11,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
-import { RotateCcw, SlidersHorizontal, Loader2, Trophy } from 'lucide-react';
+import { RotateCcw, SlidersHorizontal, Loader2, Trophy, ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
 
 export default function Home() {
   const searchParams = useSearch();
@@ -30,6 +30,8 @@ export default function Home() {
   const [selectedRanking, setSelectedRanking] = useState<string>('all');
   const [showEnglishOnly, setShowEnglishOnly] = useState(false);
   const [selectedUniversity, setSelectedUniversity] = useState<University | null>(null);
+  const [sortColumn, setSortColumn] = useState<'rank' | 'enrollment' | null>(null);
+  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   
   const deferredSearchQuery = useDeferredValue(searchQuery);
   
@@ -40,6 +42,15 @@ export default function Home() {
   const handleCloseDetail = useCallback(() => {
     setSelectedUniversity(null);
   }, []);
+
+  const handleSort = useCallback((column: 'rank' | 'enrollment') => {
+    if (sortColumn === column) {
+      setSortDirection(prev => prev === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortColumn(column);
+      setSortDirection('asc');
+    }
+  }, [sortColumn]);
 
   const { data: universities = [], isLoading, error } = useQuery({
     queryKey: ['universities'],
@@ -241,16 +252,58 @@ export default function Home() {
                     <tr>
                       <th className="text-center px-2 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider w-12">#</th>
                       <th className="text-left px-4 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider">University</th>
-                      <th className="text-center px-3 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider hidden sm:table-cell w-16">Rank</th>
+                      <th 
+                        className="text-center px-3 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider hidden sm:table-cell w-16 cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors select-none"
+                        onClick={() => handleSort('rank')}
+                        data-testid="header-rank-sort"
+                      >
+                        <div className="flex items-center justify-center gap-1">
+                          Rank
+                          {sortColumn === 'rank' ? (
+                            sortDirection === 'asc' ? <ArrowUp className="w-3 h-3" /> : <ArrowDown className="w-3 h-3" />
+                          ) : (
+                            <ArrowUpDown className="w-3 h-3 opacity-50" />
+                          )}
+                        </div>
+                      </th>
                       <th className="text-left px-4 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider hidden md:table-cell">Type</th>
-                      <th className="text-center px-4 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider hidden sm:table-cell">Enrollment</th>
+                      <th 
+                        className="text-center px-4 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider hidden sm:table-cell cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors select-none"
+                        onClick={() => handleSort('enrollment')}
+                        data-testid="header-enrollment-sort"
+                      >
+                        <div className="flex items-center justify-center gap-1">
+                          Enrollment
+                          {sortColumn === 'enrollment' ? (
+                            sortDirection === 'asc' ? <ArrowUp className="w-3 h-3" /> : <ArrowDown className="w-3 h-3" />
+                          ) : (
+                            <ArrowUpDown className="w-3 h-3 opacity-50" />
+                          )}
+                        </div>
+                      </th>
                       <th className="text-left px-4 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider hidden lg:table-cell">Fields</th>
                       <th className="text-center px-4 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider hidden md:table-cell">English</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                     {(() => {
-                      const sortedUniversities = [...filteredUniversities].sort((a, b) => a.country.localeCompare(b.country));
+                      let sortedUniversities = [...filteredUniversities];
+                      
+                      if (sortColumn === 'rank') {
+                        sortedUniversities.sort((a, b) => {
+                          const aRank = a.globalRank || 9999;
+                          const bRank = b.globalRank || 9999;
+                          return sortDirection === 'asc' ? aRank - bRank : bRank - aRank;
+                        });
+                      } else if (sortColumn === 'enrollment') {
+                        sortedUniversities.sort((a, b) => {
+                          const aEnroll = a.totalEnrollment || 0;
+                          const bEnroll = b.totalEnrollment || 0;
+                          return sortDirection === 'asc' ? aEnroll - bEnroll : bEnroll - aEnroll;
+                        });
+                      } else {
+                        sortedUniversities.sort((a, b) => a.country.localeCompare(b.country));
+                      }
                       const countryFlags: Record<string, string> = {
                         'Czech Republic': '🇨🇿', 'Finland': '🇫🇮', 'France': '🇫🇷', 'Germany': '🇩🇪', 'Hungary': '🇭🇺', 
                         'Italy': '🇮🇹', 'Netherlands': '🇳🇱', 'Poland': '🇵🇱', 'Portugal': '🇵🇹', 'Spain': '🇪🇸'
@@ -258,14 +311,14 @@ export default function Home() {
                       let lastCountry = '';
                       let rowNumber = 0;
                       return sortedUniversities.map((university) => {
-                        const showCountryHeader = university.country !== lastCountry;
-                        lastCountry = university.country;
+                        const showCountryHeader = sortColumn === null && university.country !== lastCountry;
+                        if (sortColumn === null) lastCountry = university.country;
                         rowNumber++;
                         const countryCount = sortedUniversities.filter(u => u.country === university.country).length;
                         return (
-                          <>
+                          <React.Fragment key={university.id}>
                             {showCountryHeader && (
-                              <tr key={`country-${university.country}`} className="bg-slate-200 dark:bg-slate-700">
+                              <tr className="bg-slate-200 dark:bg-slate-700">
                                 <td colSpan={7} className="px-4 py-2">
                                   <div className="flex items-center gap-2">
                                     <span className="text-lg">{countryFlags[university.country] || '🏛️'}</span>
@@ -276,7 +329,6 @@ export default function Home() {
                               </tr>
                             )}
                             <tr 
-                              key={university.id} 
                               className="hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors"
                               onClick={() => handleSelectUniversity(university)}
                               data-testid={`row-university-${university.id}`}
@@ -338,7 +390,7 @@ export default function Home() {
                                 )}
                               </td>
                             </tr>
-                          </>
+                          </React.Fragment>
                         );
                       });
                     })()}
