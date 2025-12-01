@@ -8,6 +8,7 @@ import { czechUniversities } from "./czechUniversities";
 import { finnishUniversities } from "./finnishUniversities";
 import { portugueseUniversities } from "./portugueseUniversities";
 import { dutchUniversities } from "./dutchUniversities";
+import { frenchUniversities } from "./frenchUniversities";
 
 const spanishUniversities = [
   // PUBLIC UNIVERSITIES - ANDALUSIA
