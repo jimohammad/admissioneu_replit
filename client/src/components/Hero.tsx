@@ -47,7 +47,7 @@ export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
       <div className="relative z-10 max-w-4xl w-full px-6 py-12 text-center space-y-8">
         <div>
           <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-4 font-heading">
-            Database of <span className="text-transparent bg-clip-text bg-gradient-to-b from-violet-300 via-violet-400 to-violet-600">European Universities</span>
+            Database of <span className="text-transparent bg-clip-text bg-gradient-to-b from-blue-300 via-blue-400 to-blue-500">European Universities</span>
           </h1>
           <p className="text-base md:text-lg text-slate-300 max-w-xl mx-auto leading-relaxed">
             Discover world-class universities across Europe
