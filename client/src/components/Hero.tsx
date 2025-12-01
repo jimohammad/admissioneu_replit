@@ -115,7 +115,7 @@ export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
                 data-testid="button-resources"
               >
                 <FileText className="w-4 h-4 text-slate-300 flex-shrink-0" />
-                <span>Resources</span>
+                <span>Admission & Visa Docs</span>
               </div>
             </Link>
             <DropdownMenu>
