@@ -211,7 +211,7 @@ export default function Home() {
               </div>
 
               <div className="flex flex-col">
-                <label className="text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wide mb-2">Program</label>
+                <label className="text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wide mb-2">Program Language</label>
                 <div className="flex items-center justify-center h-10 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 px-3 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 transition">
                   <Switch id="english-mode" checked={showEnglishOnly} onCheckedChange={setShowEnglishOnly} data-testid="switch-english" className="scale-90" />
                   <Label htmlFor="english-mode" className="text-sm font-medium cursor-pointer text-slate-700 dark:text-slate-200 ml-2">English</Label>
