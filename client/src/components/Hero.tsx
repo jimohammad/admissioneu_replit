@@ -88,7 +88,7 @@ export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
                 data-testid="button-calculator-cta"
               >
                 <Calculator className="w-4 h-4 text-amber-400 flex-shrink-0" />
-                <span>Calculator</span>
+                <span>Cost of Living</span>
               </div>
             </Link>
             <Link href="/rankings" className="block">
