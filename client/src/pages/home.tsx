@@ -1,6 +1,5 @@
-import React, { useState, useMemo, useCallback, useDeferredValue, useEffect, useRef } from 'react';
+import React, { useState, useMemo, useCallback, useDeferredValue, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { useVirtualizer } from '@tanstack/react-virtual';
 import { useSearch, useLocation } from 'wouter';
 import { Hero } from '@/components/Hero';
 import { UniversityCard } from '@/components/UniversityCard';
@@ -13,10 +12,6 @@ import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { RotateCcw, SlidersHorizontal, Loader2, Trophy, ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
-
-type TableRow = 
-  | { type: 'header'; country: string; count: number }
-  | { type: 'university'; university: University; rowNumber: number };
 
 const countryFlags: Record<string, string> = {
   'Czech Republic': '🇨🇿', 'Finland': '🇫🇮', 'France': '🇫🇷', 'Germany': '🇩🇪', 'Hungary': '🇭🇺', 
@@ -44,7 +39,6 @@ export default function Home() {
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   
   const deferredSearchQuery = useDeferredValue(searchQuery);
-  const parentRef = useRef<HTMLDivElement>(null);
   
   const handleSelectUniversity = useCallback((university: University) => {
     setSelectedUniversity(university);
@@ -116,49 +110,6 @@ export default function Home() {
       return matchesSearch && matchesCountry && matchesRegion && matchesType && matchesDomain && matchesEnglish && matchesRanking;
     });
   }, [universities, deferredSearchQuery, selectedCountry, selectedRegion, selectedType, selectedDomain, showEnglishOnly, selectedRanking]);
-
-  const tableRows = useMemo((): TableRow[] => {
-    let sortedUniversities = [...filteredUniversities];
-    
-    if (sortColumn === 'rank') {
-      sortedUniversities.sort((a, b) => {
-        const aRank = a.globalRank || 9999;
-        const bRank = b.globalRank || 9999;
-        return sortDirection === 'asc' ? aRank - bRank : bRank - aRank;
-      });
-    } else if (sortColumn === 'enrollment') {
-      sortedUniversities.sort((a, b) => {
-        const aEnroll = a.totalEnrollment || 0;
-        const bEnroll = b.totalEnrollment || 0;
-        return sortDirection === 'asc' ? aEnroll - bEnroll : bEnroll - aEnroll;
-      });
-    } else {
-      sortedUniversities.sort((a, b) => a.country.localeCompare(b.country));
-    }
-
-    const rows: TableRow[] = [];
-    let lastCountry = '';
-    let rowNumber = 0;
-
-    for (const university of sortedUniversities) {
-      if (sortColumn === null && university.country !== lastCountry) {
-        const countryCount = sortedUniversities.filter(u => u.country === university.country).length;
-        rows.push({ type: 'header', country: university.country, count: countryCount });
-        lastCountry = university.country;
-      }
-      rowNumber++;
-      rows.push({ type: 'university', university, rowNumber });
-    }
-
-    return rows;
-  }, [filteredUniversities, sortColumn, sortDirection]);
-
-  const rowVirtualizer = useVirtualizer({
-    count: tableRows.length,
-    getScrollElement: () => parentRef.current,
-    estimateSize: (index) => tableRows[index]?.type === 'header' ? 40 : 56,
-    overscan: 10,
-  });
 
   const clearFilters = () => {
     setSearchQuery('');
@@ -300,19 +251,14 @@ export default function Home() {
             </div>
           ) : filteredUniversities.length > 0 ? (
             <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden">
-              <div 
-                ref={parentRef}
-                className="overflow-auto"
-                style={{ height: 'min(600px, calc(100vh - 400px))' }}
-              >
-                <table className="w-full min-w-[800px]" role="table">
-                  <thead className="bg-slate-100 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 sticky top-0 z-10">
-                    <tr role="row">
-                      <th role="columnheader" className="text-center px-2 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider w-12">#</th>
-                      <th role="columnheader" className="text-left px-4 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider">University</th>
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-slate-100 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
+                    <tr>
+                      <th className="text-center px-2 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider w-12">#</th>
+                      <th className="text-left px-4 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider">University</th>
                       <th 
-                        role="columnheader"
-                        className="text-center px-3 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider w-16 cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors select-none"
+                        className="text-center px-3 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider hidden sm:table-cell w-16 cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors select-none"
                         onClick={() => handleSort('rank')}
                         data-testid="header-rank-sort"
                       >
@@ -325,10 +271,9 @@ export default function Home() {
                           )}
                         </div>
                       </th>
-                      <th role="columnheader" className="text-left px-4 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider">Type</th>
+                      <th className="text-left px-4 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider hidden md:table-cell">Type</th>
                       <th 
-                        role="columnheader"
-                        className="text-center px-4 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors select-none"
+                        className="text-center px-4 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider hidden sm:table-cell cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors select-none"
                         onClick={() => handleSort('enrollment')}
                         data-testid="header-enrollment-sort"
                       >
@@ -341,130 +286,125 @@ export default function Home() {
                           )}
                         </div>
                       </th>
-                      <th role="columnheader" className="text-center px-3 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider">Majors</th>
-                      <th role="columnheader" className="text-left px-4 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider">Fields</th>
-                      <th role="columnheader" className="text-center px-4 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider">English</th>
+                      <th className="text-center px-3 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider hidden md:table-cell">Majors</th>
+                      <th className="text-left px-4 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider hidden lg:table-cell">Fields</th>
+                      <th className="text-center px-4 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider hidden md:table-cell">English</th>
                     </tr>
                   </thead>
-                  <tbody
-                    style={{
-                      height: `${rowVirtualizer.getTotalSize()}px`,
-                      display: 'block',
-                      position: 'relative',
-                    }}
-                  >
-                    {rowVirtualizer.getVirtualItems().map((virtualRow) => {
-                      const row = tableRows[virtualRow.index];
+                  <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+                    {(() => {
+                      let sortedUniversities = [...filteredUniversities];
                       
-                      if (row.type === 'header') {
-                        return (
-                          <tr
-                            key={`header-${row.country}`}
-                            role="row"
-                            className="bg-slate-200 dark:bg-slate-700 table w-full table-fixed"
-                            style={{
-                              position: 'absolute',
-                              top: 0,
-                              left: 0,
-                              height: `${virtualRow.size}px`,
-                              transform: `translateY(${virtualRow.start}px)`,
-                            }}
-                          >
-                            <td colSpan={8} className="px-4 py-2" role="cell">
-                              <div className="flex items-center gap-2">
-                                <span className="text-lg">{countryFlags[row.country] || '🏛️'}</span>
-                                <span className="font-semibold text-slate-800 dark:text-white">{row.country}</span>
-                                <span className="text-xs text-slate-500 dark:text-slate-400">({row.count} universities)</span>
-                              </div>
-                            </td>
-                          </tr>
-                        );
+                      if (sortColumn === 'rank') {
+                        sortedUniversities.sort((a, b) => {
+                          const aRank = a.globalRank || 9999;
+                          const bRank = b.globalRank || 9999;
+                          return sortDirection === 'asc' ? aRank - bRank : bRank - aRank;
+                        });
+                      } else if (sortColumn === 'enrollment') {
+                        sortedUniversities.sort((a, b) => {
+                          const aEnroll = a.totalEnrollment || 0;
+                          const bEnroll = b.totalEnrollment || 0;
+                          return sortDirection === 'asc' ? aEnroll - bEnroll : bEnroll - aEnroll;
+                        });
+                      } else {
+                        sortedUniversities.sort((a, b) => a.country.localeCompare(b.country));
                       }
-
-                      const university = row.university;
-                      return (
-                        <tr
-                          key={university.id}
-                          role="row"
-                          className="hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors border-b border-slate-100 dark:border-slate-800 table w-full table-fixed"
-                          style={{
-                            position: 'absolute',
-                            top: 0,
-                            left: 0,
-                            height: `${virtualRow.size}px`,
-                            transform: `translateY(${virtualRow.start}px)`,
-                          }}
-                          onClick={() => handleSelectUniversity(university)}
-                          data-testid={`row-university-${university.id}`}
-                        >
-                          <td role="cell" className="px-2 py-3 text-center text-sm text-slate-500 dark:text-slate-400 w-12">{row.rowNumber}</td>
-                          <td role="cell" className="px-4 py-3">
-                            <div>
-                              <div className="flex items-center gap-2">
-                                <span className="font-medium text-slate-900 dark:text-white text-sm" data-testid={`text-name-${university.id}`}>{university.name}</span>
-                                {university.globalRank && (
-                                  <span className="sm:hidden inline-flex items-center justify-center px-1.5 py-0.5 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded text-xs font-semibold">
+                      let lastCountry = '';
+                      let rowNumber = 0;
+                      return sortedUniversities.map((university) => {
+                        const showCountryHeader = sortColumn === null && university.country !== lastCountry;
+                        if (sortColumn === null) lastCountry = university.country;
+                        rowNumber++;
+                        const countryCount = sortedUniversities.filter(u => u.country === university.country).length;
+                        return (
+                          <React.Fragment key={university.id}>
+                            {showCountryHeader && (
+                              <tr className="bg-slate-200 dark:bg-slate-700">
+                                <td colSpan={8} className="px-4 py-2">
+                                  <div className="flex items-center gap-2">
+                                    <span className="text-lg">{countryFlags[university.country] || '🏛️'}</span>
+                                    <span className="font-semibold text-slate-800 dark:text-white">{university.country}</span>
+                                    <span className="text-xs text-slate-500 dark:text-slate-400">({countryCount} universities)</span>
+                                  </div>
+                                </td>
+                              </tr>
+                            )}
+                            <tr 
+                              className="hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors"
+                              onClick={() => handleSelectUniversity(university)}
+                              data-testid={`row-university-${university.id}`}
+                            >
+                              <td className="px-2 py-3 text-center text-sm text-slate-500 dark:text-slate-400">{rowNumber}</td>
+                              <td className="px-4 py-3">
+                                <div>
+                                  <div className="flex items-center gap-2">
+                                    <span className="font-medium text-slate-900 dark:text-white text-sm" data-testid={`text-name-${university.id}`}>{university.name}</span>
+                                    {university.globalRank && (
+                                      <span className="sm:hidden inline-flex items-center justify-center px-1.5 py-0.5 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded text-xs font-semibold">
+                                        #{university.globalRank}
+                                      </span>
+                                    )}
+                                  </div>
+                                  <div className="text-xs text-slate-500 dark:text-slate-400">{university.city}</div>
+                                </div>
+                              </td>
+                              <td className="px-3 py-3 text-center hidden sm:table-cell">
+                                {university.globalRank ? (
+                                  <span className="inline-flex items-center justify-center px-2 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-full text-xs font-semibold" data-testid={`badge-rank-${university.id}`}>
                                     #{university.globalRank}
                                   </span>
+                                ) : (
+                                  <span className="text-slate-300 dark:text-slate-600">—</span>
                                 )}
-                              </div>
-                              <div className="text-xs text-slate-500 dark:text-slate-400">{university.city}</div>
-                            </div>
-                          </td>
-                          <td role="cell" className="px-3 py-3 text-center w-16">
-                            {university.globalRank ? (
-                              <span className="inline-flex items-center justify-center px-2 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-full text-xs font-semibold" data-testid={`badge-rank-${university.id}`}>
-                                #{university.globalRank}
-                              </span>
-                            ) : (
-                              <span className="text-slate-300 dark:text-slate-600">—</span>
-                            )}
-                          </td>
-                          <td role="cell" className="px-4 py-3">
-                            <span className={`px-2 py-1 rounded-full text-xs font-medium ${university.type === 'Public' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300' : 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300'}`} data-testid={`badge-type-${university.id}`}>
-                              {university.type}
-                            </span>
-                          </td>
-                          <td role="cell" className="px-4 py-3 text-center">
-                            {university.totalEnrollment ? (
-                              <span className="text-sm text-slate-700 dark:text-slate-300" data-testid={`text-enrollment-${university.id}`}>
-                                {university.totalEnrollment.toLocaleString()}
-                              </span>
-                            ) : (
-                              <span className="text-slate-300 dark:text-slate-600">—</span>
-                            )}
-                          </td>
-                          <td role="cell" className="px-3 py-3 text-center">
-                            {university.numberOfPrograms ? (
-                              <span className="text-sm text-slate-700 dark:text-slate-300" data-testid={`text-majors-${university.id}`}>
-                                {university.numberOfPrograms}
-                              </span>
-                            ) : (
-                              <span className="text-slate-300 dark:text-slate-600">—</span>
-                            )}
-                          </td>
-                          <td role="cell" className="px-4 py-3">
-                            <div className="flex flex-wrap gap-1">
-                              {university.domains.slice(0, 2).map((domain) => (
-                                <span key={domain} className="px-2 py-0.5 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded text-xs">
-                                  {domain}
+                              </td>
+                              <td className="px-4 py-3 hidden md:table-cell">
+                                <span className={`px-2 py-1 rounded-full text-xs font-medium ${university.type === 'Public' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300' : 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300'}`} data-testid={`badge-type-${university.id}`}>
+                                  {university.type}
                                 </span>
-                              ))}
-                              {university.domains.length > 2 && (
-                                <span className="px-2 py-0.5 text-slate-500 dark:text-slate-400 text-xs">+{university.domains.length - 2}</span>
-                              )}
-                            </div>
-                          </td>
-                          <td role="cell" className="px-4 py-3 text-center">
-                            {university.englishPrograms ? (
-                              <span className="inline-flex items-center justify-center w-6 h-6 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-full text-xs" data-testid={`badge-english-${university.id}`}>✓</span>
-                            ) : (
-                              <span className="text-slate-300 dark:text-slate-600">—</span>
-                            )}
-                          </td>
-                        </tr>
-                      );
-                    })}
+                              </td>
+                              <td className="px-4 py-3 text-center hidden sm:table-cell">
+                                {university.totalEnrollment ? (
+                                  <span className="text-sm text-slate-700 dark:text-slate-300" data-testid={`text-enrollment-${university.id}`}>
+                                    {university.totalEnrollment.toLocaleString()}
+                                  </span>
+                                ) : (
+                                  <span className="text-slate-300 dark:text-slate-600">—</span>
+                                )}
+                              </td>
+                              <td className="px-3 py-3 text-center hidden md:table-cell">
+                                {university.numberOfPrograms ? (
+                                  <span className="text-sm text-slate-700 dark:text-slate-300" data-testid={`text-majors-${university.id}`}>
+                                    {university.numberOfPrograms}
+                                  </span>
+                                ) : (
+                                  <span className="text-slate-300 dark:text-slate-600">—</span>
+                                )}
+                              </td>
+                              <td className="px-4 py-3 hidden lg:table-cell">
+                                <div className="flex flex-wrap gap-1">
+                                  {university.domains.slice(0, 2).map((domain) => (
+                                    <span key={domain} className="px-2 py-0.5 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded text-xs">
+                                      {domain}
+                                    </span>
+                                  ))}
+                                  {university.domains.length > 2 && (
+                                    <span className="px-2 py-0.5 text-slate-500 dark:text-slate-400 text-xs">+{university.domains.length - 2}</span>
+                                  )}
+                                </div>
+                              </td>
+                              <td className="px-4 py-3 text-center hidden md:table-cell">
+                                {university.englishPrograms ? (
+                                  <span className="inline-flex items-center justify-center w-6 h-6 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-full text-xs" data-testid={`badge-english-${university.id}`}>✓</span>
+                                ) : (
+                                  <span className="text-slate-300 dark:text-slate-600">—</span>
+                                )}
+                              </td>
+                            </tr>
+                          </React.Fragment>
+                        );
+                      });
+                    })()}
                   </tbody>
                 </table>
               </div>
