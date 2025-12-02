@@ -132,3 +132,7 @@ Preferred communication style: Simple, everyday language.
 - useCallback handlers for stable function references
 - useDeferredValue for search query to maintain UI responsiveness
 - All Framer Motion animations removed for faster page loads (using CSS transitions instead)
+- React.lazy() and Suspense for route-level code splitting (all pages lazy loaded)
+- React Query caching with staleTime (5 min) and gcTime (30 min) for efficient data management
+- Hero image optimized with eager loading and fetchPriority="high" for above-the-fold content
+- Flag images optimized with lazy loading, reduced size, and explicit dimensions to prevent layout shift
