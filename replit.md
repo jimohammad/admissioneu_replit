@@ -136,3 +136,4 @@ Preferred communication style: Simple, everyday language.
 - React Query caching with staleTime (5 min) and gcTime (30 min) for efficient data management
 - Hero image optimized with eager loading and fetchPriority="high" for above-the-fold content
 - Flag images optimized with lazy loading, reduced size, and explicit dimensions to prevent layout shift
+- Virtual scrolling with TanStack Virtual for university table - renders only visible rows (~20) instead of all 695
