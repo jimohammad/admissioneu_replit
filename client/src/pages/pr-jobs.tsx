@@ -45,8 +45,12 @@ export default function PRJobs() {
             >
               <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 md:p-6 text-center hover:border-emerald-400 dark:hover:border-emerald-500 hover:shadow-lg transition-all duration-200 h-full flex flex-col items-center justify-center">
                 <img 
-                  src={`https://flagcdn.com/w160/${code.toLowerCase()}.png`}
+                  src={`https://flagcdn.com/w80/${code.toLowerCase()}.png`}
                   alt={`${name} flag`}
+                  width={80}
+                  height={60}
+                  loading="lazy"
+                  decoding="async"
                   className="w-16 h-12 md:w-20 md:h-14 object-cover rounded-md shadow-sm mb-3 group-hover:scale-105 transition-transform"
                 />
                 <h3 className="font-semibold text-slate-900 dark:text-white text-sm md:text-base mb-1">

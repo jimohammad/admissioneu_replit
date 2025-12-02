@@ -17,7 +17,9 @@ export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
           src={heroBg} 
           alt="University Campus" 
           className="w-full h-full object-cover opacity-50"
-          loading="lazy"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/70 to-slate-900/30 pointer-events-none"></div>
       </div>
