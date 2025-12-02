@@ -1,5 +1,4 @@
 import { Link } from 'wouter';
-import { Header } from '@/components/Header';
 import { ArrowLeft, Briefcase, GraduationCap, FileCheck, TrendingUp } from 'lucide-react';
 
 const countries = [
@@ -18,8 +17,6 @@ const countries = [
 export default function PRJobs() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
-      <Header />
-      
       <main className="container mx-auto px-4 py-8">
         <Link href="/" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline mb-6" data-testid="link-back-home">
           <ArrowLeft className="w-4 h-4 mr-1" />
@@ -90,15 +87,6 @@ export default function PRJobs() {
           </div>
         </div>
       </main>
-
-      <footer className="bg-slate-900 text-slate-400 py-8 mt-16 border-t border-slate-800">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-sm">
-            An <a href="https://iqbal.app" className="text-white hover:text-emerald-400 transition-colors font-medium" target="_blank" rel="noopener noreferrer">Iqbal.app</a> initiative
-          </p>
-          <p className="text-xs mt-2">© 2025 AdmissionEU. All rights reserved.</p>
-        </div>
-      </footer>
     </div>
   );
 }
