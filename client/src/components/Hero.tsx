@@ -1,7 +1,7 @@
 import { Search, Calculator, Wallet, FileText, Briefcase, Trophy, Plane, Building2 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Link } from 'wouter';
-import heroBg from '@assets/stock_images/modern_glass_buildin_0e142d1a.jpg';
+import heroBg from '@assets/stock_images/modern_glass_buildin_0e142d1a.webp';
 
 interface HeroProps {
   searchQuery: string;
