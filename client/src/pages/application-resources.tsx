@@ -481,26 +481,46 @@ export default function ApplicationResources() {
           </div>
 
           <Tabs defaultValue="documents" className="space-y-8">
-            <TabsList className="flex flex-wrap h-auto gap-1 p-1 w-full justify-start lg:w-auto lg:inline-flex">
-              <TabsTrigger value="documents" className="gap-2 text-xs sm:text-sm px-2 sm:px-3" data-testid="tab-documents">
-                <ClipboardList className="w-4 h-4 hidden sm:block" />
-                Docs
+            <TabsList className="grid grid-cols-5 w-full max-w-2xl mx-auto h-auto gap-2 p-2 bg-slate-100 dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700">
+              <TabsTrigger 
+                value="documents" 
+                className="flex flex-col items-center gap-1.5 py-3 px-2 text-xs sm:text-sm font-medium rounded-lg data-[state=active]:bg-white dark:data-[state=active]:bg-slate-900 data-[state=active]:shadow-md data-[state=active]:text-emerald-600 dark:data-[state=active]:text-emerald-400 transition-all" 
+                data-testid="tab-documents"
+              >
+                <ClipboardList className="w-5 h-5" />
+                <span>Docs</span>
               </TabsTrigger>
-              <TabsTrigger value="blocked" className="gap-2 text-xs sm:text-sm px-2 sm:px-3" data-testid="tab-blocked">
-                <Landmark className="w-4 h-4 hidden sm:block" />
-                Blocked
+              <TabsTrigger 
+                value="blocked" 
+                className="flex flex-col items-center gap-1.5 py-3 px-2 text-xs sm:text-sm font-medium rounded-lg data-[state=active]:bg-white dark:data-[state=active]:bg-slate-900 data-[state=active]:shadow-md data-[state=active]:text-emerald-600 dark:data-[state=active]:text-emerald-400 transition-all" 
+                data-testid="tab-blocked"
+              >
+                <Landmark className="w-5 h-5" />
+                <span>Blocked</span>
               </TabsTrigger>
-              <TabsTrigger value="motivation" className="gap-2 text-xs sm:text-sm px-2 sm:px-3" data-testid="tab-motivation">
-                <FileText className="w-4 h-4 hidden sm:block" />
-                Letter
+              <TabsTrigger 
+                value="motivation" 
+                className="flex flex-col items-center gap-1.5 py-3 px-2 text-xs sm:text-sm font-medium rounded-lg data-[state=active]:bg-white dark:data-[state=active]:bg-slate-900 data-[state=active]:shadow-md data-[state=active]:text-emerald-600 dark:data-[state=active]:text-emerald-400 transition-all" 
+                data-testid="tab-motivation"
+              >
+                <FileText className="w-5 h-5" />
+                <span>Letter</span>
               </TabsTrigger>
-              <TabsTrigger value="salary" className="gap-2 text-xs sm:text-sm px-2 sm:px-3" data-testid="tab-salary">
-                <CreditCard className="w-4 h-4 hidden sm:block" />
-                Salary
+              <TabsTrigger 
+                value="salary" 
+                className="flex flex-col items-center gap-1.5 py-3 px-2 text-xs sm:text-sm font-medium rounded-lg data-[state=active]:bg-white dark:data-[state=active]:bg-slate-900 data-[state=active]:shadow-md data-[state=active]:text-emerald-600 dark:data-[state=active]:text-emerald-400 transition-all" 
+                data-testid="tab-salary"
+              >
+                <CreditCard className="w-5 h-5" />
+                <span>Salary</span>
               </TabsTrigger>
-              <TabsTrigger value="portals" className="gap-2 text-xs sm:text-sm px-2 sm:px-3" data-testid="tab-portals">
-                <Globe className="w-4 h-4 hidden sm:block" />
-                Portals
+              <TabsTrigger 
+                value="portals" 
+                className="flex flex-col items-center gap-1.5 py-3 px-2 text-xs sm:text-sm font-medium rounded-lg data-[state=active]:bg-white dark:data-[state=active]:bg-slate-900 data-[state=active]:shadow-md data-[state=active]:text-emerald-600 dark:data-[state=active]:text-emerald-400 transition-all" 
+                data-testid="tab-portals"
+              >
+                <Globe className="w-5 h-5" />
+                <span>Portals</span>
               </TabsTrigger>
             </TabsList>
 
