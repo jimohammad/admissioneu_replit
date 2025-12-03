@@ -71,8 +71,8 @@ export function Header() {
             </a>
             
             {countries.map(({ name, code }) => (
-              <div key={name} className="flex items-center">
-                <div className="h-4 w-px bg-slate-700"></div>
+              <div key={name} className="flex items-center self-stretch">
+                <div className="w-px bg-slate-700 self-stretch"></div>
                 <a 
                   href={`/?country=${name}`}
                   onClick={(e) => handleNavClick(e, `/?country=${name}`)}
