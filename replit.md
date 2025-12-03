@@ -137,5 +137,6 @@ Preferred communication style: Simple, everyday language.
 - Hero image converted to WebP format (147KB vs 320KB JPG - 54% reduction) with eager loading and fetchPriority="high"
 - Google Fonts optimized with preload and media="print" onload trick for non-blocking render
 - Initial university table limited to 50 rows with "Show More" button to reduce DOM size (from 15,661 to ~1,500 elements)
+- Skeleton loader for university table during data fetch (8 animated placeholder rows matching table structure)
 - Gzip compression enabled on Express server for API responses
 - Flag images optimized with lazy loading, reduced size, and explicit dimensions to prevent layout shift
