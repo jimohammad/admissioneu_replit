@@ -250,9 +250,59 @@ export default function Home() {
           </div>
 
           {isLoading ? (
-            <div className="flex flex-col items-center justify-center py-20 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800">
-              <Loader2 className="w-8 h-8 animate-spin text-primary mb-4" />
-              <p className="text-slate-600 dark:text-slate-400">Loading universities...</p>
+            <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-slate-100 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
+                    <tr>
+                      <th className="text-center px-2 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider w-12">#</th>
+                      <th className="text-left px-4 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider">University</th>
+                      <th className="text-center px-3 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider hidden sm:table-cell w-16">Rank</th>
+                      <th className="text-left px-4 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider hidden md:table-cell">Type</th>
+                      <th className="text-center px-4 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider hidden sm:table-cell">Enrollment</th>
+                      <th className="text-center px-3 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider hidden md:table-cell">Majors</th>
+                      <th className="text-left px-4 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider hidden lg:table-cell">Fields</th>
+                      <th className="text-center px-4 py-3 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider hidden md:table-cell">English</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+                    {[...Array(8)].map((_, i) => (
+                      <tr key={i} className="animate-pulse">
+                        <td className="px-2 py-3 text-center">
+                          <div className="h-4 w-6 bg-slate-200 dark:bg-slate-700 rounded mx-auto"></div>
+                        </td>
+                        <td className="px-4 py-3">
+                          <div className="space-y-2">
+                            <div className="h-4 w-48 bg-slate-200 dark:bg-slate-700 rounded"></div>
+                            <div className="h-3 w-24 bg-slate-100 dark:bg-slate-800 rounded"></div>
+                          </div>
+                        </td>
+                        <td className="px-3 py-3 text-center hidden sm:table-cell">
+                          <div className="h-6 w-12 bg-amber-100 dark:bg-amber-900/30 rounded-full mx-auto"></div>
+                        </td>
+                        <td className="px-4 py-3 hidden md:table-cell">
+                          <div className="h-5 w-16 bg-blue-100 dark:bg-blue-900/30 rounded-full"></div>
+                        </td>
+                        <td className="px-4 py-3 text-center hidden sm:table-cell">
+                          <div className="h-4 w-16 bg-slate-200 dark:bg-slate-700 rounded mx-auto"></div>
+                        </td>
+                        <td className="px-3 py-3 text-center hidden md:table-cell">
+                          <div className="h-4 w-8 bg-slate-200 dark:bg-slate-700 rounded mx-auto"></div>
+                        </td>
+                        <td className="px-4 py-3 hidden lg:table-cell">
+                          <div className="flex gap-1">
+                            <div className="h-5 w-20 bg-slate-100 dark:bg-slate-700 rounded"></div>
+                            <div className="h-5 w-16 bg-slate-100 dark:bg-slate-700 rounded"></div>
+                          </div>
+                        </td>
+                        <td className="px-4 py-3 text-center hidden md:table-cell">
+                          <div className="h-6 w-6 bg-slate-200 dark:bg-slate-700 rounded-full mx-auto"></div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           ) : error ? (
             <div className="text-center py-20 bg-white dark:bg-slate-900 rounded-xl border border-red-200 dark:border-red-900">
