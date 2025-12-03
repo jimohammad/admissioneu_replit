@@ -37,6 +37,7 @@ export default function Home() {
   const [selectedUniversity, setSelectedUniversity] = useState<University | null>(null);
   const [sortColumn, setSortColumn] = useState<'rank' | 'enrollment' | null>(null);
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
+  const [visibleCount, setVisibleCount] = useState(50);
   
   const deferredSearchQuery = useDeferredValue(searchQuery);
   
@@ -119,7 +120,16 @@ export default function Home() {
     setSelectedDomain('all');
     setSelectedRanking('all');
     setShowEnglishOnly(false);
+    setVisibleCount(50);
   };
+
+  useEffect(() => {
+    setVisibleCount(50);
+  }, [deferredSearchQuery, selectedCountry, selectedRegion, selectedType, selectedDomain, showEnglishOnly, selectedRanking]);
+
+  const handleShowMore = useCallback(() => {
+    setVisibleCount(prev => prev + 50);
+  }, []);
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 font-sans">
@@ -310,12 +320,12 @@ export default function Home() {
                       } else {
                         sortedUniversities.sort((a, b) => a.country.localeCompare(b.country));
                       }
-                      let lastCountry = '';
-                      let rowNumber = 0;
-                      return sortedUniversities.map((university) => {
-                        const showCountryHeader = sortColumn === null && university.country !== lastCountry;
-                        if (sortColumn === null) lastCountry = university.country;
-                        rowNumber++;
+                      const visibleUniversities = sortedUniversities.slice(0, visibleCount);
+                      const seenCountries = new Set<string>();
+                      return visibleUniversities.map((university, index) => {
+                        const showCountryHeader = sortColumn === null && !seenCountries.has(university.country);
+                        if (sortColumn === null) seenCountries.add(university.country);
+                        const rowNumber = index + 1;
                         const countryCount = sortedUniversities.filter(u => u.country === university.country).length;
                         return (
                           <React.Fragment key={university.id}>
@@ -408,6 +418,18 @@ export default function Home() {
                   </tbody>
                 </table>
               </div>
+              {visibleCount < filteredUniversities.length && (
+                <div className="flex justify-center py-6 border-t border-slate-200 dark:border-slate-700">
+                  <Button
+                    onClick={handleShowMore}
+                    variant="outline"
+                    className="px-8 py-2 text-sm font-medium"
+                    data-testid="button-show-more"
+                  >
+                    Show More ({filteredUniversities.length - visibleCount} remaining)
+                  </Button>
+                </div>
+              )}
             </div>
           ) : (
             <div className="text-center py-20 bg-white dark:bg-slate-900 rounded-xl border border-dashed border-slate-300 dark:border-slate-700">
