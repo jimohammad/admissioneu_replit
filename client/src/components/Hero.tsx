@@ -52,63 +52,77 @@ export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
             </div>
           </div>
           
-          {/* Tool Buttons - Flexbox Layout */}
-          <div className="flex flex-wrap justify-center gap-3 mt-6 w-full max-w-4xl mx-auto px-4">
+          {/* Tool Buttons - Round Icons with Labels */}
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mt-6 w-full max-w-3xl mx-auto px-2">
             <Link 
               href="/budget"
-              className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-blue-400 text-white hover:text-blue-400 rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap select-none"
+              className="flex flex-col items-center gap-1.5 group cursor-pointer select-none"
               data-testid="button-budget-finder"
             >
-              <Wallet className="w-4 h-4 text-blue-400 flex-shrink-0 pointer-events-none" />
-              <span className="pointer-events-none">My Budget</span>
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-slate-900/60 border border-white/20 group-hover:border-blue-400 group-hover:bg-slate-900/80 flex items-center justify-center transition-all duration-200 group-active:scale-95">
+                <Wallet className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400 pointer-events-none" />
+              </div>
+              <span className="text-[10px] sm:text-xs text-white/80 group-hover:text-blue-400 font-medium transition-colors pointer-events-none">Budget</span>
             </Link>
             <Link 
               href="/calculator"
-              className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-amber-400 text-white hover:text-amber-400 rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap select-none"
+              className="flex flex-col items-center gap-1.5 group cursor-pointer select-none"
               data-testid="button-calculator-cta"
             >
-              <Calculator className="w-4 h-4 text-amber-400 flex-shrink-0 pointer-events-none" />
-              <span className="pointer-events-none">Cost of Living</span>
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-slate-900/60 border border-white/20 group-hover:border-amber-400 group-hover:bg-slate-900/80 flex items-center justify-center transition-all duration-200 group-active:scale-95">
+                <Calculator className="w-5 h-5 sm:w-6 sm:h-6 text-amber-400 pointer-events-none" />
+              </div>
+              <span className="text-[10px] sm:text-xs text-white/80 group-hover:text-amber-400 font-medium transition-colors pointer-events-none">Cost</span>
             </Link>
             <Link 
               href="/rankings"
-              className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-yellow-400 text-white hover:text-yellow-400 rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap select-none"
+              className="flex flex-col items-center gap-1.5 group cursor-pointer select-none"
               data-testid="button-rankings"
             >
-              <Trophy className="w-4 h-4 text-yellow-400 flex-shrink-0 pointer-events-none" />
-              <span className="pointer-events-none">Ranking</span>
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-slate-900/60 border border-white/20 group-hover:border-yellow-400 group-hover:bg-slate-900/80 flex items-center justify-center transition-all duration-200 group-active:scale-95">
+                <Trophy className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400 pointer-events-none" />
+              </div>
+              <span className="text-[10px] sm:text-xs text-white/80 group-hover:text-yellow-400 font-medium transition-colors pointer-events-none">Ranking</span>
             </Link>
             <Link 
               href="/resources"
-              className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-slate-100 text-white hover:text-slate-100 rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap select-none"
+              className="flex flex-col items-center gap-1.5 group cursor-pointer select-none"
               data-testid="button-resources"
             >
-              <FileText className="w-4 h-4 text-slate-300 flex-shrink-0 pointer-events-none" />
-              <span className="pointer-events-none">Admission & Visa Docs</span>
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-slate-900/60 border border-white/20 group-hover:border-slate-100 group-hover:bg-slate-900/80 flex items-center justify-center transition-all duration-200 group-active:scale-95">
+                <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-slate-300 pointer-events-none" />
+              </div>
+              <span className="text-[10px] sm:text-xs text-white/80 group-hover:text-slate-100 font-medium transition-colors pointer-events-none">Visa Docs</span>
             </Link>
             <Link 
               href="/arrival-guide"
-              className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-cyan-400 text-white hover:text-cyan-400 rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap select-none"
+              className="flex flex-col items-center gap-1.5 group cursor-pointer select-none"
               data-testid="button-arrival-guide"
             >
-              <Plane className="w-4 h-4 text-cyan-400 flex-shrink-0 pointer-events-none" />
-              <span className="pointer-events-none">Arrival Guide</span>
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-slate-900/60 border border-white/20 group-hover:border-cyan-400 group-hover:bg-slate-900/80 flex items-center justify-center transition-all duration-200 group-active:scale-95">
+                <Plane className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400 pointer-events-none" />
+              </div>
+              <span className="text-[10px] sm:text-xs text-white/80 group-hover:text-cyan-400 font-medium transition-colors pointer-events-none">Arrival</span>
             </Link>
             <Link 
               href="/pr-jobs"
-              className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-emerald-400 text-white hover:text-emerald-400 rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap select-none"
+              className="flex flex-col items-center gap-1.5 group cursor-pointer select-none"
               data-testid="button-pr-jobs"
             >
-              <Briefcase className="w-4 h-4 text-emerald-400 flex-shrink-0 pointer-events-none" />
-              <span className="pointer-events-none">PR & Jobs</span>
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-slate-900/60 border border-white/20 group-hover:border-emerald-400 group-hover:bg-slate-900/80 flex items-center justify-center transition-all duration-200 group-active:scale-95">
+                <Briefcase className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-400 pointer-events-none" />
+              </div>
+              <span className="text-[10px] sm:text-xs text-white/80 group-hover:text-emerald-400 font-medium transition-colors pointer-events-none">PR & Jobs</span>
             </Link>
             <Link 
               href="/accreditation"
-              className="h-11 px-6 bg-slate-900/60 hover:bg-slate-900/80 border border-white/20 hover:border-purple-400 text-white hover:text-purple-400 rounded-lg flex items-center justify-center gap-2 text-sm font-medium transition-all duration-200 cursor-pointer active:scale-[0.98] whitespace-nowrap select-none"
+              className="flex flex-col items-center gap-1.5 group cursor-pointer select-none"
               data-testid="button-accreditation"
             >
-              <Building2 className="w-4 h-4 text-purple-400 flex-shrink-0 pointer-events-none" />
-              <span className="pointer-events-none">Degree Recognition</span>
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-slate-900/60 border border-white/20 group-hover:border-purple-400 group-hover:bg-slate-900/80 flex items-center justify-center transition-all duration-200 group-active:scale-95">
+                <Building2 className="w-5 h-5 sm:w-6 sm:h-6 text-purple-400 pointer-events-none" />
+              </div>
+              <span className="text-[10px] sm:text-xs text-white/80 group-hover:text-purple-400 font-medium transition-colors pointer-events-none">Degree</span>
             </Link>
           </div>
         </div>
