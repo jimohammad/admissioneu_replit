@@ -17,6 +17,7 @@ const Rankings = lazy(() => import("@/pages/rankings"));
 const ArrivalGuide = lazy(() => import("@/pages/arrival-guide"));
 const PRJobs = lazy(() => import("@/pages/pr-jobs"));
 const Accreditation = lazy(() => import("@/pages/accreditation"));
+const FieldSuggester = lazy(() => import("@/pages/field-suggester"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 
 function PageLoader() {
@@ -39,6 +40,7 @@ function Router() {
       <Route path="/arrival-guide" component={ArrivalGuide} />
       <Route path="/pr-jobs" component={PRJobs} />
       <Route path="/accreditation" component={Accreditation} />
+      <Route path="/field-suggester" component={FieldSuggester} />
       <Route component={NotFound} />
     </Switch>
   );
