@@ -134,5 +134,8 @@ Preferred communication style: Simple, everyday language.
 - All Framer Motion animations removed for faster page loads (using CSS transitions instead)
 - React.lazy() and Suspense for route-level code splitting (all pages lazy loaded)
 - React Query caching with staleTime (5 min) and gcTime (30 min) for efficient data management
-- Hero image optimized with eager loading and fetchPriority="high" for above-the-fold content
+- Hero image converted to WebP format (147KB vs 320KB JPG - 54% reduction) with eager loading and fetchPriority="high"
+- Google Fonts optimized with preload and media="print" onload trick for non-blocking render
+- Initial university table limited to 50 rows with "Show More" button to reduce DOM size (from 15,661 to ~1,500 elements)
+- Gzip compression enabled on Express server for API responses
 - Flag images optimized with lazy loading, reduced size, and explicit dimensions to prevent layout shift
