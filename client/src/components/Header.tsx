@@ -14,6 +14,7 @@ const countries = [
   { name: 'Poland', flag: '🇵🇱', code: 'PL' },
   { name: 'Portugal', flag: '🇵🇹', code: 'PT' },
   { name: 'Spain', flag: '🇪🇸', code: 'ES' },
+  { name: 'Sweden', flag: '🇸🇪', code: 'SE' },
 ];
 
 export function Header() {
@@ -49,7 +50,7 @@ export function Header() {
           
           <div className="flex items-center gap-1 text-xs text-slate-400">
             <Globe className="w-4 h-4" />
-            <span>10 Countries • {universities.length} Universities</span>
+            <span>11 Countries • {universities.length} Universities</span>
           </div>
         </div>
         

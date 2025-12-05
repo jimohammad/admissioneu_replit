@@ -5,6 +5,7 @@ import { hungarianUniversities } from "./hungarianUniversities";
 import { italianUniversities } from "./italianUniversities";
 import { polishUniversities } from "./polishUniversities";
 import { dutchUniversities } from "./dutchUniversities";
+import { swedishUniversities } from "./swedishUniversities";
 import { costOfLivingData } from "./costOfLivingData";
 import { countryProfilesData } from "./countryProfilesData";
 import { count, sql } from "drizzle-orm";
@@ -241,7 +242,8 @@ export async function autoSeedIfEmpty(): Promise<void> {
       ...hungarianUniversities,
       ...italianUniversities,
       ...polishUniversities,
-      ...dutchUniversities
+      ...dutchUniversities,
+      ...swedishUniversities
     ];
     
     console.log(`Seeding ${allUniversities.length} universities...`);

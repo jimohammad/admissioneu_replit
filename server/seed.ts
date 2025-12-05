@@ -9,6 +9,7 @@ import { finnishUniversities } from "./finnishUniversities";
 import { portugueseUniversities } from "./portugueseUniversities";
 import { dutchUniversities } from "./dutchUniversities";
 import { frenchUniversities } from "./frenchUniversities";
+import { swedishUniversities } from "./swedishUniversities";
 
 const spanishUniversities = [
   // PUBLIC UNIVERSITIES - ANDALUSIA
@@ -1290,7 +1291,7 @@ function addTuitionFees(uni: any) {
   };
 }
 
-const allUniversities = [...spanishUniversities, ...germanUniversities, ...hungarianUniversities, ...italianUniversities, ...polishUniversities, ...czechUniversities, ...finnishUniversities, ...portugueseUniversities, ...dutchUniversities, ...frenchUniversities].map(addTuitionFees);
+const allUniversities = [...spanishUniversities, ...germanUniversities, ...hungarianUniversities, ...italianUniversities, ...polishUniversities, ...czechUniversities, ...finnishUniversities, ...portugueseUniversities, ...dutchUniversities, ...frenchUniversities, ...swedishUniversities].map(addTuitionFees);
 
 async function seed() {
   try {

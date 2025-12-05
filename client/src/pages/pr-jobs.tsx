@@ -12,6 +12,7 @@ const countries = [
   { name: 'Poland', code: 'PL', description: 'Fast-growing economy with IT sector boom' },
   { name: 'Portugal', code: 'PT', description: 'Sunny climate with startup-friendly policies' },
   { name: 'Spain', code: 'ES', description: 'Vibrant culture with growing tech scene' },
+  { name: 'Sweden', code: 'SE', description: 'Innovation leader with world-class research universities' },
 ];
 
 export default function PRJobs() {
