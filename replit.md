@@ -2,7 +2,7 @@
 
 ## Overview
 
-AdmissionEU (admissionEU.com) is a comprehensive web application that serves as a directory of accredited universities across Europe. The platform allows users to explore, search, and filter universities in 10 European countries: Spain, Germany, Hungary, Italy, Poland, Netherlands, France, Czech Republic, Finland, and Portugal. Features include information about programs, languages, admission periods, tuition fees, and institutional details. The application provides a modern, responsive interface for discovering educational opportunities across 695 European institutions.
+AdmissionEU (admissionEU.com) is a comprehensive web application that serves as a directory of accredited universities across Europe. The platform allows users to explore, search, and filter universities in 12 European countries: Austria, Spain, Germany, Hungary, Italy, Poland, Netherlands, France, Czech Republic, Finland, Portugal, and Sweden. Features include information about programs, languages, admission periods, tuition fees, and institutional details. The application provides a modern, responsive interface for discovering educational opportunities across 735 European institutions.
 
 ## User Preferences
 
@@ -73,7 +73,7 @@ Preferred communication style: Simple, everyday language.
 - Array fields for languages and domains
 - Boolean flags for filtering (e.g., `englishPrograms`)
 - Auto-incrementing ranking field
-- Support for 10 European countries (Spain, Germany, Hungary, Italy, Poland, Netherlands, France, Czech Republic, Finland, Portugal)
+- Support for 12 European countries (Austria, Spain, Germany, Hungary, Italy, Poland, Netherlands, France, Czech Republic, Finland, Portugal, Sweden)
 
 **Data Fields:**
 - Institution metadata (name, country, region, city, type)
@@ -122,9 +122,11 @@ Preferred communication style: Simple, everyday language.
 - Czech universities data (20 universities including Charles University and Czech Technical University)
 - Finnish universities data (18 universities including University of Helsinki and Aalto University)
 - Portuguese universities data (16 universities including University of Lisbon and University of Porto)
+- Swedish universities data (20 universities including Karolinska Institute, KTH, Uppsala, and Stockholm School of Economics)
+- Austrian universities data (20 universities including University of Vienna, TU Wien, Medical University of Vienna, and WU Vienna)
 - Seed scripts for initial database population
-- Total: 695 accredited European universities across 10 countries
-- 93 cities across 10 countries for cost of living calculator
+- Total: 735 accredited European universities across 12 countries
+- 107 cities across 12 countries for cost of living calculator
 - 10 simplified study fields: Agriculture & Environment, Arts & Design, Business & Economics, Engineering & Technology, Law & Politics, Media & Communication, Medicine & Health, Sciences, Social Sciences & Humanities, Sports & Tourism
 
 **Performance Optimizations:**

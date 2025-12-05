@@ -4,6 +4,7 @@ import { GraduationCap, Globe } from 'lucide-react';
 import { fetchUniversities } from '@/lib/api';
 
 const countries = [
+  { name: 'Austria', flag: '🇦🇹', code: 'AT' },
   { name: 'Czech Republic', flag: '🇨🇿', code: 'CZ' },
   { name: 'Finland', flag: '🇫🇮', code: 'FI' },
   { name: 'France', flag: '🇫🇷', code: 'FR' },
@@ -50,7 +51,7 @@ export function Header() {
           
           <div className="flex items-center gap-1 text-xs text-slate-400">
             <Globe className="w-4 h-4" />
-            <span>11 Countries • {universities.length} Universities</span>
+            <span>12 Countries • {universities.length} Universities</span>
           </div>
         </div>
         
