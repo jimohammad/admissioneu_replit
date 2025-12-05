@@ -2,6 +2,7 @@ import { Link } from 'wouter';
 import { ArrowLeft, Briefcase, GraduationCap, FileCheck, TrendingUp } from 'lucide-react';
 
 const countries = [
+  { name: 'Austria', code: 'AT', description: 'Alpine excellence with strong engineering & life sciences' },
   { name: 'Czech Republic', code: 'CZ', description: 'Growing tech hub with affordable living' },
   { name: 'Finland', code: 'FI', description: 'Innovation leader with high quality of life' },
   { name: 'France', code: 'FR', description: 'Cultural capital with diverse opportunities' },
