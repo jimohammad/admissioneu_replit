@@ -1,4 +1,4 @@
-import { Search, Calculator, Wallet, FileText, Briefcase, Trophy, Plane, Building2, Lightbulb } from 'lucide-react';
+import { Search, Calculator, Wallet, FileText, Briefcase, Trophy, Plane, Building2, Lightbulb, TrendingUp } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Link } from 'wouter';
 import heroBg from '@assets/stock_images/modern_glass_buildin_0e142d1a.webp';
@@ -133,6 +133,16 @@ export function Hero({ searchQuery, setSearchQuery }: HeroProps) {
                 <Lightbulb className="w-5 h-5 sm:w-6 sm:h-6 text-violet-400 pointer-events-none" />
               </div>
               <span className="text-[10px] sm:text-xs text-white/80 group-hover:text-violet-400 font-medium transition-colors pointer-events-none">Suggest</span>
+            </Link>
+            <Link 
+              href="/trending-programs"
+              className="flex flex-col items-center gap-1.5 group cursor-pointer select-none"
+              data-testid="button-trending-programs"
+            >
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-slate-900/60 border border-white/20 group-hover:border-orange-400 group-hover:bg-slate-900/80 flex items-center justify-center transition-all duration-200 group-active:scale-95">
+                <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 text-orange-400 pointer-events-none" />
+              </div>
+              <span className="text-[10px] sm:text-xs text-white/80 group-hover:text-orange-400 font-medium transition-colors pointer-events-none">Trending</span>
             </Link>
           </div>
         </div>
