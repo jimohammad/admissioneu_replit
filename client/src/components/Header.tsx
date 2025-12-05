@@ -1,7 +1,8 @@
 import { useLocation, useSearch } from 'wouter';
 import { useQuery } from '@tanstack/react-query';
-import { GraduationCap, Globe } from 'lucide-react';
+import { GraduationCap, Globe, ChevronRight } from 'lucide-react';
 import { fetchUniversities } from '@/lib/api';
+import { useRef, useState, useEffect } from 'react';
 
 const countries = [
   { name: 'Austria', flag: '🇦🇹', code: 'AT' },
@@ -22,6 +23,9 @@ export function Header() {
   const [location, setLocation] = useLocation();
   const searchParams = useSearch();
   const urlCountry = new URLSearchParams(searchParams).get('country');
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [showRightIndicator, setShowRightIndicator] = useState(true);
+  const [showLeftIndicator, setShowLeftIndicator] = useState(false);
   
   const { data: universities = [] } = useQuery({
     queryKey: ['universities'],
@@ -32,6 +36,27 @@ export function Header() {
     e.preventDefault();
     setLocation(path);
   };
+  
+  const checkScroll = () => {
+    if (scrollRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+      setShowLeftIndicator(scrollLeft > 10);
+      setShowRightIndicator(scrollLeft < scrollWidth - clientWidth - 10);
+    }
+  };
+  
+  useEffect(() => {
+    checkScroll();
+    const el = scrollRef.current;
+    if (el) {
+      el.addEventListener('scroll', checkScroll);
+      window.addEventListener('resize', checkScroll);
+      return () => {
+        el.removeEventListener('scroll', checkScroll);
+        window.removeEventListener('resize', checkScroll);
+      };
+    }
+  }, []);
   
   const isHome = location === '/' && !urlCountry;
   
@@ -56,8 +81,24 @@ export function Header() {
         </div>
         
         {/* Country navigation bar */}
-        <nav className="border-t border-slate-800">
-          <div className="flex items-center overflow-x-auto scrollbar-hide">
+        <nav className="border-t border-slate-800 relative">
+          {/* Left fade indicator */}
+          {showLeftIndicator && (
+            <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-slate-900 to-transparent z-10 pointer-events-none md:hidden" />
+          )}
+          
+          {/* Right fade indicator with arrow */}
+          {showRightIndicator && (
+            <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-slate-900 via-slate-900/80 to-transparent z-10 pointer-events-none md:hidden flex items-center justify-end pr-1">
+              <ChevronRight className="w-5 h-5 text-blue-400 animate-pulse" />
+            </div>
+          )}
+          
+          <div 
+            ref={scrollRef}
+            className="flex items-center overflow-x-auto scrollbar-hide scroll-smooth"
+            style={{ WebkitOverflowScrolling: 'touch' }}
+          >
             <a 
               href="/"
               onClick={(e) => handleNavClick(e, '/')}
