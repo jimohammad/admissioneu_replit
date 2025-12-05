@@ -288,6 +288,54 @@ const countryData: Record<string, {
       { task: 'BKK Pass', deadline: 'First week', description: 'Budapest transport pass. Students get 50% discount with valid ID.' },
     ],
   },
+  'Sweden': {
+    flag: '🇸🇪',
+    simCards: [
+      { name: 'Telia', price: '199-399 SEK/month', data: '20-100GB', network: 'Telia', highlight: true, notes: 'Best coverage nationwide' },
+      { name: 'Tele2', price: '149-349 SEK/month', data: '20-80GB', network: 'Tele2', highlight: true, notes: 'Good value, student offers' },
+      { name: 'Telenor', price: '149-299 SEK/month', data: '15-60GB', network: 'Telenor', notes: 'Third major carrier' },
+      { name: 'Hallon', price: '99-199 SEK/month', data: '10-40GB', network: 'Tre', notes: 'Budget MVNO option' },
+      { name: 'Comviq', price: '99-249 SEK/month', data: '10-50GB', network: 'Tele2', notes: 'Popular budget brand' },
+    ],
+    banks: [
+      { name: 'Revolut', type: 'Digital Bank', monthlyFee: '€0', highlight: true, pros: ['SEK account', 'Easy signup', 'No personnummer needed initially'], website: 'https://revolut.com' },
+      { name: 'N26', type: 'Digital Bank', monthlyFee: '€0', highlight: true, pros: ['Easy setup', 'Multi-currency', 'Good app'], website: 'https://n26.com' },
+      { name: 'Swedbank', type: 'Traditional', monthlyFee: '0 SEK (students)', pros: ['Largest Swedish bank', 'Student accounts free', 'Wide ATM network'] },
+      { name: 'SEB', type: 'Traditional', monthlyFee: '0 SEK (students)', pros: ['Major bank', 'Good student offers', 'English support'] },
+      { name: 'Handelsbanken', type: 'Traditional', monthlyFee: '0 SEK (students)', pros: ['Personal service', 'Local branches', 'Student packages'] },
+    ],
+    essentials: [
+      { task: 'Personnummer', deadline: 'Within 1 week (if staying 1+ year)', description: 'Swedish personal identity number. Apply at Skatteverket (Tax Agency).', documents: ['Passport', 'Residence permit', 'Proof of enrollment', 'Proof of address'] },
+      { task: 'Residence Permit', deadline: 'Before arrival (non-EU)', description: 'Apply at Migrationsverket. Need proof of funds (SEK 10,314/month).', documents: ['Passport', 'University acceptance', 'Financial proof', 'Health insurance'] },
+      { task: 'Address Registration', deadline: 'Within 1 week', description: 'Register at Skatteverket with your Swedish address.' },
+      { task: 'Student Union', deadline: 'At enrollment', description: 'Join your student union (kår) for discounts and student life.' },
+      { task: 'SL/Västtrafik Card', deadline: 'First week', description: 'Regional transport card. Student discounts available with valid ID.' },
+    ],
+  },
+  'Austria': {
+    flag: '🇦🇹',
+    simCards: [
+      { name: 'A1', price: '€15-30/month', data: '20-80GB', network: 'A1', highlight: true, notes: 'Best coverage, student tariffs' },
+      { name: 'Magenta', price: '€15-25/month', data: '20-60GB', network: 'Magenta', highlight: true, notes: 'Good urban coverage' },
+      { name: 'Drei (3)', price: '€12-25/month', data: '20-100GB', network: 'Drei', notes: 'Best data deals' },
+      { name: 'HoT', price: '€8-15/month', data: '10-30GB', network: 'Magenta', notes: 'Budget MVNO from Hofer' },
+      { name: 'Spusu', price: '€5-15/month', data: '10-50GB', network: 'Drei', notes: 'Very affordable, flexible plans' },
+    ],
+    banks: [
+      { name: 'N26', type: 'Digital Bank', monthlyFee: '€0', highlight: true, pros: ['German bank, works in Austria', 'Easy signup', 'IBAN instantly'], website: 'https://n26.com' },
+      { name: 'Revolut', type: 'Digital Bank', monthlyFee: '€0', highlight: true, pros: ['Multi-currency', 'Easy setup', 'Great app'], website: 'https://revolut.com' },
+      { name: 'Erste Bank', type: 'Traditional', monthlyFee: '€0 (students)', pros: ['George app is excellent', 'Student accounts free', 'Wide network'] },
+      { name: 'Bank Austria', type: 'Traditional', monthlyFee: '€0 (students)', pros: ['Part of UniCredit', 'Student packages', 'English support'] },
+      { name: 'Raiffeisen', type: 'Traditional', monthlyFee: '€0 (students)', pros: ['Cooperative bank', 'Local branches', 'Good student offers'] },
+    ],
+    essentials: [
+      { task: 'Meldezettel', deadline: 'Within 3 days', description: 'Address registration at Meldeamt. Required for everything else.', documents: ['Passport', 'Rental contract (signed by landlord)'] },
+      { task: 'Residence Permit', deadline: 'Non-EU: before visa expires', description: 'Apply at MA 35 (Vienna) or Bezirkshauptmannschaft. Need €1,030/month proof.', documents: ['Passport', 'Photos', 'Meldezettel', 'University acceptance', 'Health insurance', 'Financial proof'] },
+      { task: 'ÖGK Health Insurance', deadline: 'At enrollment', description: 'Austrian health insurance for students ~€63/month. Or use e-card if working.', documents: ['Meldezettel', 'Enrollment confirmation'] },
+      { task: 'Student ID', deadline: 'At university', description: 'Get your Studierendenausweis for discounts and library access.' },
+      { task: 'Wiener Linien/ÖBB', deadline: 'First week', description: 'Vienna transport or ÖBB Vorteilscard for train discounts. Semester ticket available.' },
+    ],
+  },
 };
 
 export default function ArrivalGuide() {
