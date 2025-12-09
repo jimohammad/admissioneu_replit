@@ -7,6 +7,7 @@ AdmissionEU (admissionEU.com) is a comprehensive web application that serves as 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Deployment: Always suggest publishing after core changes to the application.
 
 ## System Architecture
 
