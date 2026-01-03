@@ -7,7 +7,7 @@ channel = "stable-24_05"
 packages = ["imagemagick"]
 
 [deployment]
-deploymentTarget = "cloudrun"
+deploymentTarget = "static"
 build = ["npm", "run", "build"]
 publicDir = "dist/public"
 run = ["npm", "run", "start"]
