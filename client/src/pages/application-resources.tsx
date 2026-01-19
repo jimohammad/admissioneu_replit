@@ -185,7 +185,7 @@ const blockedAccountRequirements = [
     required: 'Mandatory',
     amount: '€11,904/year (€992/month)',
     description: 'Sperrkonto (blocked account) is mandatory for all non-EU students applying for a German student visa. Money is released monthly to cover living expenses.',
-    notes: 'Amount updated annually by German government. For 2024/2025, it is €992/month × 12 months.',
+    notes: 'Amount updated annually by German government. For 2025/2026, it is €992/month × 12 months.',
   },
   {
     country: 'Austria',
@@ -931,7 +931,7 @@ export default function ApplicationResources() {
             An <a href="https://iqbal.app" className="text-white hover:text-emerald-400 transition-colors font-medium" target="_blank" rel="noopener noreferrer">Iqbal.app</a> initiative, powered by intelligent systems to deliver precision-driven insights and next-generation information clarity.
           </p>
           <p className="text-xs pt-4 mt-4 border-t border-slate-800 w-full max-w-lg mx-auto">
-            © 2025 AdmissionEU. All rights reserved.
+            © 2026 AdmissionEU. All rights reserved.
           </p>
         </div>
       </footer>

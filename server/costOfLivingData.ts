@@ -695,7 +695,7 @@ export const costOfLivingData: InsertCostOfLiving[] = [
     entertainment: 55,
   },
   
-  // Netherlands - Major Cities (2025 data based on student housing research)
+  // Netherlands - Major Cities (2026 data based on student housing research)
   {
     country: 'Netherlands',
     city: 'Amsterdam',

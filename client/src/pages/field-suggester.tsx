@@ -315,7 +315,7 @@ export default function FieldSuggester() {
             An <a href="https://iqbal.app" className="text-white hover:text-emerald-400 transition-colors font-medium" target="_blank" rel="noopener noreferrer">Iqbal.app</a> initiative, powered by intelligent systems to deliver precision-driven insights and next-generation information clarity.
           </p>
           <p className="text-xs pt-4 mt-4 border-t border-slate-800 w-full max-w-lg mx-auto">
-            © 2025 AdmissionEU. All rights reserved.
+            © 2026 AdmissionEU. All rights reserved.
           </p>
         </div>
       </footer>

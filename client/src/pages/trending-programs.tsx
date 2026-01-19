@@ -56,7 +56,7 @@ const trendingPrograms: TrendingProgram[] = [
     salaryRange: "€55,000 - €85,000",
     description: "Cutting-edge field combining computer science, mathematics, and cognitive science to create intelligent systems.",
     whyTrending: [
-      "383% growth in AI job demand expected by 2025",
+      "383% growth in AI job demand expected by 2026",
       "€1.3 billion EU investment in AI and digital skills",
       "44% of organizations boost pay for AI/ML skills",
       "AI reshaping every industry from healthcare to finance"
@@ -123,7 +123,7 @@ const trendingPrograms: TrendingProgram[] = [
     description: "Essential healthcare profession providing patient care, health promotion, and medical support services.",
     whyTrending: [
       "2.3 million nurse shortage projected across EU",
-      "2 million new healthcare jobs expected by 2025",
+      "2 million new healthcare jobs expected by 2026",
       "Aging population driving sustained demand",
       "Healthcare reaching 10% of EU GDP"
     ],
@@ -265,13 +265,13 @@ export default function TrendingProgramsPage() {
         <div className="text-center mb-12">
           <Badge className="mb-4 bg-gradient-to-r from-orange-500 to-red-500 text-white border-0">
             <TrendingUp className="w-3 h-3 mr-1" />
-            2025 Career Guide
+            2026 Career Guide
           </Badge>
           <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4" data-testid="text-page-title">
             Top 10 In-Demand Undergraduate Programs
           </h1>
           <p className="text-lg text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
-            Discover the most trending undergraduate programs in EU universities for 2025, specially curated for South Asian students seeking excellent career prospects in Europe.
+            Discover the most trending undergraduate programs in EU universities for 2026, specially curated for South Asian students seeking excellent career prospects in Europe.
           </p>
         </div>
 
@@ -505,7 +505,7 @@ export default function TrendingProgramsPage() {
         </Card>
 
         <div className="mt-8 text-center text-sm text-slate-500 dark:text-slate-400" data-testid="text-data-source">
-          <p>Data sourced from EU labor statistics, World Economic Forum Future of Jobs Report 2025, and university employment surveys.</p>
+          <p>Data sourced from EU labor statistics, World Economic Forum Future of Jobs Report 2026, and university employment surveys.</p>
         </div>
       </main>
     </div>

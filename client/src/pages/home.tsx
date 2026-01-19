@@ -503,7 +503,7 @@ export default function Home() {
              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
           </div>
           <p className="text-xs pt-4 border-t border-slate-800 w-full max-w-lg mx-auto">
-            © 2025 AdmissionEU. All rights reserved.
+            © 2026 AdmissionEU. All rights reserved.
           </p>
         </div>
       </footer>

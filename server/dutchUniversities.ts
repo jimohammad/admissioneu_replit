@@ -700,7 +700,7 @@ export const dutchUniversities: InsertUniversity[] = [
     type: "Public",
     languages: ["English", "Dutch"],
     domains: ["Music", "Opera", "Conducting", "Music Education"],
-    admissionPeriod: "October 1 - December 1, 2025",
+    admissionPeriod: "October 1 - December 1, 2026",
     website: "https://www.conservatoriumvanamsterdam.nl",
     description: "One of Europe's largest and most diverse conservatories. World-class faculty and facilities. Part of Amsterdam University of the Arts.",
     englishPrograms: true,
